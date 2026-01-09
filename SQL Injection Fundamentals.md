@@ -25,7 +25,7 @@ Once you are at the webpage click on the "create account" tab navigate to regist
             "Content-Type": "application/x-www-form-urlencoded"
           }
           
-          # Build request
+          # POST request
           r = requests.post(
               url=url,
               headers=headers,
@@ -34,6 +34,13 @@ Once you are at the webpage click on the "create account" tab navigate to regist
               verify=False,
               allow_redirects=False
           )
+
+          # Responce
+					print('\n***** Response *****')
+					print(f'Status Code: {r.status_code} {r.reason}')
+					for k, v in r.headers.items():
+					  print(f'{k}: {v}')
+					print(f'Response-Length: {len(r.content):,}\n') 
 
 
 
