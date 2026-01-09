@@ -18,7 +18,7 @@ r = requests.post(
 	headers={"Content-Type": "application/x-www-form-urlencoded"},
 	data=data,
 	cookies=cookie,
-	verify=False,
+	verify=False, # Ignore SSL Cert
 	allow_redirects=False
 )
 
