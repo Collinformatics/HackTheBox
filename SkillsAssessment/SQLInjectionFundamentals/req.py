@@ -3,7 +3,7 @@ from urllib.parse import urlparse
 
 # Inputs:
 url = 'https://<ip>/api/register.php'
-usr = 'unamex'
+usr = 'name'
 passwd = 'Passwd#12'
 inj = "' or ''='"
 cookie = {'PHPSESSID': '<cookie>'}
