@@ -26,6 +26,6 @@ Once you are at the webpage click on the "create account" tab navigate to regist
 
         We will need to send the request to: ip:port/api/register.php
 
-You will have successfully created an account when you see this line in the Reqponce:
+You will have successfully created an account when you see this line in the Responce:
 
     Location: /login.php?s=account+created+successfully!
