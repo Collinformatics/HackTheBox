@@ -18,7 +18,7 @@ Once you are at the webpage click on the "create account" tab navigate to regist
 
     - You can bypass the requirment with requests: ' or ''='
    
-    - The browser will not let you exploit the form, but using req.py or a proxy like Burp Suite can be used to creat an account.
+    - The browser will not let you fillout the form, but using req.py or a proxy like Burp Suite, we can circumvent this restriction and send data to the server.
    
   - Notice that the registration form inclused and action param:
    
