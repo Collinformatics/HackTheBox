@@ -1,6 +1,6 @@
 ## Purpose:
 
-This writeup detalis how to solve the Skills Assment for the SQL Injection Fundamentals module from Hack THe Box Acadmey.
+This writeup detalis how to solve the Skills Assessment for the SQL Injection Fundamentals module from Hack THe Box Acadmey.
 
 ## Getting Started:
 
@@ -14,5 +14,5 @@ Once you are at the webpage click on the "create account" tab navigate to regist
 
   - However the name="invitationCode" param is vulnerable to an SQL injection.
 
-  - 
+    - You can bypass the requirment with: ' or ''='
 
