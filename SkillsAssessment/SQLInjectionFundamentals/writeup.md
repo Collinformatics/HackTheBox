@@ -20,11 +20,11 @@ Once you are at the webpage click on the "create account" tab navigate to regist
    
     - The browser will not let you exploit the form, but using req.py or a proxy like Burp Suite can be used to creat an account.
    
-    - Notice that the registration form inclused and action param:
+  - Notice that the registration form inclused and action param:
    
-          <form action="/api/register.php" method="POST" id="registrationForm">
+        <form action="/api/register.php" method="POST" id="registrationForm">
 
-        We will need to send the request to: ip:port/api/register.php
+      We will need to send the request to: ip:port/api/register.php
 
 You will have successfully created an account when you see this line in the Responce:
 
