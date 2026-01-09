@@ -3,10 +3,12 @@
 This writeup detalis how to solve the Skills Assessment for the SQL Injection Fundamentals module from Hack THe Box Acadmey.
 
 ## Getting Started:
-
 After starting the target, and pasting the ip in the browser youll notice that that the page doesnt load.
 
 - You'll need to ignore the SSL Certificate to go to the page.
+
+
+## Create Account:
 
 Once you are at the webpage click on the "create account" tab navigate to register.php.
 
@@ -23,3 +25,7 @@ Once you are at the webpage click on the "create account" tab navigate to regist
           <form action="/api/register.php" method="POST" id="registrationForm">
 
         We will need to send the request to: ip:port/api/register.php
+
+You will have successfully created an account when you see this line in the Reqponce:
+
+    Location: /login.php?s=account+created+successfully!
