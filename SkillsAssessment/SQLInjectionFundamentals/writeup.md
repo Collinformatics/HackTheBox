@@ -22,4 +22,4 @@ Once you are at the webpage click on the "create account" tab navigate to regist
    
           <form action="/api/register.php" method="POST" id="registrationForm">
 
-        We will need to send the request to https://ip:port/api/register.php
+        We will need to send the request to: ip:port/api/register.php
