@@ -17,4 +17,9 @@ Once you are at the webpage click on the "create account" tab navigate to regist
     - You can bypass the requirment with requests: ' or ''='
    
     - The browser will not let you exploit the form, but using req.py or a proxy like Burp Suite can be used to creat an account.
+   
+    - Notice that the registration form inclused and action param:
+   
+          <form action="/api/register.php" method="POST" id="registrationForm">
 
+        We will need to send the request to https://<ip>/api/register.php
