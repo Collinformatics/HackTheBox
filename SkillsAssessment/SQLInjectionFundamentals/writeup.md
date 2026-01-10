@@ -45,6 +45,7 @@ Explanation:
       SELECT * FROM invites WHERE code = '' OR ''=''
 
 - Note:
-  This exploit also allows us to create accounts with '' as the password, or with missmatched password inputs. 
+
+  - This exploit also allows us to create accounts with '' as the password, or with missmatched password inputs. 
 
 
