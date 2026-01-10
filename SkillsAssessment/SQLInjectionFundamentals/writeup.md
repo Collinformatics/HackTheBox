@@ -29,3 +29,22 @@ Once you are at the webpage click on the "create account" tab navigate to regist
 You will have successfully created an account when you see this line in the Responce:
 
     Location: /login.php?s=account+created+successfully!
+
+Explanation:
+
+- The input is:
+
+      invitationCode=' or ''='
+
+- A likly query is:
+
+      SELECT * FROM invites WHERE code = '$invitationCode
+
+- Leading to:
+
+      SELECT * FROM invites WHERE code = '' OR ''=''
+
+- Note:
+  This exploit also allows us to create accounts with '' as the password, or with missmatched password inputs. 
+
+
