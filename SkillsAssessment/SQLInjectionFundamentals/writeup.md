@@ -46,6 +46,17 @@ Explanation:
 
 - Note:
 
-  - This exploit also allows us to create accounts with '' as the password, or with missmatched password inputs. 
+  - This exploit also allows us to create accounts with '' as the password, or with missmatched password inputs.
+
+## Exploit Database:
+
+The "search in conversation" input field uses a GET request to retrieve messages in the database. This represents a potential injection point.
+
+
+
+
+
+
+
 
 
