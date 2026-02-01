@@ -52,13 +52,26 @@ Explanation:
 
 The "search in conversation" input field uses a GET request to retrieve messages in the database. This represents a potential injection point.
 
+Lets start by determine the number of columns we are working with
+
+- We can do so with this injection:
+
+      ') UNION SELECT 1,2,3,4-- -
+
+  - This allows us to break out of the original query with ')
+  - Then the UNION SELECT aligns the columns
+  - The result shows that columns "3" and "4" are displayed, and can be used to leak information
+
+<img width="1282" height="445" alt="chattr1" src="https://github.com/user-attachments/assets/62606693-24af-4058-9f0b-a981d4dbd094" />
+
+
 To find the database name we can use the injection:
 
     ') UNION SELECT 1, 2, 3, database() FROM INFORMATION_SCHEMA.SCHEMATA #
 
 - This returns: chattr
 
-<img width="1223" height="445" alt="chattr" src="https://github.com/user-attachments/assets/419a17ec-ab51-4e96-9977-cf227555b575" />
+<img width="1223" height="445" alt="chattr2" src="https://github.com/user-attachments/assets/e1c2df91-d9fa-4d96-8f2f-5eb26c560d8a" />
 
 
 
