@@ -58,7 +58,8 @@ To find the database name we can use the injection:
 
 - This returns: chattr
 
-<img width="1223" height="461" alt="chattr" src="https://github.com/user-attachments/assets/ead424ef-36e2-4042-ae94-bc4497f9f337" />
+<img width="1223" height="445" alt="chattr" src="https://github.com/user-attachments/assets/419a17ec-ab51-4e96-9977-cf227555b575" />
+
 
 
 
