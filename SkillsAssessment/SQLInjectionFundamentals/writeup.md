@@ -78,7 +78,9 @@ The "search in conversation" input field uses a GET request to retrieve data fro
 
       ') UNION SELECT 1,2,TABLE_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.TABLES-- -
 
-  - This returns a long list of information but lets focus on 
+  - This returns a long list of information but lets focus on:
+    - Table: Users
+    - Database: chattr 
 
 ...
 
