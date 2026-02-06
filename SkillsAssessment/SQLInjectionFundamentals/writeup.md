@@ -78,7 +78,7 @@ Next, lets see what permissions are avalible with the payload:
 
     ') UNION SELECT 1,2,GRANTEE,PRIVILEGE_TYPE FROM information_schema.USER_PRIVILEGES-- -
 
-  <Include image>
+  <------ Include image ------>
 
 - This shows that user 'chattr_dbUser'@'localhost' has "FILE" permissions, meaning that we can read and write files.
 
