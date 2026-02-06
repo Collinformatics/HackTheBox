@@ -48,7 +48,7 @@ Explanation:
 
   - This exploit also allows us to create accounts with '' as the password, or with missmatched password inputs.
 
-## Exploit Database:
+## Exploit:
 
 The "search in conversation" input field uses a GET request to retrieve messages in the database. This represents a potential injection point.
 
@@ -73,8 +73,13 @@ To find the database name we can use the injection:
 
 <img width="1282" height="445" alt="chattr2" src="https://github.com/user-attachments/assets/705aabe0-e1bc-4fee-acdd-471273234a79" />
 
+Next lets see what permissions are avalible with the payload:
 
+    ') UNION SELECT 1,2,GRANTEE,PRIVILEGE_TYPE FROM information_schema.USER_PRIVILEGES-- -
 
+  <Include image>
+
+- This shows that user 'chattr_dbUser'@'localhost' has "FILE" permissions, meaning that we can read and write files.
 
 
 
