@@ -13,9 +13,7 @@ Lets find out some basic info about our target:
 
     whatweb https://154.57.164.77:32252
 
-<img width="746" height="470" alt="whatweb" src="https://github.com/user-attachments/assets/b58dbeb7-2e59-4e08-a556-e9f04a191843" />
-
-- We see that the webserver is nginx/1.22.1
+- This will reveal that the webserver is nginx/1.22.1
 
 ## Create Account:
 
