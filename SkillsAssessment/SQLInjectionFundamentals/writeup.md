@@ -2,10 +2,12 @@
 
 This writeup detalis how to solve the Skills Assessment for the SQL Injection Fundamentals module from Hack THe Box Acadmey.
 
+
 ## Getting Started:
 After starting the target, and pasting the ip in the browser youll notice that that the page doesnt load.
 
 - You'll need to ignore the SSL Certificate to go to the page.
+
 
 ## Recon:
 
@@ -14,6 +16,7 @@ Lets find out some basic info about our target:
     whatweb https://154.57.164.77:32252
 
 - This will reveal that the webserver is nginx/1.22.1
+
 
 ## Create Account:
 
@@ -55,6 +58,7 @@ Explanation:
 
   - This exploit also allows us to create accounts with '' as the password, or with missmatched password inputs.
 
+
 ## Formatting An SQL Injection:
 
 The "search in conversation" input field uses a GET request to retrieve data from the database. This represents a potential injection point.
@@ -75,9 +79,10 @@ Lets try a basic exploit to find the database name with this injection:
 
     ') UNION SELECT 1,2,database(),4 FROM INFORMATION_SCHEMA.SCHEMATA #
 
+<img width="1002" height="446" alt="chattr2" src="https://github.com/user-attachments/assets/46979a14-ab4e-443b-ac17-b2db7378bbf2" />
+
 - This returns: chattr
 
-<img width="1002" height="446" alt="chattr2" src="https://github.com/user-attachments/assets/46979a14-ab4e-443b-ac17-b2db7378bbf2" />
 
 ## Finding The Admin Password:
 
