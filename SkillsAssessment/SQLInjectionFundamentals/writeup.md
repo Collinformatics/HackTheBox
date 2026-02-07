@@ -146,7 +146,7 @@ Given that we have write permissions, let write some malicious code on the serve
  
             https://154.57.164.78:32157/fSociety.php?0=ls%20/
 
-    <img width="1002" height="345" alt="rootDir" src="https://github.com/user-attachments/assets/31802144-6da0-4f87-ba53-1f730af57f4d" />
+    <img width="1002" height="345" alt="rootDir" src="https://github.com/user-attachments/assets/38d16ccd-c39d-4350-a942-75e149d5d831" />
 
     - The file "flag_876a4c.txt", looks interesting, lets read it.
 
