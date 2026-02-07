@@ -69,11 +69,12 @@ Lets start by determine the number of columns we are working with
 
       ') UNION SELECT 1,2,3,4-- -
 
+<img width="1002" height="446" alt="chattr1" src="https://github.com/user-attachments/assets/7996774b-c05a-4005-beb3-cd448f4d2528" />
+
 - This allows us to break out of the original query with ')
 - Then the UNION SELECT aligns the columns
 - The result shows that columns "3" and "4" are displayed, and can be used to leak information
 
-<img width="1002" height="446" alt="chattr1" src="https://github.com/user-attachments/assets/7996774b-c05a-4005-beb3-cd448f4d2528" />
 
 Lets try a basic exploit to find the database name with this injection:
 
