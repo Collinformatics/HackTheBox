@@ -69,7 +69,7 @@ Lets start by determine the number of columns we are working with
 
       ') UNION SELECT 1,2,3,4-- -
 
-<img width="1002" height="443" alt="chattr1" src="https://github.com/user-attachments/assets/59b0c90d-1170-45e0-92e4-c45ab7c32a81" />
+<img width="1002" height="443" alt="chattr1" src="https://github.com/user-attachments/assets/0dd929e3-cb14-4704-afec-bba0cbdb12f1" />
 
 - This allows us to break out of the original query with ')
 - Then the UNION SELECT aligns the columns
@@ -80,7 +80,7 @@ Lets try a basic exploit to find the database name with this injection:
 
     ') UNION SELECT 1,2,database(),4 FROM INFORMATION_SCHEMA.SCHEMATA-- -
 
-<img width="1002" height="443" alt="chattr2" src="https://github.com/user-attachments/assets/0fc1bbd2-4230-4142-ac3e-951e5036bb57" />
+<img width="1002" height="443" alt="chattr2" src="https://github.com/user-attachments/assets/51204977-5704-4349-a9f8-fba27763bda6" />
 
 - This returns "chattr" and more inportantly we've found a way to use an SQL injection to leak info.
 
