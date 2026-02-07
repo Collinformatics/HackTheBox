@@ -103,7 +103,7 @@ Next, lets see what permissions are avalible with the payload:
 
 - This shows that user 'chattr_dbUser'@'localhost' has "FILE" permissions, meaning that we can read and write files.
 
-
+  - Now that we know this, lets read a configuration file:
 
 
 
