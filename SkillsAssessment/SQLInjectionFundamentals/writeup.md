@@ -110,7 +110,19 @@ Next, lets see what permissions are avalible with the payload:
 
 - This shows that user 'chattr_dbUser'@'localhost' has "FILE" permissions, meaning that we can read and write files.
 
-  - Now that we know this, lets read a configuration file:
+  - In the Recon stage we saw that the webserver is "nginx".
+  - Knowing this we can try to read the servers configuration file:
+
+        ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/nginx.conf"),4-- -
+
+
+- There is a lot in the output, but lets focus on this:
+
+  - The * is a placeholder, by knowing how 
+ 
+    - Now we can read the host file:
+
+            ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/sites-enabled/default"),4-- -
 
 
 
