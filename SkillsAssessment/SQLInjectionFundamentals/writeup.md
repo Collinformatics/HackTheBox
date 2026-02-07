@@ -13,7 +13,7 @@ After starting the target, and pasting the ip in the browser youll notice that t
 
 Lets find out some basic info about our target:
 
-    whatweb https://154.57.164.77:32252
+    whatweb https://154.57.164.68:30411
 
 - This will reveal that the webserver is nginx/1.22.1
 
