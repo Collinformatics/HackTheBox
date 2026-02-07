@@ -124,7 +124,7 @@ Next, lets see what permissions are avalible with the payload:
 ## Reading Configuration File: 
 
   - In the Recon stage we saw that the webserver is "nginx".
-  - Knowing this we can try to read the servers configuration file:
+  - Knowing this we can read the servers configuration file:
 
         ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/nginx.conf"),4-- -
 
@@ -133,10 +133,14 @@ Next, lets see what permissions are avalible with the payload:
 - There is a lot in the output, but lets focus on this:
 
 <img width="1002" height="733" alt="confHostPath" src="https://github.com/user-attachments/assets/675b7b86-ca04-4fbd-a11b-1059e6029e1d" />
-
-  - This tells us where the virtual hosts live
-
-  - The * is a placeholder, by knowing how 
+  
+  - This about the virtual hosts.
+      - A virtual host file’s job is to map a hostname to a directory on disk.
+      - This directory is the webroot.
+  
+  - For Nginx servers, hosts live in "sites-enabled".
+      - Therefore lets pay attention to: include /etc/nginx/sites-enabled/*;
+      - The * is a placeholder, when Nginx is installed via apt the vhost file is named "default".
  
 - Now we have what we need to read the host file:
 
