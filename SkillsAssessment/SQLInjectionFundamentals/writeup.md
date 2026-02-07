@@ -69,7 +69,7 @@ Lets start by determine the number of columns we are working with
 - Then the UNION SELECT aligns the columns
 - The result shows that columns "3" and "4" are displayed, and can be used to leak information
 
-<img width="1282" height="445" alt="chattr1" src="https://github.com/user-attachments/assets/62606693-24af-4058-9f0b-a981d4dbd094" />
+<img width="1002" height="446" alt="chattr1" src="https://github.com/user-attachments/assets/58c4efd6-4d61-4998-94ff-df3cc1f625d2" />
 
 
 Lets try a basic exploit to find the database name with this injection:
@@ -78,14 +78,15 @@ Lets try a basic exploit to find the database name with this injection:
 
 - This returns: chattr
 
-<img width="1282" height="445" alt="chattr2" src="https://github.com/user-attachments/assets/705aabe0-e1bc-4fee-acdd-471273234a79" />
-
+<img width="1002" height="446" alt="chattr2" src="https://github.com/user-attachments/assets/475e430f-6b71-4736-971a-3f5f2e154dfb" />
 
 ## Finding The Admin Password:
 
 Now lets enumerate the databases and tables, we can do that with:
 
     ') UNION SELECT 1,2,TABLE_NAME,TABLE_SCHEMA FROM INFORMATION_SCHEMA.TABLES-- -
+
+<img width="1002" height="733" alt="tables" src="https://github.com/user-attachments/assets/1b930255-f2d5-4e37-9ff9-0c3ca0f4c2c2" />
 
 - This returns a long list of information but lets focus on the following:
   - Table: Users
