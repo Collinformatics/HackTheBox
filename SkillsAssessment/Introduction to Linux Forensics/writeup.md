@@ -37,9 +37,47 @@ We will again use inspect auth.log:
 
     cat /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/ubuntu/var/log/auth.log | grep python
 
+This prints our deisred timestamp:
+
+  Oct 15 10:38:03 ubuntu sudo:    kevin : TTY=pts/0 ; PWD=/home/kevin ; USER=root ; COMMAND=/usr/bin/python3 -c import
+
+
 We can find the PID & PPID with:
 
     python3 ~/tools/volatility3/vol.py -q -f  /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.psaux.PsAux
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
