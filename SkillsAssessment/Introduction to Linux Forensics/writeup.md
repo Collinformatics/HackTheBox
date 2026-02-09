@@ -46,13 +46,15 @@ This prints our deisred timestamp:
 
 We can find out more about the command by using volatility3 to inspect the processes:
 
-    python3 ~/tools/volatility3/vol.py -q -f  /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.psaux.PsAux | grep sudo | grep python
+    python3 ~/tools/volatility3/vol.py -q -f /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.psaux.PsAux | grep sudo | grep python
 
 This gives us two entries, but they both contain the same base64 encoded payload.
 
 - Decode this and we can find the address is: 3.212.197.166
 
+# Find ParentProcessId Of The sh Command Python Command:
 
+Our previous inspections shows that the PPID is: 2840 
 
 
 
