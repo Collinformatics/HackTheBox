@@ -39,20 +39,24 @@ We will again use inspect auth.log:
 
 This prints our deisred timestamp:
 
-  Oct 15 10:38:03 ubuntu sudo:    kevin : TTY=pts/0 ; PWD=/home/kevin ; USER=root ; COMMAND=/usr/bin/python3 -c import
+- Oct 15 10:38:03 ubuntu sudo:    kevin : TTY=pts/0 ; PWD=/home/kevin ; USER=root ; COMMAND=/usr/bin/python3 -c import
 
 
-# Finding The Command and Control Address In The Payload:
+# Finding The Command And Control Address In The Payload:
+
+    cat /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/ubuntu/home/kevin/.bash_history
+
+This shows an echo command that pipes a base64 encoded string to python3
+
+- If we decode the string and we see that C&C the address is: 3.212.197.166
+
+# Find ParentProcessId Of The sh Command Python Command:
 
 We can find out more about the command by using volatility3 to inspect the processes:
 
     python3 ~/tools/volatility3/vol.py -q -f /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.psaux.PsAux | grep sudo | grep python
 
 This gives us two entries, but they both contain the same base64 encoded payload.
-
-- Decode this and we can find the address is: 3.212.197.166
-
-# Find ParentProcessId Of The sh Command Python Command:
 
 Our previous inspections shows that the PPID is: 2840 
 
