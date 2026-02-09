@@ -42,7 +42,7 @@ This prints our deisred timestamp:
   Oct 15 10:38:03 ubuntu sudo:    kevin : TTY=pts/0 ; PWD=/home/kevin ; USER=root ; COMMAND=/usr/bin/python3 -c import
 
 
-# Finding The Command and Control Address Of THe Payload:
+# Finding The Command and Control Address In The Payload:
 
 We can find out more about the command by using volatility3 to inspect the processes:
 
