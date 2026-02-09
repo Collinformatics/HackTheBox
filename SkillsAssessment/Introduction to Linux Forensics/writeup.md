@@ -42,9 +42,18 @@ This prints our deisred timestamp:
   Oct 15 10:38:03 ubuntu sudo:    kevin : TTY=pts/0 ; PWD=/home/kevin ; USER=root ; COMMAND=/usr/bin/python3 -c import
 
 
-We can find the PID & PPID with:
+# Finding The Command and Control Address Of THe Payload:
 
-    python3 ~/tools/volatility3/vol.py -q -f  /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.psaux.PsAux
+We can find out more about the command by using volatility3 to inspect the processes:
+
+    python3 ~/tools/volatility3/vol.py -q -f  /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.psaux.PsAux | grep sudo | grep python
+
+This gives us two entries, but they both contain the same base64 encoded payload.
+
+- Decode this and we can find the address is: 3.212.197.166
+
+
+
 
 
 
