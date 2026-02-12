@@ -35,11 +35,11 @@ To identify the attackers ip lets check auth.log for failed login attempts
 
 # Identify Timestamp Of The Suspicious Sudo Python Command:
 
-We will again use inspect auth.log:
+We will again use inspect auth.log, but this time we will look for entries associated with python:
 
     cat /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/ubuntu/var/log/auth.log | grep python
 
-This prints our deisred timestamp:
+Fortunately there is only one entry, making it easy to find our deisred timestamp:
 
     Oct 15 10:38:03 ubuntu sudo:    kevin : TTY=pts/0 ; PWD=/home/kevin ; USER=root ; COMMAND=/usr/bin/python3 -c import
 
