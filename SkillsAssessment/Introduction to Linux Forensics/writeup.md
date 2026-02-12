@@ -96,7 +96,11 @@ There are many lines in the output, but if we search for "ProcessId: 2840", the 
 
 # What User Executed Process 3324:
 
+Next we need to search syslog output for "ProcessId: 3324".
 
+If we look a couple of lines down we will find the answer:
+
+- User: root
 
 
 
