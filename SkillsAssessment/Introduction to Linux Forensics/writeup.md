@@ -65,7 +65,17 @@ This gives us two entries and they both contain the same base64 encoded payload.
 
 # Find PID's Connecting To THe C&C Server:
 
-If we 
+We can investigate processes related to network connections:
+
+    linuxforensics@ubuntu:~$ python3 ~/tools/volatility3/vol.py -q -f /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.sockstat.Sockstat | grep 3.212.197.166
+
+The command returns this table:
+
+    NetNS   Pid     FD      Sock Offset     Family  Type    Proto   Source Addr     Source Port        Destination Addr        Destination Port        State   Filter
+    4026531840      3939    3       0x93fe0ecc8000  AF_INET STREAM  TCP     192.168.127.236 56006   3.212.197.166   8080    ESTABLISHED     -
+    4026531840      4519    3       0x93fe0ecc8000  AF_INET STREAM  TCP     192.168.127.236 56006   3.212.197.166   8080    ESTABLISHED     -
+    4026531840      4522    3       0x93fe0ecc8000  AF_INET STREAM  TCP     192.168.127.236 56006   3.212.197.166   8080    ESTABLISHED     -
+    4026531840      4612    3       0x93fe0ecc8900  AF_INET STREAM  TCP     192.168.127.236 55426   3.212.197.166   8080    SYN_SENT        -
 
 
 # Find The Image Value ProcessId 2840:
