@@ -63,9 +63,11 @@ This gives us two entries and they both contain the same base64 encoded payload.
 - The PPID we want is: 2840 
 
 
-# Find PID's Connecting To THe C&C Server:
+# Find PID's Connecting To The C&C Server:
 
-We can investigate processes related to network connections:
+We can investigate the processes related to network connections with Sockstat.
+
+To investicgate the processes related to connections witht the C&C server use:
 
     python3 ~/tools/volatility3/vol.py -q -f /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.sockstat.Sockstat | grep 3.212.197.166
 
