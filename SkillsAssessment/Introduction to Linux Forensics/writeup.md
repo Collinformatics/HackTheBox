@@ -67,7 +67,7 @@ This gives us two entries and they both contain the same base64 encoded payload.
 
 We can investigate processes related to network connections:
 
-    linuxforensics@ubuntu:~$ python3 ~/tools/volatility3/vol.py -q -f /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.sockstat.Sockstat | grep 3.212.197.166
+    python3 ~/tools/volatility3/vol.py -q -f /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.sockstat.Sockstat | grep 3.212.197.166
 
 The command returns this table:
 
