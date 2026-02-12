@@ -77,6 +77,7 @@ The command returns this table:
     4026531840      4522    3       0x93fe0ecc8000  AF_INET STREAM  TCP     192.168.127.236 56006   3.212.197.166   8080    ESTABLISHED     -
     4026531840      4612    3       0x93fe0ecc8900  AF_INET STREAM  TCP     192.168.127.236 55426   3.212.197.166   8080    SYN_SENT        -
 
+- The PIDs are: 3939,4519,4522,4612
 
 # Find The Image Value ProcessId 2840:
 
