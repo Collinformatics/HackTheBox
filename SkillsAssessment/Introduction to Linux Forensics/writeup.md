@@ -41,7 +41,7 @@ We will again use inspect auth.log:
 
 This prints our deisred timestamp:
 
-- Oct 15 10:38:03 ubuntu sudo:    kevin : TTY=pts/0 ; PWD=/home/kevin ; USER=root ; COMMAND=/usr/bin/python3 -c import
+    Oct 15 10:38:03 ubuntu sudo:    kevin : TTY=pts/0 ; PWD=/home/kevin ; USER=root ; COMMAND=/usr/bin/python3 -c import
 
 
 # Finding The Command And Control Address In The Payload:
