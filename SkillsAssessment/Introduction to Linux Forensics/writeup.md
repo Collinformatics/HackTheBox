@@ -81,11 +81,20 @@ The command returns this table:
 
 - The PIDs are: 3939,4519,4522,4612
 
-# Find The Image Value ProcessId 2840:
+# Find The Image Value ProcessId 2840 In The SysmonForLinux Log:
+
+The image, or path to the executable that started the process, can be found with:
+
+    cat /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView
+
+There are many lines in the output, but if we search for "ProcessId: 2840", the "Image" line will be nearby.
+
+- The line we want is:
+
+  - Image: /usr/bin/python3.8
 
 
-
-
+# What User Executed Process 3324:
 
 
 
