@@ -96,7 +96,7 @@ There are many lines in the output, but if we search for "ProcessId: 2840", the 
 
 # What Processes In The SysmonForLinux Log Are Connected To The Command & Control Server:
 
-Search the log for the server IP 3.212.197.166
+Use the command from the previous task to search the log for the server IP 3.212.197.166
 
 - The PIDs are: 2840
 
