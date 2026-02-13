@@ -94,6 +94,13 @@ There are many lines in the output, but if we search for "ProcessId: 2840", the 
   - Image: /usr/bin/python3.8
 
 
+# What Processes In The SysmonForLinux Log Are Connected To The Command & Control Server:
+
+Search the log for the server IP 3.212.197.166
+
+- The PIDs are: 2840
+
+
 # What User Executed Process 3324:
 
 Next we need to search syslog output for "ProcessId: 3324".
