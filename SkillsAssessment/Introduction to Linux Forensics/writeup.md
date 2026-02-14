@@ -126,11 +126,10 @@ If we look a couple of lines down we will find the answer:
 - User: root
 
 
+## Added:
 
 
-
-
-
+- The added line is: LD_PRELOAD=/usr/lib/sshd.so sshd &
 
 
 
