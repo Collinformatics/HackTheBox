@@ -102,16 +102,19 @@ There are many lines in the output, but if we search for "ProcessId: 2840", the 
 
 Use the command from the previous task to search the log for the server IP 3.212.197.166
 
-- We can scan for and highlight multiple entries with:
+- We have two options to scan the log and find the PIDs:
 
-      cat ubuntu/var/log/syslog | grep --color=always "ProcessId" | grep --color=always "2840"
+  1) The easy way, this requires an extra step where we write the provided script "scanSysmonEvents.sh" to the server, but it is much easier to read. The script can be ran with:
 
+          cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh "3.212.197.166"
 
-      cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scan.sh "3.212.197.166"
+  2) The hard way, this output is more difficult to read:
 
-Now we just need to go through the output and find the unique PIDs. 
+          cat ubuntu/var/log/syslog | grep --color=always '"ProcessId">' | grep --color=always "3.212.197.166"
 
-- The PIDs are: 2840,3324,3939
+- Now we just need to go through the output and find the unique PIDs. 
+
+  - The PIDs are: 2840,3324,3939
 
 
 # What User Executed Process 3324:
