@@ -37,7 +37,7 @@ To identify the attackers ip lets check auth.log for failed login attempts
 - We see that kevin has been trying to brute force his way in from: 192.168.127.130
 
 
-# Identify Timestamp Of The Suspicious Sudo Python Command:
+# Identify Timestamp of the Suspicious Sudo Python Command:
 
 We will again use inspect auth.log, but this time we will look for entries associated with python:
 
@@ -48,7 +48,7 @@ Fortunately there is only one entry, making it easy to find our deisred timestam
     Oct 15 10:38:03 ubuntu sudo:    kevin : TTY=pts/0 ; PWD=/home/kevin ; USER=root ; COMMAND=/usr/bin/python3 -c import
 
 
-# Finding The Command And Control Address In The Payload:
+# Finding the Command and Control Address in the Payload:
 
     cat ubuntu/home/kevin/.bash_history
 
@@ -56,7 +56,7 @@ This shows an echo command that pipes a base64 encoded string to python3
 
 - If we decode the string and we see that C&C the address is: 3.212.197.166
 
-# Find ParentProcessId Of The sh Command Associated With The Python Process:
+# Find ParentProcessId of the sh Command Associated With the Python Process:
 
 Let's use volatility3 to inspect the processes:
 
@@ -67,7 +67,7 @@ This gives us two entries and they both contain the same base64 encoded payload.
 - The PPID we want is: 2840 
 
 
-# Find PID's Connecting To The C&C Server:
+# Find PID's Connecting to the C&C Server:
 
 We can investigate the processes related to network connections with Sockstat.
 
@@ -85,7 +85,7 @@ The command returns this table:
 
 - The PIDs are: 3939,4519,4522,4612
 
-# Find The Image Value ProcessId 2840 In The SysmonForLinux Log:
+# Find the Image Value ProcessId 2840 in the SysmonForLinux Log:
 
 The image, or path to the executable that started the process, can be found with:
 
@@ -98,7 +98,7 @@ There are many lines in the output, but if we search for "ProcessId: 2840", the 
   - Image: /usr/bin/python3.8
 
 
-# What Processes In The SysmonForLinux Log Are Connected To The Command & Control Server:
+# What Processes in the SysmonForLinux Log are Connected to the Command & Control Server:
 
 Use the command from the previous task to search the log for the server IP 3.212.197.166
 
@@ -126,14 +126,18 @@ If we look a couple of lines down we will find the answer:
 - User: root
 
 
-## Based On the Python3 Activity What Was Most Likly Appended To /home/kevin/.bashrc:
+## Based on the Python3 Activity What Was Most Likly Appended to /home/kevin/.bashrc:
+
+If we scan the syslog and filter for ".bashrc", we'll find the command from PID 3362:
+
+-  CommandLine: /bin/sh -c echo "LD_PRELOAD=/usr/lib/sshd.so sshd &" >> /home/kevin/.bashrc
+
+- We can clearly see that root added this line to kevin's .bashrc:
+
+      LD_PRELOAD=/usr/lib/sshd.so sshd &
 
 
-
-- The added line is: LD_PRELOAD=/usr/lib/sshd.so sshd &
-
-
-
+# Find the CreationUtcTime of sshd.so
 
 
 
