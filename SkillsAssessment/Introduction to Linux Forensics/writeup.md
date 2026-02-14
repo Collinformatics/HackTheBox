@@ -106,7 +106,7 @@ Use the command from the previous task to search the log for the server IP 3.212
 
   1) The easy way, this requires an extra step where we write the provided script "scanSysmonEvents.sh" to the server, but it is much easier to read. The script can be ran with:
 
-          cat ubuntu/var/log/syslog | bash scanSysmonEvents.sh "3.212.197.166"
+          cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh "3.212.197.166"
 
   2) The hard way, this output is more difficult to read:
 
@@ -130,7 +130,7 @@ If we look a couple of lines down we will find the answer:
 
 If we scan the syslog and filter for ".bashrc", we'll find the command from PID 3362:
 
-    cat ubuntu/var/log/syslog | bash scanSysmonEvents.sh ".bashrc"
+    cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh ".bashrc"
 
 -  CommandLine: /bin/sh -c echo "LD_PRELOAD=/usr/lib/sshd.so sshd &" >> /home/kevin/.bashrc
 
