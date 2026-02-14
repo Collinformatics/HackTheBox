@@ -23,12 +23,16 @@ We have been provided the following data to inspect the incident:
 
   - /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/ubuntu/var/log/postgresql/postgresql-12-main.log
 
+Note: Its recommended to cd into the case dir with:
+
+    cd /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023
+
 
 # Detemining Attacker IP:
 
 To identify the attackers ip lets check auth.log for failed login attempts
 
-    cat /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/ubuntu/var/log/auth.log | grep -i failed
+    cat ubuntu/var/log/auth.log | grep -i failed
 
 - We see that kevin has been to brute force his way in from: 192.168.127.130
 
@@ -37,7 +41,7 @@ To identify the attackers ip lets check auth.log for failed login attempts
 
 We will again use inspect auth.log, but this time we will look for entries associated with python:
 
-    cat /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/ubuntu/var/log/auth.log | grep python
+    cat ubuntu/var/log/auth.log | grep python
 
 Fortunately there is only one entry, making it easy to find our deisred timestamp:
 
@@ -46,7 +50,7 @@ Fortunately there is only one entry, making it easy to find our deisred timestam
 
 # Finding The Command And Control Address In The Payload:
 
-    cat /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/ubuntu/home/kevin/.bash_history
+    cat /ubuntu/home/kevin/.bash_history
 
 This shows an echo command that pipes a base64 encoded string to python3
 
@@ -56,7 +60,7 @@ This shows an echo command that pipes a base64 encoded string to python3
 
 Let's use volatility3 to inspect the processes:
 
-    python3 ~/tools/volatility3/vol.py -f /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.psaux.PsAux | grep sudo | grep python
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.psaux.PsAux | grep sudo | grep python
 
 This gives us two entries and they both contain the same base64 encoded payload.
 
@@ -69,7 +73,7 @@ We can investigate the processes related to network connections with Sockstat.
 
 To investicgate the processes related to connections witht the C&C server use:
 
-    python3 ~/tools/volatility3/vol.py -q -f /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/memdump.mem linux.sockstat.Sockstat | grep 3.212.197.166
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.sockstat.Sockstat | grep 3.212.197.166
 
 The command returns this table:
 
@@ -85,7 +89,7 @@ The command returns this table:
 
 The image, or path to the executable that started the process, can be found with:
 
-    cat /home/linuxforensics/Desktop/cases/HacktiveLegion_15102023/ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView
+    cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView
 
 There are many lines in the output, but if we search for "ProcessId: 2840", the "Image" line will be nearby.
 
@@ -97,6 +101,10 @@ There are many lines in the output, but if we search for "ProcessId: 2840", the 
 # What Processes In The SysmonForLinux Log Are Connected To The Command & Control Server:
 
 Use the command from the previous task to search the log for the server IP 3.212.197.166
+
+- We can scan for and highlight multiple entries with:
+
+      cat ubuntu/var/log/syslog | grep --color=always "ProcessId" | grep --color=always "2840"
 
 - The PIDs are: 2840
 
