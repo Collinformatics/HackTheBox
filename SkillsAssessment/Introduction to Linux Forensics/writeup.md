@@ -141,7 +141,15 @@ If we scan the syslog and filter for ".bashrc", we'll find the command from PID 
 
 # Find the CreationUtcTime of sshd.so
 
-We need to inspect the sshd.so file but it does not seem to exist anywhere in our server.
+We need to inspect the sshd.so file but it does not seem to exist anywhere in our server. It looks like kevin deleted it, but to us this does not matter.
+
+We can find all events related to sshd.so with:
+
+    cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh "sshd.so"
+
+- Go to the event "SYSMONEVENT_FILE_CREATE" and we will find the time of file creation.
+
+      2023-10-15 17:40:29.197
 
 
 
