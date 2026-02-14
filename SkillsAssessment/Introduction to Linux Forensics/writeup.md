@@ -34,7 +34,7 @@ To identify the attackers ip lets check auth.log for failed login attempts
 
     cat ubuntu/var/log/auth.log | grep -i failed
 
-- We see that kevin has been to brute force his way in from: 192.168.127.130
+- We see that kevin has been trying to brute force his way in from: 192.168.127.130
 
 
 # Identify Timestamp Of The Suspicious Sudo Python Command:
@@ -50,7 +50,7 @@ Fortunately there is only one entry, making it easy to find our deisred timestam
 
 # Finding The Command And Control Address In The Payload:
 
-    cat /ubuntu/home/kevin/.bash_history
+    cat ubuntu/home/kevin/.bash_history
 
 This shows an echo command that pipes a base64 encoded string to python3
 
