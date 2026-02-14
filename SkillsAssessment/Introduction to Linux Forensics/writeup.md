@@ -147,7 +147,7 @@ We can find all events related to sshd.so with:
 
     cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh "sshd.so"
 
-- Go to the event "SYSMONEVENT_FILE_CREATE" and we will find the time of file creation.
+- Go to the event "SYSMONEVENT_FILE_CREATE" and we will find the time that the file was created:
 
       2023-10-15 17:40:29.197
 
