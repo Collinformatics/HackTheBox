@@ -106,7 +106,11 @@ Use the command from the previous task to search the log for the server IP 3.212
 
       cat ubuntu/var/log/syslog | grep --color=always "ProcessId" | grep --color=always "2840"
 
-- The PIDs are: 2840
+      cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scan.sh "3.212.197.166"
+
+Now we just need to go through the output and find the unique PIDs. 
+
+- The PIDs are: 2840,3324,3939
 
 
 # What User Executed Process 3324:
