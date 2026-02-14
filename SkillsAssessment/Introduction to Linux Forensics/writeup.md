@@ -141,7 +141,7 @@ If we scan the syslog and filter for ".bashrc", we'll find the command from PID 
 
 # Find the CreationUtcTime of sshd.so
 
-
+We need to inspect the sshd.so file but it does not seem to exist anywhere in our server.
 
 
 
