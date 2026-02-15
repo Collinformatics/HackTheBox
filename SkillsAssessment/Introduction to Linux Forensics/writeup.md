@@ -195,8 +195,9 @@ This gives us:
       3.212.197.166
 
 
+# What is the first memory region range with RWX permissions for sshd process:
 
-
+W
 
 
 
