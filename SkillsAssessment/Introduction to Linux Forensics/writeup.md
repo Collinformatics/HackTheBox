@@ -231,12 +231,36 @@ And the triggered rule is:
 
     mettle
 
+- Note:
+  - Mettle is the lightweight Meterpreter agent used on Linux and macOS.
+  - Meterpreter is a Metasploit payload that will run on the target system and act as an agent within a Command & Control architecture.
+
 
 # What is a session uuid(-U) for a meterpreter agent?
 
+- Hint: The answer is a base64 encoded string
 
+Lets hexdump the .dmp and search for base64 strings:
 
+    hexdump -C pid.3939.vma.0x7fb4ee007000-0x7fb4ee2ef000.dmp | grep ==
 
+Near the end we have:
+
+    --
+    *
+    002d81c0  6d 65 74 74 6c 65 00 2d  55 00 22 62 57 57 6f 58  |mettle.-U."bWWoX|
+    002d81d0  73 57 44 67 50 47 31 41  37 4d 42 30 43 2b 51 6b  |sWDgPG1A7MB0C+Qk|
+    002d81e0  67 3d 3d 00 20 2d 47 00  22 5a 70 4d 2b 4a 4f 52  |g==. -G."ZpM+JOR|
+    002d81f0  36 53 73 53 57 74 51 34  6a 59 58 38 6f 7a 77 3d  |6SsSWtQ4jYX8ozw=|
+    002d8200  3d 00 20 2d 75 00 22 74  63 70 3a 2f 2f 30 2e 30  |=. -u."tcp://0.0|
+    002d8210  2e 30 2e 30 3a 38 30 38  30 00 20 2d 64 00 22 30  |.0.0:8080. -d."0|
+    --
+
+Notice the "mettle" in the output, followed by "-U" which is the same flag used to specfy the UUID of the payload. And right after that we have: "bWWoXsWDgPG1A7MB0C+Qkg==
+
+- This almost matches a base64 string, but " is not a valid base64 char. If we remove it we have the string we are looking for:
+
+      bWWoXsWDgPG1A7MB0C+Qkg==
 
 
 
