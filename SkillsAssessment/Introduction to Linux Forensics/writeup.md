@@ -181,7 +181,7 @@ Now all we need it to find the md5 hash:
 
 #  What IP address sshd.so is connecting to:
 
-We can use linux.sockstat to list all network connections associates with all processes:
+We can use linux.sockstat to list all network connections associated with PID 3939:
 
     python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.sockstat | grep 3939
 
@@ -190,14 +190,15 @@ This gives us:
     NetNS	Pid	FD	Sock Offset	Family	Type	Proto	Source Addr	Source Port	Destination Addr	Destination Port	State	Filter
     4026531840	3939	3	0x93fe0ecc8000	AF_INET	STREAM	TCP	192.168.127.236	56006	3.212.197.166	8080	ESTABLISHED	-
 
-- Our connecting ip is:
+- Our connecting ip is the Destination Port:
 
       3.212.197.166
 
 
 # What is the first memory region range with RWX permissions for sshd process:
 
-W
+We need to list the memory maps for PID 3939:
+
 
 
 
