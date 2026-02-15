@@ -156,7 +156,7 @@ We can find all events related to sshd.so in the syslog:
 
 First we need to dump the sshd.so file, we can do this by using volatility3 to list the memory mapped ELF files with linux.elfs:
 
-    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.elfs
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.elfs | grep 3939
 
 
 
