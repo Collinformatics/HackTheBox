@@ -1,6 +1,6 @@
 # Background:
 
-This walkthrough is for the Introduction to Linux Forensics Skills Assessment.
+This walkthrough is for the HackTheBox's Introduction to Linux Forensics Skills Assessment.
 
 - This CTF involves a compromised PostgreSQL Database.
 
