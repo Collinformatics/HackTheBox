@@ -217,6 +217,25 @@ As we see from the output, the first region with rwx permissions is:
 
 # Scan Discovered RWX Memory region with yara and Find the Triggered Rule:
 
+We can scan the .dmp with:
+
+    for i in `ls ~/tools/yara/*`;do yara "$i" pid.3939.vma.0x7fb4ee007000-0x7fb4ee2ef000.dmp; done 2>/dev/null
+
+- This will iterate through the yara rules files in ~/tools/yara/, and detemines if the memory dump segment is in violation of any of these rules.
+
+The output is:
+
+    mettle pid.3939.vma.0x7fb4ee007000-0x7fb4ee2ef000.dmp
+
+And the triggered rule is:
+
+    mettle
+
+
+# What is a session uuid(-U) for a meterpreter agent?
+
+
+
 
 
 
