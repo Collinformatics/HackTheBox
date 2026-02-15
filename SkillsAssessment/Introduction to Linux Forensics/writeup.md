@@ -1,6 +1,8 @@
 # Background:
 
-This CTF Skills Assessment involves a compromised PostgreSQL Database. 
+This walkthrough is for the Introduction to Linux Forensics Skills Assessment.
+
+- This CTF involves a compromised PostgreSQL Database.
 
 We have been provided the following data to inspect the incident:
 
