@@ -1,52 +1,57 @@
 #!/bin/bash
+
 # Scan sysmon log for events
+# To run the command pipe read the log file and pipe it to this script.
+# Ex:
+	# cat /var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh <search txt>
+
 
 # Inputs
 log="/dev/stdin" # Pipe the log to this script 
-sfile="scanEvents.txt" # Saved scans
+search="$1" # Search text
+sfile="syslogEvents.txt" # Saved scan
 
 # Parameters
 color='\e[91m'
 colorB='\e[34m'
 rst='\e[0m'
 
-# If the log has not been scanned then scan it
+# Copy log
 if [ ! -f "$sfile" -o  ! -f "$sfile" ]; then
-echo -e "Scanning log"
-echo -e "* Saving scan at: $colorB$sfile$rst"
-counter=0
+	echo -e "Scanning log"
+	echo -e "* Saving scan at: $colorB$sfile$rst"
+	counts=0
 
-# Buffer for each event
-buffer=""
+	# Buffer for each event
+	buffer=""
 
-while IFS= read -r line; do
-  # Start of new event
-  if [[ "$line" =~ Event\ SYSMONEVENT ]]; then
-    # Save previous event
-    if [[ -n "$buffer" ]]; then
-      echo "$buffer" >> "$sfile"
-      counter=$((counter + 1))
-      buffer=""
-    fi
-  fi
-  # Append current line to buffer
-  buffer+="$line"$'\n'
-done < "$log"
+	while IFS= read -r line; do
+		# Start of new event
+		if [[ "$line" =~ Event\ SYSMONEVENT ]]; then
+		  # Save previous event
+		  if [[ -n "$buffer" ]]; then
+		    echo "$buffer" >> "$sfile"
+		    counts=$((counts + 1))
+		    buffer=""
+		  fi
+		fi
+		# Append current line to buffer
+		buffer+="$line"$'\n'
+	done < "$log"
 
-# Save last event
-if [[ -n "$buffer" ]]; then
-  echo "$buffer" >> "$sfile"
-  counter=$((counter + 1))
-fi
-echo -e "Total Events: $color$counter$rst"
+	# Save last event
+	if [[ -n "$buffer" ]]; then
+		echo "$buffer" >> "$sfile"
+		counts=$((counts + 1))
+	fi
+	echo -e "Total Events: $color$counts$rst"
 fi
 
 
 # Search doc
-search="$1"
 if [[ -z "$search" ]]; then
-    echo "Usage: $0 <search_text>"
-    exit 1
+	echo "Usage: $0 <search_text>"
+	exit 1
 fi
 echo -e "Select events with: $colorB$search$rst"
 
@@ -56,26 +61,23 @@ buffer=""
 # Read the file line by line
 bar=$(printf '%*s' 50 '' | tr ' ' '*')
 while IFS= read -r line; do
-    # Start of a new event block
-    if [[ "$line" =~ Event\ SYSMONEVENT ]]; then
-        # If the previous buffer contains the search string, print it
-        if [[ -n "$buffer" && "$buffer" == *"$search"* ]]; then
-                echo "$bar"
-                echo "$buffer"
-        fi
-        # Reset buffer for the new block
-        buffer=""
-    fi
+	# Start of a new event block
+	if [[ "$line" =~ Event\ SYSMONEVENT ]]; then
+		# If the previous buffer contains the search string, print it
+		if [[ -n "$buffer" && "$buffer" == *"$search"* ]]; then
+      echo "$bar"
+      echo "$buffer"
+		fi
+		buffer="" # Reset buffer for the new block
+	fi
 
-    # Append current line to buffer
-    buffer+="$line"$'\n'
+	# Append current line to buffer
+	buffer+="$line"$'\n'
 done < "$sfile"
 
 # Check the last block
 if [[ -n "$buffer" && "$buffer" == *"$search"* ]]; then
-        echo "$bar"
-        echo "$buffer"
+  echo "$bar"
+  echo "$buffer"
 fi
-
-
 
