@@ -141,9 +141,9 @@ If we scan the syslog and filter for ".bashrc", we'll find the command from PID 
 
 # Find the CreationUtcTime of sshd.so
 
-We need to inspect the sshd.so file but it does not seem to exist anywhere in our server. It looks like kevin deleted it, but to us this does not matter.
+We need to inspect the sshd.so file but it does not seem to exist in the avalible files. Kevin may have deleted it, but to us this does not matter.
 
-We can find all events related to sshd.so with:
+We can find all events related to sshd.so in the syslog:
 
     cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh "sshd.so"
 
@@ -152,7 +152,11 @@ We can find all events related to sshd.so with:
       2023-10-15 17:40:29.197
 
 
-# Find MD5 Hash
+# Find MD5 Hash For PID 3939:
+
+First we need to dump the sshd.so file, we can do this by using volatility3 to list the memory mapped ELF files with linux.elfs:
+
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.elfs
 
 
 
