@@ -276,6 +276,14 @@ At 2023-10-15 17:50:09.419, we see that root created a process from the director
 
 # Which user information was exfiltrated?
 
+To determine if any users data was accessed, lets check the PostgreSQL log for anything related to PID 4523:
 
+    cat ubuntu/var/log/postgresql/postgresql-12-main.log | grep [4523]
 
+We see the last entry in this list is:
 
+    2023-10-15 10:50:34.378 PDT [4532] postgres@prod LOG:  statement: select * from users where name LIKE 'Wade Murphy%';
+
+Indicating that kevin has accesed user data from:
+
+    Wade Murphy
