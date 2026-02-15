@@ -34,7 +34,9 @@ To identify the attackers ip lets check auth.log for failed login attempts
 
     cat ubuntu/var/log/auth.log | grep -i failed
 
-- We see that kevin has been trying to brute force his way in from: 192.168.127.130
+- We see that kevin has been trying to brute force his way in from:
+
+      192.168.127.130
 
 
 # Identify Timestamp of the Suspicious Sudo Python Command:
@@ -64,7 +66,9 @@ Let's use volatility3 to inspect the processes:
 
 This gives us two entries and they both contain the same base64 encoded payload.
 
-- The PPID we want is: 2840 
+- The PPID we want is:
+
+      2840 
 
 
 # Find PID's Connecting to the C&C Server:
@@ -83,7 +87,9 @@ The command returns this table:
     4026531840      4522    3       0x93fe0ecc8000  AF_INET STREAM  TCP     192.168.127.236 56006   3.212.197.166   8080    ESTABLISHED     -
     4026531840      4612    3       0x93fe0ecc8900  AF_INET STREAM  TCP     192.168.127.236 55426   3.212.197.166   8080    SYN_SENT        -
 
-- The PIDs are: 3939,4519,4522,4612
+- The PIDs are:
+
+      3939,4519,4522,4612
 
 # Find the Image Value ProcessId 2840 in the SysmonForLinux Log:
 
@@ -95,7 +101,9 @@ There are many lines in the output, but if we search for "ProcessId: 2840", the 
 
 - The line we want is:
 
-  - Image: /usr/bin/python3.8
+  - Image:
+
+        /usr/bin/python3.8
 
 
 # What Processes in the SysmonForLinux Log are Connected to the Command & Control Server:
@@ -114,7 +122,9 @@ Use the command from the previous task to search the log for the server IP 3.212
 
 - Now we just need to go through the output and find the unique PIDs. 
 
-  - The PIDs are: 2840,3324,3939
+  - The PIDs are:
+
+        2840,3324,3939
 
 
 # What User Executed Process 3324:
@@ -123,7 +133,9 @@ Next we need to search syslog output for "ProcessId: 3324".
 
 If we look a couple of lines down we will find the answer:
 
-- User: root
+- User:
+
+      root
 
 
 ## Based on the Python3 Activity What Was Most Likly Appended to /home/kevin/.bashrc:
@@ -169,7 +181,18 @@ Now all we need it to find the md5 hash:
 
 #  What IP address sshd.so is connecting to:
 
-We can 
+We can use linux.sockstat to list all network connections associates with all processes:
+
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.sockstat | grep 3939
+
+This gives us:
+
+    NetNS	Pid	FD	Sock Offset	Family	Type	Proto	Source Addr	Source Port	Destination Addr	Destination Port	State	Filter
+    4026531840	3939	3	0x93fe0ecc8000	AF_INET	STREAM	TCP	192.168.127.236	56006	3.212.197.166	8080	ESTABLISHED	-
+
+- Our connecting ip is:
+
+      3.212.197.166
 
 
 
