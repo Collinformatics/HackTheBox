@@ -269,7 +269,7 @@ Let go back to the syslog and search for sql related processes:
 
     cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSyslog.sh "sql"
 
-At 2023-10-15 17:50:09.419, we see that root created a process from the dir /home/kevin, which is inherrently sus. The PID of this is:
+At 2023-10-15 17:50:09.419, we see that root created a process from the directory /home/kevin, which is inherrently sus. The PID is:
 
     4523
 
