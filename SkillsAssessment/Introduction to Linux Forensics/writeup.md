@@ -201,7 +201,7 @@ This gives us:
 
 We need to list the process memory mapping for PID 3939:
 
-    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.proc.Maps --pid 3939
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.proc.Maps --pid 3939 --dump
     Volatility 3 Framework 2.5.2
     
     PID	Process	Start	End	Flags	PgOff	Major	Minor	Inode	File Path	File output
