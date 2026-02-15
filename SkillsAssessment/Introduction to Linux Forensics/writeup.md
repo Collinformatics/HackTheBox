@@ -114,9 +114,9 @@ Use the command from the previous task to search the log for the server IP 3.212
 
 - We have two options to scan the log and find the PIDs:
 
-  1) The easy way, this requires an extra step where we write the provided script "scanSysmonEvents.sh" to the server, but it is much easier to read. The script can be ran with:
+  1) The easy way, this requires an extra step where we write the provided script "scanSyslog.sh" to the server, but it is much easier to read. The script can be ran with:
 
-          cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh "3.212.197.166"
+          cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSyslog.sh "3.212.197.166"
 
   2) The hard way, this output is more difficult to read:
 
@@ -144,7 +144,7 @@ If we look a couple of lines down we will find the answer:
 
 If we scan the syslog and filter for ".bashrc", we'll find the command from PID 3362:
 
-    cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh ".bashrc"
+    cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSyslog.sh ".bashrc"
 
 -  CommandLine: /bin/sh -c echo "LD_PRELOAD=/usr/lib/sshd.so sshd &" >> /home/kevin/.bashrc
 
@@ -159,7 +159,7 @@ We need to inspect the sshd.so file but it does not seem to exist in the avalibl
 
 We can find all events related to sshd.so in the syslog:
 
-    cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSysmonEvents.sh "sshd.so"
+    cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSyslog.sh "sshd.so"
 
 - Go to the event "SYSMONEVENT_FILE_CREATE" and we will find the time that the file was created:
 
@@ -256,12 +256,25 @@ Near the end we have:
     002d8210  2e 30 2e 30 3a 38 30 38  30 00 20 2d 64 00 22 30  |.0.0:8080. -d."0|
     --
 
-Notice the "mettle" in the output, followed by "-U" which is the same flag used to specfy the UUID of the payload. And right after that we have: "bWWoXsWDgPG1A7MB0C+Qkg==
+Notice the "mettle" in the ASCII column, followed by "-U" which is the same flag used to specfy the UUID of the payload. And right after that we have: "bWWoXsWDgPG1A7MB0C+Qkg==
 
 - This almost matches a base64 string, but " is not a valid base64 char. If we remove it we have the string we are looking for:
 
       bWWoXsWDgPG1A7MB0C+Qkg==
 
+
+# What is the PID Associated with psql Process Pxecution?
+
+Let go back to the syslog and search for sql related processes:
+
+    cat ubuntu/var/log/syslog | sudo /opt/sysmon/sysmonLogView | bash scanSyslog.sh "sql"
+
+At 2023-10-15 17:50:09.419, we see that root created a process from the dir /home/kevin, which is inherrently sus. The PID of this is:
+
+    4523
+
+
+# Which user information was exfiltrated?
 
 
 
