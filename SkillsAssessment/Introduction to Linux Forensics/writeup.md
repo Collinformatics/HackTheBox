@@ -185,7 +185,7 @@ Now all we need it to find the md5 hash:
 
 We can use linux.sockstat to list all network connections associated with PID 3939:
 
-    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.sockstat | grep 3939
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.sockstat --pid 3939
 
 This gives us:
 
@@ -199,9 +199,9 @@ This gives us:
 
 # What is the first memory region range with RWX permissions for sshd process:
 
-We need to list the memory maps for PID 3939:
+We need to list the process memory mapping for PID 3939:
 
-    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.proc.Maps --pid 3939 --dump
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.proc.Maps --pid 3939
     Volatility 3 Framework 2.5.2
     
     PID	Process	Start	End	Flags	PgOff	Major	Minor	Inode	File Path	File output
@@ -215,7 +215,10 @@ As we see from the output, the first region with rwx permissions is:
     0x7fb4ee007000-0x7fb4ee2ef000
 
 
-# 
+# Scan Discovered RWX Memory region with yara and Find the Triggered Rule:
+
+
+
 
 
 
