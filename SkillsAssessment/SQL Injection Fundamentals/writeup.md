@@ -1,6 +1,6 @@
 ## Purpose:
 
-This writeup detalis how to solve the Skills Assessment for the SQL Injection Fundamentals module from Hack THe Box Acadmey.
+This writeup detalis how to solve the Skills Assessment for the SQL Injection Fundamentals module from Hack The Box Acadmey.
 
 
 ## Getting Started:
