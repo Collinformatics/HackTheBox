@@ -201,9 +201,21 @@ This gives us:
 
 We need to list the memory maps for PID 3939:
 
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.proc.Maps --pid 3939 --dump
+    Volatility 3 Framework 2.5.2
+    
+    PID	Process	Start	End	Flags	PgOff	Major	Minor	Inode	File Path	File output
+    
+    3939	sshd	0x565006c5d000	0x565006c69000	r--	0x0	8	5	1443852	/usr/sbin/sshd	pid.3939.vma.0x565006c5d000-0x565006c69000.dmp
+    ...
+    3939	sshd	0x7fb4ee007000	0x7fb4ee2ef000	rwx	0x0	0	0	0	Anonymous Mapping	pid.3939.vma.0x7fb4ee007000-0x7fb4ee2ef000.dmp
+
+As we see from the output, the first region with rwx permissions is:
+
+    0x7fb4ee007000-0x7fb4ee2ef000
 
 
-
+# 
 
 
 
