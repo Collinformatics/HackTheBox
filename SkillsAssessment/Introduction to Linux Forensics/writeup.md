@@ -152,14 +152,24 @@ We can find all events related to sshd.so in the syslog:
       2023-10-15 17:40:29.197
 
 
-# Find MD5 Hash For PID 3939:
+# Find MD5 Hash for pid.3939.sshd.0x7fb4eed88000.dmp:
 
-First we need to dump the sshd.so file, we can do this by using volatility3 to list the memory mapped ELF files with linux.elfs:
+First we need to dump the memory mapped ELF files with:
 
-    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.elfs | grep 3939
+    python3 ~/tools/volatility3/vol.py -q -f memdump.mem linux.elfs --pid 3939 --dump
+
+Now all we need it to find the md5 hash:
+
+    md5sum pid.3939.sshd.0x7fb4eed88000.dmp
+
+- This gives us:
+
+      657e355374203d2f5e406f951fc7d5ce
 
 
+#  What IP address sshd.so is connecting to:
 
+We can 
 
 
 
