@@ -15,3 +15,12 @@ Login and survey:
     -rwx------ 1 barry barry 29 Sep  5  2020 /home/barry/flag2.txt
     -rw-r----- 1 root adm 23 Sep  5  2020 /var/log/flag3.txt
     -rw------- 1 tomcat tomcat 25 Sep  5  2020 /var/lib/tomcat9/flag4.txt
+
+
+
+Get the exploit:
+
+    git clone https://github.com/g1vi/CVE-2023-2640-CVE-2023-32629
+
+
+
