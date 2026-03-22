@@ -6,6 +6,7 @@ We've been given access to a low privileged account and the goal of escalating o
 
 
 ## Privilege Escalation:
+
 Login and survey:
 
     htb-student@nix03:~$cat /etc/os-release
