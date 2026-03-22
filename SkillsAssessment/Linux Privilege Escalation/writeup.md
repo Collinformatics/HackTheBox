@@ -87,6 +87,12 @@ Read the files:
     root@nix03:~# cat /root/flag5.txt
     LLPE{0ne_sudo3r_t0_ru13_th3m_@ll!}
 
+Flag1 is missing, lets see if its hidden:
 
+    root@nix03:~# find / 2>/dev/null -name .flag1.txt -exec ls -l {} \;
+    -rw-r--r-- 1 htb-student www-data 33 Sep  6  2020 /home/htb-student/.config/.flag1.txt
 
+Its not hidden anymore, lets cat it:
 
+    root@nix03:~# cat /home/htb-student/.config/.flag1.txt
+    LLPE{d0n_ov3rl00k_h1dden_f1les!}
