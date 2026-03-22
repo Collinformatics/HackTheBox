@@ -5,7 +5,7 @@ We've ben hired to evaluate the security of an INLANEFREIGHT public servers.
 We've been given access to a low privileged account and the goal of escalating our privileges so that we can get the 5 flags.
 
 
-## Privilege Escalation
+## Privilege Escalation:
 Login and survey:
 
     htb-student@nix03:~$cat /etc/os-release
