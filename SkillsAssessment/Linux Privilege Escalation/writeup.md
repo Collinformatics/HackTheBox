@@ -27,7 +27,7 @@ Login and survey:
     Linux version 5.4.0-45-generic (buildd@lgw01-amd64-033) (gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2)) #49-Ubuntu SMP Wed Aug 26 13:38:52 UTC 2020
 
 
-Look up known CVEs for this Linux version and kernel:
+Look up known CVEs for this kernel and version of Linux:
 
 - Search text:
 
