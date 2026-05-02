@@ -6,11 +6,16 @@ We've got a suspicious binary file to inspect.
 
 First lets start by dissassembling loaded_shellcode:
 
-    objdump -d loaded_shellcode > lsc.s; cat lsc.s
+    objdump -d loaded_shellcode
 
 We see that we've got addresses, bytes, instructions and operands.
 
-We'll need to clean up the file by:
+Lets make an assembly file with objdump:
 
-- Removing addresses,  characters like %
-- Replacing movabs with mov
+    objdump -d loaded_shellcode | awk '{$1=$2=""; print substr($0, length(OFS)*2 + 1)}' > lsc.s
+
+- Awk helped remove aalot of unnecessary info, but we'll need to further clean up the file by:
+
+    - Remove the format info
+    - Removing bytes, characters like %
+    - Replacing movabs with mov, and put the operands in the correct order
