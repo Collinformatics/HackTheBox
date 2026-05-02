@@ -72,9 +72,10 @@ The output reveals that we have a significant number of NULL bytes, so lets star
 
 After removing the null bytes make sure to use gdb to inspect the edited assembly script. You'll likely need to go back and make sure to completly clear each 64-bit register before overwriting with 32, 16, or 8-bit registers.
 
-  If:   $rax   : 0xfffffffffffffffe
-  Then: "xor al, al" will result in:
-        $rax   : 0xffffffffffffff00
+- If:    $rax   : 0xfffffffffffffffe
+  
+- Then:  "xor al, al"
+- Gives: $rax   : 0xffffffffffffff00
 
 
 
