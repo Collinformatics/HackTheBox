@@ -34,15 +34,16 @@ _start:
 	push rax
 	mov rax, 0x69751244059aa2a3
 	push rax
+	
 	mov rbx, 0x2144d2144d2144d2
-	mov rcx, 15
+	mov rcx, 14
 	
 dc:
 	pop rdx
 	xor rax, rax
 	xor rdx, rbx	     ; decode
 	mov rdi, outFormat ; set 1st argument (Print Format)
-	bswap rdx          ; Reverse order of bytes
+	; bswap rdx          ; Reverse order of bytes
 	mov rsi, rdx       ; set 2nd argument (value)
 	
 	push rcx
