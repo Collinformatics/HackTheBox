@@ -32,7 +32,7 @@ Now lets on catinate the decoded shellcode:
 
 Take the output and execute the shellcode with the pwntools script that we built in this module:
 
-    ./Documents/Scripts/shellcodeRun.py -s 4831c05048bbe671167e66af44215348bba723467c7ab51b4c5348bbbf264d344bb677435348bb9a10633620e771125348bbd244214d14d244214831c980c1044889e748311f4883c708e2f74831c0b0014831ff40b7014831f64889e64831d2b21e0f054831c04883c03c4831ff0f05
+    ./shellcodeRun.py -s 4831c05048bbe671167e66af44215348bba723467c7ab51b4c5348bbbf264d344bb677435348bb9a10633620e771125348bbd244214d14d244214831c980c1044889e748311f4883c708e2f74831c0b0014831ff40b7014831f64889e64831d2b21e0f054831c04883c03c4831ff0f05
 
 - This gives up the flag:
 
@@ -50,7 +50,7 @@ Lets start by generating an ELF file from the assembly file:
 
 Now we can inspect it:
 
-    ./Documents/Scripts/shellcode.py flag
+    ./shellcode.py flag
     Hex:
     6a0048bf2f666c672e74787457b8020000004889e7be000000000f05488d374889c7b800000000ba180000000f05b801000000bf01000000ba180000000f05b83c000000bf000000000f05
     
