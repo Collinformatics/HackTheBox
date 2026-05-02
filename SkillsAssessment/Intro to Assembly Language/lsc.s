@@ -2,7 +2,7 @@ global _start
 extern printf, fflush
 
 section .data
-	outFormat db  "0x%lx", 0x0a, 0x00
+	outFormat db  "%016lx", 0x0a, 0x00
 
 section .text
 _start:
