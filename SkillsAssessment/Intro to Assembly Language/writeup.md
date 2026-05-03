@@ -54,7 +54,7 @@ Once the flag has been made and flag.s has been adjusted, lets test the code:
 
     ./assembler.sh flag.s
 
-We see thhat there are several syscalls, before moving on recall the Syscall Arguments:
+We see that there are several syscalls. We need to make sure they are working before moving on recall the Syscall Arguments:
 
 - 1st arg: rdi, edi, di, dil
 - 2nd arg: rsi, esi, si, sil
