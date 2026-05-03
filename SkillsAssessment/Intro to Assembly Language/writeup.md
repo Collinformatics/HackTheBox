@@ -54,12 +54,13 @@ Once the flag has been made and flag.s has been adjusted, lets test the code:
 
     ./assembler.sh flag.s
 
-This may take some debugging. Be sure to consult the man pages to detemine the proper inputs:
+We see thhat there are several syscalls, before moving on recall the Syscall Arguments:
 
-  Recall:
-  - 1st arg: rdi, edi, di, dil
-  - 2nd arg: rsi, esi, si, sil
-  - 3rd arg: rdx, edx, dx, dl
+- 1st arg: rdi, edi, di, dil
+- 2nd arg: rsi, esi, si, sil
+- 3rd arg: rdx, edx, dx, dl
+
+To test the assembly script it will take some debugging. Be sure to consult the man pages to detemine the proper inputs:
 
 - Open:
 
