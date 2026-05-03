@@ -56,9 +56,9 @@ Once the flag has been made and flag.s has been adjusted, lets test the code:
 
 We see thhat there are several syscalls, before moving on recall the Syscall Arguments:
 
-- 1st arg: rdi, edi, di, dil
-- 2nd arg: rsi, esi, si, sil
-- 3rd arg: rdx, edx, dx, dl
+1) 1st arg: rdi, edi, di, dil
+2) 2nd arg: rsi, esi, si, sil
+3) 3rd arg: rdx, edx, dx, dl
 
 To test the assembly script it will take some debugging. Be sure to consult the man pages to detemine the proper inputs:
 
@@ -68,22 +68,32 @@ To test the assembly script it will take some debugging. Be sure to consult the 
 
     0) Syscall: 2
     1) Path: rsp
-       push 'flag.txt' to the stack, then use rsp as the input for this param
+       Push 'flag.txt' to the stack, then use rsp as the input for this param.
     2) Flag: 2
-       setting this to 2 selcets the O_RDONLY flag, this is used for both reading and writing
+       setting this to 2 selcets the O_RDONLY flag, this is used for both reading and writing.
 
 - Read:
 
         man -s 2 read
 
     0) Syscall: 0
-    1) File Descriptor: 
+    1) File Descriptor: eax
+       Set this to the output of open() that is stored in rax.
+    2) Buffer: rsp
+       Pointer to the file. This is the same as the path used for open().
+    3) Size: 25
+       String length.
 
 - Write:
 
         man -s 2 write
 
-    - Syscall: 1
+    0) Syscall: 1
+    1) 1
+    2) Buffer: rsp
+       Pointer to the file.
+    3) Size: 25
+       String length.
 
 
 
