@@ -56,19 +56,27 @@ Once the flag has been made and flag.s has been adjusted, lets test the code:
 
 This may take some debugging. Be sure to consult the man pages to detemine the proper inputs:
 
+  Recall:
+  - 1st arg: rdi, edi, di, dil
+  - 2nd arg: rsi, esi, si, sil
+  - 3rd arg: rdx, edx, dx, dl
+
 - Open:
 
         man -s 2 open
 
     0) Syscall: 2
-    1) Path: push 'flag.txt' to the stack, then use rsp as the input for this param
-    2) Flag:  
+    1) Path: rsp
+       push 'flag.txt' to the stack, then use rsp as the input for this param
+    2) Flag: 2
+       setting this to 2 selcets the O_RDONLY flag, this is used for both reading and writing
 
 - Read:
 
         man -s 2 read
 
-    - Syscall: 0
+    0) Syscall: 0
+    1) File Descriptor: 
 
 - Write:
 
