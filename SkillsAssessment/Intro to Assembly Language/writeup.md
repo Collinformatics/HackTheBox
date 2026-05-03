@@ -112,9 +112,7 @@ To test the assembly script it will take some debugging. Be sure to consult the 
        
        String length.
 
-
 While debugging be sure to use gdb to make sure use gdb to detrmine if you have correctly assigning values to the registers and that a previous syscall has not overwriting them.
-
 
 
 Once the arguments are correctly set, lets see if the code prints out flag:
@@ -122,41 +120,39 @@ Once the arguments are correctly set, lets see if the code prints out flag:
     ./assembler.sh flag.s
 
 
-Once the code is printing the flag, lets check how large it is:
+Once the code is printing the flag, lets check how large it is and if there are any NULL bytes we can remove:
 
-    ./shellcode.py flag
+    ./assembler.sh flag.s; objdump -d flag; ./shellcode.py flag
 
-s
+You will most likly be well over the 50 byte limit. The file size can be reduced by:
 
-    ./shellcode.py flag
-    Hex:
-    6a0048bf2f666c672e74787457b8020000004889e7be000000000f05488d374889c7b800000000ba180000000f05b801000000bf01000000ba180000000f05b83c000000bf000000000f05
-    
-    75 bytes - Found NULL byte
+- Tip: While making adjustment use watch to see how the changes affect the size of the ELF file, and to ensure that you can still print the flag.
 
-The output reveals that we have a significant number of NULL bytes, so lets start here.
+        ./assembler.sh flag.s; objdump -d flag; ./shellcode.py flag
 
-- Lets examine the ELF file:
-
-        objdump -d flag
-
-    We can see that the first push instruction, and most mov instructions are responsible for the NULL bytes.
-
-    Lets fix this with and xor for the push, and adjust the sub-registers.
-
-    To monitor the results of each change we'll run this command while editing flag.s:
-
-        watch -n 1 "./assembler.sh flag.s; objdump -d flag"
-
-After removing the null bytes make sure to use gdb to inspect the edited assembly script. You'll likely need to go back and make sure to completly clear each 64-bit register before overwriting with 32, 16, or 8-bit registers.
-
-- If:    $rax   : 0xfffffffffffffffe
+- Clear registers with "xor eax, eax" instead of "mov eax, 0"
   
-- Then:  "xor al, al"
-- Gives: $rax   : 0xffffffffffffff00
+  When possible xor with 32-bit register instead of 16-bit.
 
-Now that the code has been cleaned we need to make sure that it works.
+  - xor esi, esi => 2 bytes
+  - xor si, si => 3 bytes
 
+  Use gdb to verify that you are using the correct register size with an xor instruction, so that you clear the full pointer.
 
+  - If:    $rax   : 0xfffffffffffffffe
+  - Then:  "xor al, al"
+  - Gives: $rax   : 0xffffffffffffff00
+ 
+  - While: "xor rax, rax"
+  - Gives: $rax   : 0x0000000000000000
 
+- Decreasing register sizes:
+
+  Ex: change rax to eax, ax, or al.
+
+- Remove the syscall to exit the script, we can print the flag without.
+
+Once you are under 50 bytes, change the file name and use netcat to connect to the server and test your shellcode.
+
+- mov rdi, 'flag.txt' => mov rdi, '/flg.txt'
 
