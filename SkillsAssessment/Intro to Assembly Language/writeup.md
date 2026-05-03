@@ -152,7 +152,7 @@ Your code will most likly be well over the 50 byte limit. The file size can be r
 
         ./assembler.sh flag.s; objdump -d flag; ./shellcode.py flag
 
-Once you are under 50 bytes, change the file name and use netcat to connect to the server and test your shellcode.
+Once you are under 50 bytes, change the file name back to '/flg.txt' and use netcat to connect to the server and test your shellcode.
 
 - mov rdi, 'flag.txt' => mov rdi, '/flg.txt'
 
