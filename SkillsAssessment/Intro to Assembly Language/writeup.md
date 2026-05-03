@@ -67,9 +67,13 @@ To test the assembly script it will take some debugging. Be sure to consult the 
         man -s 2 open
 
     0) Syscall: 2
+       
     1) Path: rsp
+       
        Push 'flag.txt' to the stack, then use rsp as the input for this param.
+       
     2) Flag: 2
+       
        setting this to 2 selcets the O_RDONLY flag, this is used for both reading and writing.
 
 - Read:
@@ -77,11 +81,17 @@ To test the assembly script it will take some debugging. Be sure to consult the 
         man -s 2 read
 
     0) Syscall: 0
+       
     1) File Descriptor: eax
+
        Set this to the output of open() that is stored in rax.
+       
     2) Buffer: rsp
+       
        Pointer to the file. This is the same as the path used for open().
+       
     3) Size: 25
+       
        String length.
 
 - Write:
@@ -89,11 +99,17 @@ To test the assembly script it will take some debugging. Be sure to consult the 
         man -s 2 write
 
     0) Syscall: 1
+       
     1) File Descriptor: 1
+       
        Set fd to 1 for stdout.
-    3) Buffer: rsp
+  
+    2) Buffer: rsp
+       
        Pointer to the file.
-    4) Size: 25
+       
+    3) Size: 25
+       
        String length.
 
 
