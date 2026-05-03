@@ -77,7 +77,11 @@ After removing the null bytes make sure to use gdb to inspect the edited assembl
 - Then:  "xor al, al"
 - Gives: $rax   : 0xffffffffffffff00
 
+Now that the code has been cleaned we need to make sure that it works. To do this create a flag for debugging:
 
+    echo "HTB{f4lS3_fLag}" > flag.txt
+
+- Make sure to replace '/flg.txt' with 'flag.txt' so that the flag.s is opening the correct file.
 
 
 
