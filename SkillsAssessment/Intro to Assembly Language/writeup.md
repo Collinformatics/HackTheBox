@@ -124,11 +124,7 @@ Once the code is printing the flag, lets check how large it is and if there are 
 
     ./assembler.sh flag.s; objdump -d flag; ./shellcode.py flag
 
-You will most likly be well over the 50 byte limit. The file size can be reduced by:
-
-- Tip: While making adjustment use watch to see how the changes affect the size of the ELF file, and to ensure that you can still print the flag.
-
-        ./assembler.sh flag.s; objdump -d flag; ./shellcode.py flag
+Your code will most likly be well over the 50 byte limit. The file size can be reduced by:
 
 - Clear registers with "xor eax, eax" instead of "mov eax, 0"
   
@@ -151,6 +147,10 @@ You will most likly be well over the 50 byte limit. The file size can be reduced
   Ex: change rax to eax, ax, or al.
 
 - Remove the syscall to exit the script, we can print the flag without.
+
+- Tip: While making adjustment use watch to see how the changes affect the size of the ELF file, and to ensure that you can still print the flag.
+
+        ./assembler.sh flag.s; objdump -d flag; ./shellcode.py flag
 
 Once you are under 50 bytes, change the file name and use netcat to connect to the server and test your shellcode.
 
