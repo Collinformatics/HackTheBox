@@ -74,7 +74,7 @@ To test the assembly script it will take some debugging. Be sure to consult the 
        
     2) Flag: 2
        
-       setting this to 2 selcets the O_RDONLY flag, this is used for both reading and writing.
+       Setting this to 2 selcets the O_RDONLY flag, this is used for both reading and writing.
 
 - Read:
 
@@ -111,6 +111,15 @@ To test the assembly script it will take some debugging. Be sure to consult the 
     3) Size: 25
        
        String length.
+
+
+While debugging be sure to use gdb to make sure use gdb to detrmine if you have correctly assigning values to the registers and that a previous syscall has not overwriting them.
+
+
+
+Once the arguments are correctly set, lets see if the code prints out flag:
+
+    ./assembler.sh flag.s
 
 
 Once the code is printing the flag, lets check how large it is:
