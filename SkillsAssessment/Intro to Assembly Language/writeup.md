@@ -60,8 +60,9 @@ This may take some debugging. Be sure to consult the man pages to detemine the p
 
         man -s 2 open
 
-    - Syscall: 2
-    - Path: push 'flag.txt' to the stack, then use rsp as the input for this param
+    0) Syscall: 2
+    1) Path: push 'flag.txt' to the stack, then use rsp as the input for this param
+    2) Flag:  
 
 - Read:
 
