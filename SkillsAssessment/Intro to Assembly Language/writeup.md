@@ -44,9 +44,31 @@ Take the output and execute the shellcode with the pwntools script that we built
 
 We're given an assembly file for generating a shellcode to run on a vulnerable server. In order to do so we need to optimize flag.s so that it is less than 50 bytes.
 
-Lets start by generating an ELF file from the assembly file:
+Lets start by making a flag to test the assembly file:
+
+    echo "HTB{f4lS3_fLag}" > flag.txt
+
+- Make sure to replace '/flg.txt' with 'flag.txt' so that the flag.s is opening the correct file.
+
+Once the flag has been made and flag.s has been adjusted, lets test the code:
 
     ./assembler.sh flag.s
+
+This may take some debugging. Be sure to consult the man pages to detemine the proper inputs:
+
+- Open:
+
+        man -s 2 open
+
+    - Syscall: 2
+    - Path: push 'flag.txt' to the stack, then use rsp as the input for this param
+
+
+
+    man -s 2 read
+    man -s 2 write
+
+
 
 Now we can inspect it:
 
@@ -77,11 +99,7 @@ After removing the null bytes make sure to use gdb to inspect the edited assembl
 - Then:  "xor al, al"
 - Gives: $rax   : 0xffffffffffffff00
 
-Now that the code has been cleaned we need to make sure that it works. To do this create a flag for debugging:
-
-    echo "HTB{f4lS3_fLag}" > flag.txt
-
-- Make sure to replace '/flg.txt' with 'flag.txt' so that the flag.s is opening the correct file.
+Now that the code has been cleaned we need to make sure that it works.
 
 
 
