@@ -63,14 +63,25 @@ This may take some debugging. Be sure to consult the man pages to detemine the p
     - Syscall: 2
     - Path: push 'flag.txt' to the stack, then use rsp as the input for this param
 
+- Read:
+
+        man -s 2 read
+
+    - Syscall: 0
+
+- Write:
+
+        man -s 2 write
+
+    - Syscall: 1
 
 
-    man -s 2 read
-    man -s 2 write
 
+Once the code is printing the flag, lets check how large it is:
 
+    ./shellcode.py flag
 
-Now we can inspect it:
+s
 
     ./shellcode.py flag
     Hex:
