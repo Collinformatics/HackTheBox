@@ -89,12 +89,12 @@ To test the assembly script it will take some debugging. Be sure to consult the 
         man -s 2 write
 
     0) Syscall: 1
-    1) 1
-    2) Buffer: rsp
+    1) File Descriptor: 1
+       Set fd to 1 for stdout.
+    3) Buffer: rsp
        Pointer to the file.
-    3) Size: 25
+    4) Size: 25
        String length.
-
 
 
 Once the code is printing the flag, lets check how large it is:
