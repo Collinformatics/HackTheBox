@@ -16,6 +16,12 @@ Lets make an assembly file with objdump:
 
 - The output should look similar to this:
 
+        format elf64-x86-64
+        
+        
+        section .text:
+        
+        
         b8 d7 4b de 7c 5c movabs $0xa284ee5c7cde4bd7,%rax
         84 a2
         push %rax
