@@ -30,7 +30,7 @@ Lets make an assembly file with objdump:
         push %rax
         ...
 
-    - Awk helped remove alot of unnecessary info, but we'll need to further clean up the file by:
+    - Awk helped remove alot of unnecessary text, to further clean up the file:
 
         - Remove the format info
         - Remove bytes and characters like %
