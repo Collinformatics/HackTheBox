@@ -14,11 +14,21 @@ Lets make an assembly file with objdump:
 
     objdump -d loaded_shellcode | awk '{$1=$2=""; print substr($0, length(OFS)*2 + 1)}' > lsc.s
 
-- Awk helped remove aalot of unnecessary info, but we'll need to further clean up the file by:
+- The output should look similar to this:
 
-    - Remove the format info
-    - Removing bytes, characters like %
-    - Replacing movabs with mov, and put the operands in the correct order
+        b8 d7 4b de 7c 5c movabs $0xa284ee5c7cde4bd7,%rax
+        84 a2
+        push %rax
+        b8 9a 84 10 05 11 movabs $0x935add110510849a,%rax
+        5a 93
+        push %rax
+
+    - Awk helped remove aalot of unnecessary info, but we'll need to further clean up the file by:
+
+        - Remove the format info
+        - Remove bytes and characters like %
+        - Replace movabs with mov
+        - Put the destination and sourse in the correct order
 
 Once cleaned up, lets add lines to decode and print the data.
 
