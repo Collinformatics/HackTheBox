@@ -28,8 +28,9 @@ Lets make an assembly file with objdump:
         b8 9a 84 10 05 11 movabs $0x935add110510849a,%rax
         5a 93
         push %rax
+        ...
 
-    - Awk helped remove aalot of unnecessary info, but we'll need to further clean up the file by:
+    - Awk helped remove alot of unnecessary info, but we'll need to further clean up the file by:
 
         - Remove the format info
         - Remove bytes and characters like %
