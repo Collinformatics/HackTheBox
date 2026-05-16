@@ -141,8 +141,8 @@ Next, we'll generate shellcode to read /root/flag.txt:
 Now that we've got a shellcode, we can design a payload. Our requirements are:
 
 - 2060 bytes + pointer to shellcode.
-- 103 bytes (128 chars) for shellcode.
-- Lets add 100 bytes of no operation instruction (NOPS)
+- 100 bytes of no operation instruction (NOPS).
+- 103 bytes for the shellcode.
 
          Buffer = "\x41" * (2060 - 100 - 103) = 1857
            NOPs = "\x90" * 100
