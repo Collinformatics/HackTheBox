@@ -1,4 +1,4 @@
-## Background: 
+# Background: 
 
 We've recycled a password to SSH into annother Linux machine during a pen test.
 
