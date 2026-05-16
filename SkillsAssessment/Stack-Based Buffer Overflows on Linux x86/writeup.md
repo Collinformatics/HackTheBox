@@ -109,7 +109,7 @@ Now that we know how to set EIP, lets exploit the program to read a file with ro
 
 First lets start by generating shell code that can cat a file.
 
-- We can use pwntools for this: https://docs.pwntools.com/en/stable/shellcraft/aarch64.html#pwnlib.shellcraft.aarch64.linux.cat
+- We can use pwntools for this: (https://docs.pwntools.com/en/stable/shellcraft/i386.html#pwnlib.shellcraft.i386.linux.cat)
 
 We'll need to make a flag to test the code:
 
