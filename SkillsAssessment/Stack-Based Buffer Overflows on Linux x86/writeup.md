@@ -9,12 +9,12 @@ We see that these messages are stored in "/htb-student/msg.txt," which is binary
 Let's see if we can exploit the program with Stack-Based Buffer Overflow to read the file "/root/flag.txt".
 
 
-# Note:
+Note:
 
-We need to be aware that this server is using python2, so we may need to adjust our commands accordingly.
+- We need to be aware that this server is using python2, so we may need to adjust our commands accordingly.
 
-    python --version
-    Python 2.7.17
+        python --version
+        Python 2.7.17
 
 
 # Inspect Binary:
