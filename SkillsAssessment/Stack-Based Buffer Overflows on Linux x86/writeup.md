@@ -19,7 +19,7 @@ Note:
 
 # Inspect Binary:
 
-Lets inspect the exe to see what we are working with:
+Let's inspect the executable to see what we are working with:
 
     file leave_msg
     leave_msg: setuid ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=8694607c1cba3fb3814a144fb014da53d3f3e49e, not stripped
