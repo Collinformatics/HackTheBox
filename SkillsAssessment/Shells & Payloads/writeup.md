@@ -171,6 +171,24 @@ Now lets create a .txt to test if we can upload a file.
         smbclient -U tomcat%Tomcatadm //172.16.1.11/Users -c "cd Public; put data.aspx"
 
 
+Notice that the nmap scan shows there is an http service, so lets see if we can find  an index page my searching for the header:
+
+      curl -I http://172.16.1.11/index.php
+      HTTP/1.1 404 Not Found
+      Content-Length: 1245
+      Content-Type: text/html
+      Server: Microsoft-IIS/10.0
+      X-Powered-By: ASP.NET
+      Date: Sun, 21 Jun 2026 19:49:49 GMT
+
+- Notice this line:
+
+        X-Powered-By: ASP.NET
+
+  - Perhapes we can use this?
+ 
+
+
 
 ## Host 2:
 
