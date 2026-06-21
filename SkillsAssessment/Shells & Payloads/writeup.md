@@ -6,6 +6,19 @@ CAT5's team proided a foothold on Inlanefreight's network. They've also provied 
 
 We will need to Remote Desktop Protocol (RDP) into the foothold host and perform out attack from there. 
 
+The addresses of the targets are:
+
+Host 1:
+
+      172.16.1.11
+
+Host 2:
+
+      blog.inlanefreight.local
+
+Host 3:
+
+      172.16.1.13
 
 ## RDP Credentials:
 
