@@ -11,6 +11,10 @@ We will need to Remote Desktop Protocol (RDP) into the foothold host and perform
 
 Login to the foothold with:
 
+-IP:
+
+      10.129.204.126
+
 - Username:
 
       htb-student
@@ -18,5 +22,16 @@ Login to the foothold with:
 - Password:
 
       HTB_@cademy_stdnt! 
+
+
+## Connect To THe Foothold:
+
+Now that we're up to speed, lets get started with our attack!
+
+First we'll connect with XfreeRDP by running the following cmd in the terminal:
+
+      xfreerdp /v:10.129.204.126 /u:htb-student /p:HTB_@cademy_stdnt!
+
+
 
 
