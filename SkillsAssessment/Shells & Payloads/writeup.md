@@ -24,13 +24,30 @@ Login to the foothold with:
       HTB_@cademy_stdnt! 
 
 
-## Connect To THe Foothold:
+## Connect To The Foothold:
 
 Now that we're up to speed, lets get started with our attack!
 
 First we'll connect with XfreeRDP by running the following cmd in the terminal:
 
       xfreerdp /v:10.129.204.126 /u:htb-student /p:HTB_@cademy_stdnt!
+
+
+# Investigate The Environment:
+
+Now that were in their network, lets look around and see what were dealing with.
+
+We appear to have credentials that can be read by low privilege users:
+
+      cat Desktop/access-creds.txt
+      to manage the blog:
+      - admin / admin123!@#  ( keep it simple for the new admins )
+      
+      to manage Tomcat on apache
+      - tomcat / Tomcatadm
+      
+      
+      Change the passwords soon..
 
 
 
