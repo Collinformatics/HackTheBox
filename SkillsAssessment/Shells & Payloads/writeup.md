@@ -166,7 +166,7 @@ Now lets create a .txt to test if we can upload a file.
 
       echo "your txt" > msg.txt
 
-- This fails if we try to write to Users, but if we more to Public we can upload the file:
+- This fails if we try to write to the "Users" dir, but if we move to "Public" we can upload the file:
 
         smbclient -U tomcat%Tomcatadm //172.16.1.11/Users -c "cd Public; put data.aspx"
 
