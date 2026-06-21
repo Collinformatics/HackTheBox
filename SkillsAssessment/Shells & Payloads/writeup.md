@@ -131,6 +131,37 @@ Lets begin with enumeration:
 
 Now we've got our webserver.
 
+      nmap blog.inlanefreight.local -sV -sC
+      Starting Nmap 7.92 ( https://nmap.org ) at 2026-06-20 22:48 EDT
+      Nmap scan report for blog.inlanefreight.local (172.16.1.12)
+      Host is up (0.045s latency).
+      Not shown: 998 closed tcp ports (conn-refused)
+      PORT   STATE SERVICE VERSION
+      22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+      | ssh-hostkey: 
+      |   3072 f6:21:98:29:95:4c:a4:c2:21:7e:0e:a4:70:10:8e:25 (RSA)
+      |   256 6c:c2:2c:1d:16:c2:97:04:d5:57:0b:1e:b7:56:82:af (ECDSA)
+      |_  256 2f:8a:a4:79:21:1a:11:df:ec:28:68:c2:ff:99:2b:9a (ED25519)
+      80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+      |_http-title: Inlanefreight Gabber
+      | http-robots.txt: 1 disallowed entry 
+      |_/
+      |_http-server-header: Apache/2.4.41 (Ubuntu)
+      Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+From the header, we can see that its running php:
+
+      curl http://blog.inlanefreight.local/ -sI
+      HTTP/1.1 200 OK
+      Date: Sun, 21 Jun 2026 02:51:00 GMT
+      Server: Apache/2.4.41 (Ubuntu)
+      Set-Cookie: PHPSESSID=fncu4mrpm0fs0of8iqhhs2b58c; path=/; HttpOnly
+      Expires: Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control: no-store, no-cache, must-revalidate
+      Pragma: no-cache
+      Content-Type: text/html; charset=UTF-8
+
+
 
 ## Host 3:
 
