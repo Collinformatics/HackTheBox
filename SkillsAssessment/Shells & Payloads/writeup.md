@@ -141,7 +141,7 @@ Looks like wever got an SMB server. Notice that it is running "Apache Tomcat", r
 
 As we can see, our creds are allowing us to list the directories.
 
-- Note: the terminal "$" indicates a root dir, so we may not have write permissions in these dirs. If that is the case the cmd will fail with a "tree connect failed: NT_STATUS_ACCESS_DENIED" message. 
+- Note: the terminal "$" indicates a root dir, so we may not have read or write permissions in these dirs. If that is the case the cmd will fail with a "tree connect failed: NT_STATUS_ACCESS_DENIED" message. 
 
 Now lets create a .txt to test if we can upload a file.
 
