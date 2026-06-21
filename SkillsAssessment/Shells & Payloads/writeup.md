@@ -50,7 +50,7 @@ First we'll connect with XfreeRDP by running the following cmd in the terminal:
 
 Now that were in their network, lets look around and see what were dealing with.
 
-We appear to have credentials that can be read by low privilege users:
+If we read the "access-creds.txt" file, we appear to have credentials:
 
       cat Desktop/access-creds.txt
       to manage the blog:
