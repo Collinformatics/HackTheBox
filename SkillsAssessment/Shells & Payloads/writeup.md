@@ -49,6 +49,19 @@ We appear to have credentials that can be read by low privilege users:
       
       Change the passwords soon..
 
-Also there
+Additionally, the CIDR prefix lengt is 16, giving us the following Subnet Mask: 255.255.0.0 
+
+      ip a
+      ...
+      2: ens192: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+          link/ether a2:de:ad:10:b2:9c brd ff:ff:ff:ff:ff:ff
+          altname enp11s0
+          inet 10.129.204.126/16 brd 10.129.255.255 scope global dynamic ens192
+             valid_lft 3238sec preferred_lft 3238sec
+          inet6 dead:beef::a0de:adff:fe10:b29c/64 scope global dynamic mngtmpaddr 
+             valid_lft 86396sec preferred_lft 14396sec
+          inet6 fe80::a0de:adff:fe10:b29c/64 scope link 
+             valid_lft forever preferred_lft forever
+      ...
 
 
