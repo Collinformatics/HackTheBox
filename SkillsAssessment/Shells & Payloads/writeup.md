@@ -208,6 +208,8 @@ From the header, we can see that its running php:
 
 
 
+
+
 ## Host 3:
 
 We will also start with an nmap scan of the 3rd host:
