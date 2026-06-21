@@ -145,13 +145,30 @@ As we can see, our creds are allowing us to list the directories.
 
   The "$" at the ends of a dir indicates that it is a root dir, so we may not have read or write permissions in these dirs.
 
-  If that is the case the cmd will fail with a "tree connect failed: NT_STATUS_ACCESS_DENIED" message. 
+  If that is the case the cmd will fail with the message:
+
+  - tree connect failed: NT_STATUS_ACCESS_DENIED
+
+Lets start be issuing cmds (-c) to see what dir we have access to.
+
+      smbclient //172.16.1.11/Users -U tomcat%Tomcatadm -c "dir"
+        .                                  DR        0  Mon Sep 27 20:37:05 2021
+        ..                                 DR        0  Mon Sep 27 20:37:05 2021
+        Default                           DHR        0  Tue Dec 15 05:32:11 2020
+        desktop.ini                       AHS      174  Sat Sep 15 03:16:48 2018
+        Public                             DR        0  Sun Jun 21 11:42:19 2026
+      
+      		10328063 blocks of size 4096. 6515030 blocks available
+
+- The same cmd fails for dev-share, so we likly dont have access.
 
 Now lets create a .txt to test if we can upload a file.
 
       echo "your txt" > msg.txt
 
+- This fails if we try to write to Users, but if we more to Public we can upload the file:
 
+        smbclient //172.16.1.11/Users -U tomcat%Tomcatadm -c "cd Public; put data.aspx"
 
 
 
