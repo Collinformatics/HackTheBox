@@ -126,6 +126,20 @@ Lets begin with enumeration:
       |   date: 2026-06-21T02:31:03
       |_  start_date: N/A
 
+Looks like wever got an SMB server. Notice that it is running "Apache Tomcat", recall that we have credentials that may work here. Lets use the login info and smbclient to enumerate the shares: 
+
+      smbclient -L //172.16.1.11 -U tomcat%Tomcatadm
+      
+      	Sharename       Type      Comment
+      	---------       ----      -------
+      	ADMIN$          Disk      Remote Admin
+      	C$              Disk      Default share
+      	dev-share       Disk      
+      	IPC$            IPC       Remote IPC
+      	Users           Disk      
+      SMB1 disabled -- no workgroup available
+
+
 
 ## Host 2:
 
