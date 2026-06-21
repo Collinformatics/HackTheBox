@@ -11,7 +11,7 @@ We will need to Remote Desktop Protocol (RDP) into the foothold host and perform
 
 Login to the foothold with:
 
--IP:
+- IP:
 
       10.129.204.126
 
