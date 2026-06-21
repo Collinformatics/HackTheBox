@@ -11,6 +11,12 @@ We will need to Remote Desktop Protocol (RDP) into the foothold host and perform
 
 Login to the foothold with:
 
-- Username: htb-student
+- Username:
 
-- Password: HTB_@cademy_stdnt! 
+      htb-student
+
+- Password:
+
+      HTB_@cademy_stdnt! 
+
+
