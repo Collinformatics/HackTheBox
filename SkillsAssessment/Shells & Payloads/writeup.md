@@ -63,7 +63,7 @@ If we read the "access-creds.txt" file, we appear to have credentials:
       Change the passwords soon..
 
 
-## Host 1:
+# Host 1:
 
 Lets begin with enumeration:
 
@@ -190,7 +190,7 @@ Notice that the nmap scan shows there is an http service, so lets see if we can 
 
 
 
-## Host 2:
+# Host 2:
 
 Now we've got our webserver.
 
@@ -228,7 +228,7 @@ From the header, we can see that its running php:
 
 
 
-## Host 3:
+# Host 3:
 
 We will also start with an nmap scan of the 3rd host:
 
