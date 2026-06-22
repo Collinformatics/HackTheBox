@@ -212,7 +212,7 @@ Now we've got our webserver.
       |_http-server-header: Apache/2.4.41 (Ubuntu)
       Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
-From the header, we can see that its running php:
+From the header, we can see that its running php, so it's best we try for a php shell.
 
       curl http://blog.inlanefreight.local/ -sI
       HTTP/1.1 200 OK
