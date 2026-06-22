@@ -1,4 +1,4 @@
-## Background:
+# Background:
 
 This is is a walk-through for the Hack the Box Academy's module Shells & Payloads.
 
@@ -20,9 +20,9 @@ Host 3:
 
       172.16.1.13
 
-## RDP Credentials:
+# RDP Credentials:
 
-Login to the foothold with:
+We can login to the foothold with:
 
 - IP:
 
