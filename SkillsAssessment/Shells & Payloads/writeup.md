@@ -247,7 +247,7 @@ Lets see if we can find any directories:
       /app                  (Status: 301) [Size: 334] [--> http://blog.inlanefreight.local/app/]
       /data                 (Status: 301) [Size: 335] [--> http://blog.inlanefreight.local/data/]
 
-- If we go to http://blog.inlanefreight.local/data/config.ini, we can find a lot of information, including root credientials for a mysql login: 
+- If we go to http://blog.inlanefreight.local/data/config.ini, we can find valuable information, including root credientials for a mysql login: 
 
       ;[database]
       db_connection = mysql
