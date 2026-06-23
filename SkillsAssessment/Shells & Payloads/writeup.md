@@ -247,7 +247,7 @@ Lets see if we can find any directories:
       /app                  (Status: 301) [Size: 334] [--> http://blog.inlanefreight.local/app/]
       /data                 (Status: 301) [Size: 335] [--> http://blog.inlanefreight.local/data/]
 
-- We can find root credientials for a mysql login at http://blog.inlanefreight.local/data/config.ini
+- If we go to http://blog.inlanefreight.local/data/config.ini, we can find a lot of information, including root credientials for a mysql login: 
 
       ;[database]
       db_connection = mysql
@@ -257,6 +257,25 @@ Lets see if we can find any directories:
       mysql_user = root
       mysql_pass = "HTB_@cademy_r00t!"
       db_name = blog
+
+
+## Exploit:
+
+Now that we are situated, let's attack.
+
+First go to 
+
+      http://blog.inlanefreight.local
+
+- Then scroll down past the picture of the boat, to the "Login" button.
+
+      
+        Username: admin
+
+        Password: admin123!@#
+
+Once we've logged in, theres a form to POST data thats waiting for us to exploit it.
+
 
 
 
