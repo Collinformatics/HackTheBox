@@ -278,9 +278,9 @@ Once we've logged in, there's a form to POST data thats waiting for us to exploi
 
 - Also, if we look at Slade Wilson's last post, he seems to have found a vulenerabiliy in the blog, 50064.
 
-  - This is a Remote Code Execution (RCE) exploit that targets authenticated file upload vulnerabilities found in PHP blogs.
+  - This is a Remote Code Execution (RCE) exploit that targets an authenticated file upload vulnerability found in PHP blogs.
 
-Well find it on our system with:
+We can find the script on our system with:
 
       locate 50064
       ...
