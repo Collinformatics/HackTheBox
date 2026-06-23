@@ -238,6 +238,25 @@ To gather more info, lets see the header.
 
 -  Based on the cookie, we can determine that its running PHP.
 
+Lets see if we can find any directories:
+
+      gobuster dir -b 400,403,404,500 -u http://blog.inlanefreight.local -w /usr/share/wfuzz/wordlist/general/common.txt
+
+- This yeilds two:
+
+      /app                  (Status: 301) [Size: 334] [--> http://blog.inlanefreight.local/app/]
+      /data                 (Status: 301) [Size: 335] [--> http://blog.inlanefreight.local/data/]
+
+- We can find root credientials for a mysql login at http://blog.inlanefreight.local/data/config.ini
+
+      ;[database]
+      db_connection = mysql
+      mysql_socket = /var/run/mysqld/mysqld.sock
+      mysql_host = 127.0.0.1
+      mysql_port = 3306
+      mysql_user = root
+      mysql_pass = "HTB_@cademy_r00t!"
+      db_name = blog
 
 
 
