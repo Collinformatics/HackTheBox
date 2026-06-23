@@ -62,6 +62,21 @@ If we read the "access-creds.txt" file, we appear to have credentials:
       
       Change the passwords soon..
 
+The last command entered in the terminal was
+
+      sudo su
+
+- We can use the to switch to the root user, which is recommeded.
+
+You may have also noticed that there is no web browser on this machine, which isn't ideal. To get around this, lets startup an ssh service:
+
+      systemctl start ssh
+
+- Now we can ssh into the server from our local machine.
+
+      ssh htb-student@10.129.39.148
+
+
 
 # Host 1:
 
