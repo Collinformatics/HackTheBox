@@ -147,66 +147,21 @@ Looks like wever got an SMB server. Notice that it is running "Apache Tomcat", r
       	Users           Disk      
       SMB1 disabled -- no workgroup available
 
-As we can see, our creds are allowing us to list the directories.
+As we can see, the username and passwd are allowing us to ccess the system.
 
-- NOTE:
-
-  The "$" at the ends of a dir indicates that it is a root dir, so we may not have read or write permissions in these dirs.
-
-  If that is the case the cmd will fail with the message:
-
-  - tree connect failed: NT_STATUS_ACCESS_DENIED
-
-Lets start be issuing cmds (-c) to see what dir we have access to.
-
-      smbclient -U tomcat%Tomcatadm //172.16.1.11/Users -c "dir"
-        .                                  DR        0  Mon Sep 27 20:37:05 2021
-        ..                                 DR        0  Mon Sep 27 20:37:05 2021
-        Default                           DHR        0  Tue Dec 15 05:32:11 2020
-        desktop.ini                       AHS      174  Sat Sep 15 03:16:48 2018
-        Public                             DR        0  Sun Jun 21 11:42:19 2026
-      
-      		10328063 blocks of size 4096. 6515030 blocks available
-
-- The same cmd fails for dev-share, so we likly dont have access.
-
-Now lets create a .txt to test if we can upload a file.
-
-      echo "your txt" > msg.txt
-
-- This fails if we try to write to the "Users" dir, but if we move to "Public" we can upload the file:
-
-        smbclient -U tomcat%Tomcatadm //172.16.1.11/Users -c "cd Public; put data.aspx"
-
-
-Notice that the nmap scan shows there is an http service, so lets see if we can find  an index page my searching for the header:
-
-      curl -I http://172.16.1.11/index.php
-      HTTP/1.1 404 Not Found
-      Content-Length: 1245
-      Content-Type: text/html
-      Server: Microsoft-IIS/10.0
-      X-Powered-By: ASP.NET
-      Date: Sun, 21 Jun 2026 19:49:49 GMT
-
-- Notice this line:
-
-        X-Powered-By: ASP.NET
-
-  - Perhapes we can use this?
  
 
 ## Exploit:
 
-Now lets open a browser with the command:
+Now lets focus on the  lets open a browser with the command:
 
       firefox
 
 - If you are root this may not work, in that case exit to htb-student
 
-Next navigate the the page:
+Now navigate the the page:
 
-      http://172.16.1.11:8080/manager/html
+      http://172.16.1.11:8080
 
 - If prompted to login, the creds are:
 
@@ -214,11 +169,27 @@ Next navigate the the page:
 
         Password: Tomcatadm
 
-Notice that that there is a section: "WAR file to deploy"
+- Next click on the button "Manager App". THis will take us to:
 
-- Lets see if we can exploit this file upload.
+      http://172.16.1.11:8080/manager/html
 
-  
+Notice that this pages contains a section: "WAR file to deploy"
+
+- Lets see if we can exploit this.
+
+First well use msf to generate a payload.
+
+
+Then add execute permissions:
+
+
+Now we can upload and deploy file.war. After it is added to the "Applications" table, click on the path "/file". Once the wepage has loaded run this command to connect to the shell: 
+
+      nc -nv 172.16.1.11 4444
+
+
+
+
 
 
 # Host 2:
