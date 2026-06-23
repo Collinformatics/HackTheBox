@@ -192,7 +192,7 @@ To get the hostname run:
 
       hostname
 
-And we can find folder at \Shares\ with:
+And we can find folder name that is in the Shares folder with:
 
       dir \Shares\
 
