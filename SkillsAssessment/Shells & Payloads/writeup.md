@@ -66,19 +66,12 @@ The last command entered in the terminal was
 
       sudo su
 
-- We can use the to switch to the root user, which is recommeded.
-
-You may have also noticed that there is no web browser on this machine, which isn't ideal. To get around this, lets startup an ssh service:
-
-      systemctl start ssh
-
-- Now we can ssh into the server from our local machine.
-
-      ssh htb-student@10.129.39.148
-
+- We can use this command to switch to the root user.
 
 
 # Host 1:
+
+## Recon:
 
 Lets begin with enumeration:
 
@@ -203,6 +196,29 @@ Notice that the nmap scan shows there is an http service, so lets see if we can 
   - Perhapes we can use this?
  
 
+## Exploit:
+
+Now lets open a browser with the command:
+
+      firefox
+
+- If you are root this may not work, in that case exit to htb-student
+
+Next navigate the the page:
+
+      http://172.16.1.11:8080/manager/html
+
+- If prompted to login, the creds are:
+
+        Username: tomcat
+
+        Password: Tomcatadm
+
+Notice that that there is a section: "WAR file to deploy"
+
+- Lets see if we can exploit this file upload.
+
+  
 
 
 # Host 2:
