@@ -200,7 +200,9 @@ And we can find folder name that is in the Shares folder with:
 
 # Host 2:
 
-Now we've got our webserver.
+## Recon:
+
+Now lets scan the website.
 
       nmap blog.inlanefreight.local -sV -sC
       Starting Nmap 7.92 ( https://nmap.org ) at 2026-06-20 22:48 EDT
@@ -220,7 +222,9 @@ Now we've got our webserver.
       |_http-server-header: Apache/2.4.41 (Ubuntu)
       Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
-From the header, we can see that its running php, so it's best we try for a php shell.
+- From the scan we see that the website is using Ubuntu
+
+To gather more info, lets see the header.
 
       curl http://blog.inlanefreight.local/ -sI
       HTTP/1.1 200 OK
@@ -232,11 +236,15 @@ From the header, we can see that its running php, so it's best we try for a php 
       Pragma: no-cache
       Content-Type: text/html; charset=UTF-8
 
+-  Based on the cookie, we can determine that its running PHP.
+
 
 
 
 
 # Host 3:
+
+## Recon:
 
 We will also start with an nmap scan of the 3rd host:
 
