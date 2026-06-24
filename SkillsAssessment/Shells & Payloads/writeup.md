@@ -304,7 +304,6 @@ Let's start metasploit, and use the script we just copied:
 And if we run it, we can get our shell, from there the flag is easy to find:
 
       cat /customscripts/flag.txt
-      B1nD_Shells_r_cool
 
 
 
