@@ -366,10 +366,9 @@ We've got enought to carry out an attack. First lets prepare a webshell:
 
 - Edit the file to include the server ip "172.16.1.13".
 
-Now navigate to "upload.aspx", and upload the file:
+Now navigate to "upload.aspx", and upload the file.
 
-<img width="1024" height="768" alt="s3-upload" src="https://github.com/user-attachments/assets/6adecfad-99e5-40ad-8592-b393e59b6025" />
-
+- If successful we will see the mesage "f.aspx has been uploaded to uploads"
 
 
 
