@@ -350,6 +350,12 @@ We will also start with an nmap scan of the 3rd host:
       |   3.1.1: 
       |_    Message signing enabled but not required
 
+We've got an smb server running an outdated version:
+
+      445/tcp open  microsoft-ds Windows Server 2016 Standard 14393 microsoft-ds
+
+
+
 
 - We've got an open http port, so lets see whats there:
 
