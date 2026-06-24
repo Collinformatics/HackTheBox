@@ -351,7 +351,24 @@ We will also start with an nmap scan of the 3rd host:
       |_    Message signing enabled but not required
 
 
+- We've got an open http port, so lets see whats there:
 
+      http://172.16.1.13:80
+
+  The page reveals a file system. Which contains an upload directory, and a script upload.aspx.
+
+
+## Exploit:
+
+We've got enought to carry out an attack. First lets prepare a webshell:
+
+      cp /usr/share/laudanum/aspx/shell.aspx f.aspx
+
+- Edit the file to include the server ip "172.16.1.13".
+
+Now navigate to "upload.aspx", and upload the file:
+
+<img width="1024" height="768" alt="s3-upload" src="https://github.com/user-attachments/assets/6adecfad-99e5-40ad-8592-b393e59b6025" />
 
 
 
