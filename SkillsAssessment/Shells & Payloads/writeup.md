@@ -403,7 +403,7 @@ Startup msfconsole and search for a sutable exploit.
 
       set RHOSTS 172.16.1.13
 
-If we run this, we'll see that the standard payload dosent get us a shell, so lets try a different payload and see what happens:
+If we run this, we'll see that the standard payload dosent get us a shell, perhaps the firewall is blocking outgoing connections. So lets try a different payload and see what happens:
 
       set PAYLOAD windows/smb/ms17_010_psexec
 
