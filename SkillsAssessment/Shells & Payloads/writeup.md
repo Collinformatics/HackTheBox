@@ -421,11 +421,11 @@ After running the script we can see that we've got a Meterpreter session! Lets d
 
       powershell
 
-Now we can complete the module by getting the hostname:
+Now we can get the hostname:
 
       hostname
 
-- And then the flag:
+And finally, well get the flag:
 
       cat C:\Users\Administrator\Desktop\Skills-flag.txt
 
