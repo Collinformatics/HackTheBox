@@ -417,7 +417,7 @@ After running the script we can see that we've got a Meterpreter session! Lets d
 
       shell
 
-- And then well switch to a powershell:
+- And then well switch to the powershell:
 
       powershell
 
