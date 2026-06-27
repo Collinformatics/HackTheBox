@@ -409,9 +409,9 @@ If we run this, we'll see that the standard payload (windows/meterpreter/reverse
 
       grep bind show payloads
 
-and see what happens:
+- Lets use this payload see what happens:
 
-      set PAYLOAD payload/windows/x64/shell/bind_tcp
+      set PAYLOAD payload/windows/meterpreter/bind_tcp
 
 After running the script we can see that we've got a Meterpreter session! Lets drop into a cmd.exe shell:
 
