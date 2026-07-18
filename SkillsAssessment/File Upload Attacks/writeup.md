@@ -12,6 +12,7 @@ After looking around, we see that there is an upload form at:
 
 If we open devtools, we can find:
 
+    <form action="/contact/submit.php" method="get">
             <div class="form-group">
               <label for="name">Name</label>
               <input class="form-control" id="name" type="text" name="Name" required="">
@@ -38,6 +39,4 @@ If we open devtools, we can find:
               <p id="upload_message"></p>
             </div>
             <input class="btn btn-primary" type="submit" value="Submit">
-
-
-
+          </form>
