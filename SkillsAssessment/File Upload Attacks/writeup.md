@@ -85,3 +85,13 @@ If we go to the Network tab in DevTools, script.js shows a basic blacklisting
         }
       });
     });
+
+
+# Testing:
+
+Lets upload a .png and see what happens:
+
+<img width="523" height="860" alt="sc_upload" src="https://github.com/user-attachments/assets/fc7dc586-1545-4beb-9d62-94efc11d54ec" />
+
+
+
