@@ -91,7 +91,9 @@ If we go to the Network tab in DevTools, script.js shows a basic blacklisting
 
 Lets upload a .png and see what happens:
 
-<img width="523" height="860" alt="sc_upload" src="https://github.com/user-attachments/assets/fc7dc586-1545-4beb-9d62-94efc11d54ec" />
+<p align="center">
+    <img width="523" height="914" alt="sc_upload" src="https://github.com/user-attachments/assets/77f9265a-e0f7-4d57-a895-c5d9d8784304" />
+</p>
 
 
 
