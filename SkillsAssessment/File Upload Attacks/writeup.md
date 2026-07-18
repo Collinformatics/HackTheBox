@@ -10,6 +10,7 @@ After looking around, we see that there is an upload form at:
 
     http://154.57.164.64:31425/contact/
 
+If we open devtools, we can find:
 
             <div class="form-group">
               <label for="name">Name</label>
@@ -37,4 +38,6 @@ After looking around, we see that there is an upload form at:
               <p id="upload_message"></p>
             </div>
             <input class="btn btn-primary" type="submit" value="Submit">
-      
+
+
+
