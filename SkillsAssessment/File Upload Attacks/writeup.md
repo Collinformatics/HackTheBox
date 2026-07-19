@@ -166,9 +166,8 @@ Next, lets insepct the upload file to see if we can find where its storing the f
 - If we decode the base64 string we get:
 
 <p align="center">
-    <img width="668" height="286" alt="sc-soursecode_upload" src="https://github.com/user-attachments/assets/da78f7e5-ef8f-48ef-a09a-9970bd7b53ba" />
+    <img width="668" height="286" alt="sc-soursecode_upload" src="https://github.com/user-attachments/assets/bd228775-b329-4bc2-b085-967e328ee996" />
 </p>
-
 
 - From this, we can determine the naming convention for an uplodaed file:
 
