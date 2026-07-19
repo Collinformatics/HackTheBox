@@ -99,9 +99,12 @@ Lets upload a .png and see what happens:
 
 Notice that the green button allows us to test if the image can be uploaded without needing to fill out the form, lets use test out how restrictive it is for different file extentions.
 
-- First we'll up load a .png and use Burp Suite to add the extentions in "/usr/share/seclists/Discovery/Web-Content/web-extensions.txt" to the file name:
+- First we'll up load a .png and use Burp Suite to add an extention before .png. Well use the wordlist: /usr/share/seclists/Discovery/Web-Content/web-extensions.txt
 
 
+        ------geckoformboundary1c3064ee08fbac913b71e2f796f8229c
+        Content-Disposition: form-data; name="uploadFile"; filename="pic$ext$.png"
+        Content-Type: image/png
 
 
 
