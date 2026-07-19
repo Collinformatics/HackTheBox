@@ -86,7 +86,9 @@ If we go to the Network tab in DevTools, script.js shows a basic blacklisting
       });
     });
 
-- Note that the "extension" variable selects the last extention in the string, so if we give it pic.svg.png, extension = .png
+- Note:
+
+      The "extension" variable selects the last extention in the string, so if we give it pic.svg.png, extension = .png
 
 
 # Testing:
@@ -98,6 +100,10 @@ Lets upload a .png and see what happens:
 </p>
 
 Notice that the green button allows us to test if the image can be uploaded without needing to fill out the form, lets use test out how restrictive it is for different file extentions.
+
+- Note:
+
+      This report uses a POST request for fuzzing, Firefox sent GET requests, but by switching to Librewolf and then testing the file upload button we could then interception POST requests. 
 
 - First we'll up load a .png and use Burp Suite to add an extention before .png. Well use the wordlist: /usr/share/seclists/Discovery/Web-Content/web-extensions.txt
 
