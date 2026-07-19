@@ -105,7 +105,11 @@ Notice that the green button allows us to test if the image can be uploaded with
 
   This report uses a POST request for fuzzing, Firefox sent GET requests, but by switching to Librewolf and then testing the file upload button we could then interception POST requests.
 
-   Also, make sure to not encode the payloads:
+  Also, it is highly recommended that you keep a unmodifyied copy of the request we used to upload pic.jpg. In the later stages of this attack a mistake in the syntax in your requests can cause the server to block your next request even when using corrected request syntax, this can be reset by going back and resending out original request.
+
+  - And for multiple mistakes, you may need to create a copy of the original request anc send the copy to reset the server.
+
+   Additionally, make sure to not encode the payloads:
 
     <p align="center">
         <img width="538" height="126" alt="sc-pl_encode" src="https://github.com/user-attachments/assets/59e75291-7ca3-4364-8a2e-a67664aee7b3" />
@@ -169,10 +173,15 @@ Next, lets insepct the upload file to see if we can find where its storing the f
 
 Now that we know how to find the files, lets upload a shell:
 
-
-
-
 <p align="center">
-    
+    <img width="1920" height="1045" alt="sc-upload_shell" src="https://github.com/user-attachments/assets/a995f70b-8978-42c8-bad1-b6f810ecba49" />
 </p>
+
+- As we can see the upload was successful!
+
+First thing we should do is test out the shell by listing the contents of the root directory:
+
+
+
+    curl -X POST http://154.57.164.71:31679/contact/user_feedback_submissions/260719_shell.phar.jpg -d "cmd=ls /" --output results.txt; cat results.txt
 
