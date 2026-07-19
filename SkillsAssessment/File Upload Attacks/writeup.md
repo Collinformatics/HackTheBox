@@ -68,11 +68,9 @@ Notice that the green button allows us to test if the image can be uploaded with
 
   This report uses a POST request for fuzzing, Firefox sent GET requests, but by switching to Librewolf and then testing the file upload button we could then interception POST requests.
 
-  Also, it is highly recommended that you keep a unmodifyied copy of the request we used to upload pic.jpg. In the later stages of this attack a mistake in the syntax in your requests can cause the server to block your next request even when using corrected request syntax, this can be reset by going back and resending out original request.
+  Also, it is highly recommended that you keep a unmodifyied copy of this request to upload pic.jpg. In the later stages of this attack, a syntax mistake in your requests can cause the server to block your next request, even when using corrected request syntax. This can be reset by going back to the Proxy tab, sending the request to Repeater, and sending the initial request.
 
-  - And for multiple mistakes, you may need to create a copy of the original request anc send the copy to reset the server.
-
-   Additionally, make sure to not encode the payloads:
+  Additionally, make sure to not encode the payloads:
 
     <p align="center">
         <img width="538" height="126" alt="sc-pl_encode" src="https://github.com/user-attachments/assets/59e75291-7ca3-4364-8a2e-a67664aee7b3" />
