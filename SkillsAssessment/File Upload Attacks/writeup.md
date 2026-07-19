@@ -143,7 +143,7 @@ Now that we've determined what parameters can get through the upload filter, let
 - First, lets see if we can use an XXE attact to read a file on the server thats not supposed to be exposed.
 
 <p align="center">
-    <img width="1920" height="1045" alt="sc-read_file" src="https://github.com/user-attachments/assets/27c1cd50-b473-4e11-b8e4-f6b5162b79fe" />
+    <img width="1920" height="1045" alt="sc-read_file" src="https://github.com/user-attachments/assets/af8e5a38-335e-44df-8dd9-e1b9a6823fab" />
 </p>
 
 - As we see, we've got a Remote Code Execution exploit!
@@ -152,17 +152,19 @@ Now that we've determined what parameters can get through the upload filter, let
 Next, lets insepct the upload file to see if we can find where its storing the files:
 
 <p align="center">
-    <img width="1920" height="1045" alt="sc-read_sc" src="https://github.com/user-attachments/assets/615e990c-9435-4a87-b1ce-210b60da721a" />
+    <img width="1920" height="1045" alt="sc-read_sc" src="https://github.com/user-attachments/assets/72122f72-e945-457e-8ed2-81e2493baa2a" />
 </p>
 
 - If we decode the base64 string we get:
 
-
-
-
 <p align="center">
-    
+    <img width="658" height="882" alt="sc-upload" src="https://github.com/user-attachments/assets/58083f0a-3588-401b-986b-e8ab90646bbc" />
 </p>
+
+
+- From this, we can determine the naming convention for an uplodaed file:
+
+      http://ip:port/contact/user_feedback_submissions/YearMonthDay_filename.jpg
 
 
 <p align="center">
