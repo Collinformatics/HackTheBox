@@ -167,6 +167,11 @@ Next, lets insepct the upload file to see if we can find where its storing the f
       http://ip:port/contact/user_feedback_submissions/YearMonthDay_filename.jpg
 
 
+Now that we know how to find the files, lets upload a shell:
+
+
+
+
 <p align="center">
     
 </p>
