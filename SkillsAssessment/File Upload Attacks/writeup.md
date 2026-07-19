@@ -86,6 +86,8 @@ If we go to the Network tab in DevTools, script.js shows a basic blacklisting
       });
     });
 
+- Note that the "extension" variable selects the last extention in the string, so if we give it pic.svg.png, extension = .png
+
 
 # Testing:
 
@@ -94,6 +96,12 @@ Lets upload a .png and see what happens:
 <p align="center">
     <img width="523" height="914" alt="sc_upload" src="https://github.com/user-attachments/assets/77f9265a-e0f7-4d57-a895-c5d9d8784304" />
 </p>
+
+Notice that the green button allows us to test if the image can be uploaded without needing to fill out the form, lets use test out how restrictive it is for different file extentions.
+
+- First we'll up load a .png and use Burp Suite to add the extentions in "/usr/share/seclists/Discovery/Web-Content/web-extensions.txt" to the file name:
+
+
 
 
 
