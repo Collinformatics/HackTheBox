@@ -125,10 +125,10 @@ Because image/svg+xml was an accepted Content-Type, lets see if we can use an XX
     <img width="1920" height="1045" alt="sc-read_file" src="https://github.com/user-attachments/assets/8f754b72-cfb4-4527-9934-a55b0c657a38" />
 </p>
 
-- As we see, we've got a Remote Code Execution exploit!
+- We can!
 
 
-Next, lets insepct the upload file to see if we can find where its storing the files:
+Since we can read files, lets get the source code for upload.php so we can find where its storing the files:
 
 <p align="center">
     <img width="1920" height="1045" alt="sc-read_sc" src="https://github.com/user-attachments/assets/72122f72-e945-457e-8ed2-81e2493baa2a" />
@@ -142,7 +142,7 @@ Next, lets insepct the upload file to see if we can find where its storing the f
 
 - From this, we can determine the naming convention for an uplodaed file:
 
-      http://ip:port/contact/user_feedback_submissions/YearMonthDay_filename.jpg
+      http://ip:port/contact/user_feedback_submissions/YearMonthDay_filename.ext
 
 
 Now that we know how to find the files, lets upload a shell:
@@ -151,7 +151,7 @@ Now that we know how to find the files, lets upload a shell:
     <img width="1920" height="1045" alt="sc-upload_shell" src="https://github.com/user-attachments/assets/4fe3dfeb-a05d-4052-8e6a-a2842df7cc2d" />
 </p>
 
-- As we can see the upload was successful!
+- As we can see the upload was successful, and we should now be able to acheieve Remote Code Execution!
 
 
 First thing we should do is test out the shell by listing the contents of the root directory:
