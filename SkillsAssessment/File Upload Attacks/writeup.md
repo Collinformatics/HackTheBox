@@ -8,7 +8,7 @@ Recon:
 
 As we start to look around we'll notice that the site is very early stage as most buttons don't take us anywhere. However if we click in "Contact Us" it will take us to the upload form at:
 
-    http://154.57.164.64:31425/contact/
+    http://154.57.164.71:31679/contact/
 
 If we open devtools, we can find:
 
@@ -123,19 +123,20 @@ After fuzzing, we can find the successful uploads by looking at the longest the 
 
 
 <p align="center">
-    <img width="1920" height="1045" alt="sc-fuzz-ext" src="https://github.com/user-attachments/assets/49d9c895-4b11-4bef-ab1d-26564207da60" />
+    <img width="1920" height="1045" alt="sc-fuzz-ext" src="https://github.com/user-attachments/assets/6798589a-7f47-48ce-a527-eddf8ad5306d" />
+
 </p>
 
 - We can see that .....
 
 Now lets determine what content-types are acceptable:
 
-- First well make our wordlist:
+- First well make a custom wordlist:
 
     cat /usr/share/seclists/Discovery/Web-Content/web-all-content-types.txt | grep image/ > wl-webcontent.txt
 
 <p align="center">
-    <img width="1920" height="1045" alt="sc-fuzz-ct" src="https://github.com/user-attachments/assets/4d536c51-e9dc-4e68-8049-fb5cb85d8865" />
+    <img width="1920" height="1045" alt="sc-fuzz-ct" src="https://github.com/user-attachments/assets/2b3dbb9e-387e-4314-b51c-defc2c1d1f9d" />
 </p>
 
 
