@@ -1,12 +1,12 @@
 # Background:
 
-We've been hired to test the security of a early stages web app. In particular, we'll be looking for file upload forms and try to exploit them.
+We've been hired to test the security of a web app. In particular, we'll be looking for file upload forms and try to exploit them.
 
 
 
 Recon:
 
-After looking around, we see that there is an upload form at:
+As we start to look around we'll notice that the site is very early stage as most buttons don't take us anywhere. However if we click in "Contact Us" it will take us to the upload form at:
 
     http://154.57.164.64:31425/contact/
 
