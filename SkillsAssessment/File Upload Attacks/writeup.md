@@ -108,7 +108,7 @@ Notice that the green button allows us to test if the image can be uploaded with
    Also, make sure to not encode the payloads:
 
     <p align="center">
-    <img width="538" height="126" alt="sc-pl_encode" src="https://github.com/user-attachments/assets/59e75291-7ca3-4364-8a2e-a67664aee7b3" />
+        <img width="538" height="126" alt="sc-pl_encode" src="https://github.com/user-attachments/assets/59e75291-7ca3-4364-8a2e-a67664aee7b3" />
     </p>
 
 - First we'll up load a .png and use Burp Suite to add an extention before .png. Well use the wordlist: /usr/share/seclists/Discovery/Web-Content/web-extensions.txt
@@ -123,11 +123,40 @@ After fuzzing, we can find the successful uploads by looking at the longest the 
 
 
 <p align="center">
-<img width="1920" height="1045" alt="sc-fuzz-ext" src="https://github.com/user-attachments/assets/452230da-483e-4e99-8afd-0ebef367b36e" />
+    <img width="1920" height="1045" alt="sc-fuzz-ext" src="https://github.com/user-attachments/assets/49d9c895-4b11-4bef-ab1d-26564207da60" />
 </p>
+
+- We can see that .....
 
 Now lets determine what content-types are acceptable:
 
 - First well make our wordlist:
 
     cat /usr/share/seclists/Discovery/Web-Content/web-all-content-types.txt | grep image/ > wl-webcontent.txt
+
+<p align="center">
+    <img width="1920" height="1045" alt="sc-fuzz-ct" src="https://github.com/user-attachments/assets/4d536c51-e9dc-4e68-8049-fb5cb85d8865" />
+</p>
+
+
+Now that we've determined what parameters can get through the upload filter, lets exploit the vulnerabilities.
+
+- First, lets see if we can use an XXE attact to read a file on the server thats not supposed to be exposed.
+
+<p align="center">
+    <img width="1861" height="1045" alt="sc-read_file" src="https://github.com/user-attachments/assets/7a484fb9-bdd1-48f9-b8f4-e9abaecf56be" />
+</p>
+
+- As we see, we've got a Remote Code Execution exploit!
+
+
+Next, lets insepct the upload file to see if we can find where its storint the files:
+
+<p align="center">
+    <img width="1861" height="1045" alt="sc-read_sc" src="https://github.com/user-attachments/assets/c13d9c26-0140-4783-9dfe-1cb014ed8331" />
+</p>
+
+- If we decode the base64 string we get:
+
+
+
