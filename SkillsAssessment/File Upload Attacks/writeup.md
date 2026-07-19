@@ -56,9 +56,7 @@ If we open devtools, go to the Network tab and read script.js, we'll find a basi
 - The "extension" variable selects the last extention in the string, so if we give it pic.svg.png, extension = .png
 
 
-## Testing the file upload:
-
-Lets upload a .jpg and see what happens:
+Lets test the file upload button with a .jpg and see what happens:
 
 <p align="center">
     <img width="524" height="912" alt="sc-upload_pic" src="https://github.com/user-attachments/assets/ea26bd83-3e62-47a4-9214-a5c14993172a" />
