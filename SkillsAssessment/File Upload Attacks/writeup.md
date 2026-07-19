@@ -106,9 +106,9 @@ Now lets determine what content-types are acceptable, well make a custom wordlis
 
 - We can now test out the Content-Type parameter.
 
-    ------geckoformboundary1c3064ee08fbac913b71e2f796f8229c
-    Content-Disposition: form-data; name="uploadFile"; filename="pic.png"
-    Content-Type: $ct$
+        ------geckoformboundary1c3064ee08fbac913b71e2f796f8229c
+        Content-Disposition: form-data; name="uploadFile"; filename="pic.png"
+        Content-Type: $ct$
 
 <p align="center">
     <img width="1920" height="1045" alt="sc-fuzz-ct" src="https://github.com/user-attachments/assets/2b3dbb9e-387e-4314-b51c-defc2c1d1f9d" />
@@ -122,7 +122,7 @@ Now that we've determined what parameters can get through the upload filter, let
 Because image/svg+xml was an accepted Content-Type, lets see if we can use an XXE attack to read a file on the server thats not supposed to be exposed.
 
 <p align="center">
-    <img width="1920" height="1045" alt="sc-read_file" src="https://github.com/user-attachments/assets/af8e5a38-335e-44df-8dd9-e1b9a6823fab" />
+    <img width="1920" height="1045" alt="sc-read_file" src="https://github.com/user-attachments/assets/8f754b72-cfb4-4527-9934-a55b0c657a38" />
 </p>
 
 - As we see, we've got a Remote Code Execution exploit!
@@ -148,7 +148,7 @@ Next, lets insepct the upload file to see if we can find where its storing the f
 Now that we know how to find the files, lets upload a shell:
 
 <p align="center">
-    <img width="1920" height="1045" alt="sc-upload_shell" src="https://github.com/user-attachments/assets/a995f70b-8978-42c8-bad1-b6f810ecba49" />
+    <img width="1920" height="1045" alt="sc-upload_shell" src="https://github.com/user-attachments/assets/4fe3dfeb-a05d-4052-8e6a-a2842df7cc2d" />
 </p>
 
 - As we can see the upload was successful!
