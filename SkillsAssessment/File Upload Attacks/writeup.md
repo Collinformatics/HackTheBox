@@ -144,19 +144,29 @@ Now that we've determined what parameters can get through the upload filter, let
 - First, lets see if we can use an XXE attact to read a file on the server thats not supposed to be exposed.
 
 <p align="center">
-    <img width="1861" height="1045" alt="sc-read_file" src="https://github.com/user-attachments/assets/7a484fb9-bdd1-48f9-b8f4-e9abaecf56be" />
+    <img width="1920" height="1045" alt="sc-read_file" src="https://github.com/user-attachments/assets/27c1cd50-b473-4e11-b8e4-f6b5162b79fe" />
 </p>
 
 - As we see, we've got a Remote Code Execution exploit!
 
 
-Next, lets insepct the upload file to see if we can find where its storint the files:
+Next, lets insepct the upload file to see if we can find where its storing the files:
 
 <p align="center">
-    <img width="1861" height="1045" alt="sc-read_sc" src="https://github.com/user-attachments/assets/c13d9c26-0140-4783-9dfe-1cb014ed8331" />
+    <img width="1920" height="1045" alt="sc-read_sc" src="https://github.com/user-attachments/assets/615e990c-9435-4a87-b1ce-210b60da721a" />
 </p>
 
 - If we decode the base64 string we get:
 
 
+
+
+<p align="center">
+    
+</p>
+
+
+<p align="center">
+    
+</p>
 
