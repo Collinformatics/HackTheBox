@@ -93,10 +93,10 @@ If we go to the Network tab in DevTools, script.js shows a basic blacklisting
 
 # Testing:
 
-Lets upload a .png and see what happens:
+Lets upload a .jpg and see what happens:
 
 <p align="center">
-    <img width="523" height="914" alt="sc_upload" src="https://github.com/user-attachments/assets/77f9265a-e0f7-4d57-a895-c5d9d8784304" />
+    <img width="524" height="912" alt="sc-upload_pic" src="https://github.com/user-attachments/assets/ea26bd83-3e62-47a4-9214-a5c14993172a" />
 </p>
 
 Notice that the green button allows us to test if the image can be uploaded without needing to fill out the form, lets use test out how restrictive it is for different file extentions.
@@ -129,9 +129,7 @@ After fuzzing, we can find the successful uploads by looking at the longest the 
 
 - We can see that .....
 
-Now lets determine what content-types are acceptable:
-
-- First well make a custom wordlist:
+Now lets determine what content-types are acceptable, well make a custom wordlist with only image types:
 
     cat /usr/share/seclists/Discovery/Web-Content/web-all-content-types.txt | grep image/ > wl-webcontent.txt
 
