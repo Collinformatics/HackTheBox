@@ -166,7 +166,7 @@ Next, lets insepct the upload file to see if we can find where its storing the f
 - If we decode the base64 string we get:
 
 <p align="center">
-    <img width="605" height="159" alt="sc-soursecode_upload" src="https://github.com/user-attachments/assets/301bb086-d82a-45b8-b895-ec74f808828e" />
+    <img width="668" height="286" alt="sc-soursecode_upload" src="https://github.com/user-attachments/assets/da78f7e5-ef8f-48ef-a09a-9970bd7b53ba" />
 </p>
 
 
