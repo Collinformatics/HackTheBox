@@ -103,7 +103,13 @@ Notice that the green button allows us to test if the image can be uploaded with
 
 - Note:
 
-  This report uses a POST request for fuzzing, Firefox sent GET requests, but by switching to Librewolf and then testing the file upload button we could then interception POST requests. 
+  This report uses a POST request for fuzzing, Firefox sent GET requests, but by switching to Librewolf and then testing the file upload button we could then interception POST requests.
+
+   Also, make sure to not encode the payloads:
+
+    <p align="center">
+    <img width="538" height="126" alt="sc-pl_encode" src="https://github.com/user-attachments/assets/59e75291-7ca3-4364-8a2e-a67664aee7b3" />
+    </p>
 
 - First we'll up load a .png and use Burp Suite to add an extention before .png. Well use the wordlist: /usr/share/seclists/Discovery/Web-Content/web-extensions.txt
 
@@ -120,3 +126,8 @@ After fuzzing, we can find the successful uploads by looking at the longest the 
 <img width="1920" height="1045" alt="sc-fuzz-ext" src="https://github.com/user-attachments/assets/452230da-483e-4e99-8afd-0ebef367b36e" />
 </p>
 
+Now lets determine what content-types are acceptable:
+
+- First well make our wordlist:
+
+    cat /usr/share/seclists/Discovery/Web-Content/web-all-content-types.txt | grep image/ > wl-webcontent.txt
