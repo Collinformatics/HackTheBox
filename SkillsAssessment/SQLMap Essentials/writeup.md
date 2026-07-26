@@ -59,13 +59,17 @@ If we search for "add-to-cart", we'll see its linked to these buttons:
     <img width="1013" height="925" alt="addtocart" src="https://github.com/user-attachments/assets/a680f027-eb3b-4f84-94b5-2d9c6f0f53c1" />
 </p>
 
-Lets target this form, first we'll make a request.txt, for this go to DevTools, then the Network tab, right click on the POST entry, and click on Copy Values, then click on Copy Request Headers.
+Lets target this form, first go the the Network tab (in DevTools), then click the "ADD TO CART" button, after that well see the POST request to action.php:
 
-Paste the values into request.txt,
+<p align="center">
+    <img width="1012" height="926" alt="action" src="https://github.com/user-attachments/assets/ce9c984a-4c21-41eb-91b3-f7ccb6187542" />
+</p>
 
-Then go back and Copy POST Data and add it the request file.
+Right click on the POST entry, and click on "Copy Value", then click on "Copy Request Headers".
 
-- Note: make sure the POST Data is in a JSON format
+Paste the values into a text file, which I'm going to name as request.txt,
+
+Then go back and Copy POST Data and add it to request.txt.
 
 
 # Attack:
