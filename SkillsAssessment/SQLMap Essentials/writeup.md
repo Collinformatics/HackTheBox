@@ -30,7 +30,35 @@ Lets go to http://154.57.164.73:30418/shop.html and see what we find.
     <img width="1014" height="925" alt="shop" src="https://github.com/user-attachments/assets/d9b15d79-99f1-40f7-890b-386039012ed4" />
 </p>
 
-If we look in 
+If we look in DevTools, we'll find a POST method for the "Price Range", however if we try to change the values nothing happens. But more interstingly, wheres a <script> tag at the bottom of the page:
+
+    <script>
+        $(".add-to-cart").click(function(event) {
+            event.preventDefault();
+    
+            let xhr = new XMLHttpRequest(); 
+            let url = "action.php"; 
+        
+            xhr.open("POST", url, true); 
+            xhr.setRequestHeader("Content-Type", "application/json"); 
+    
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) { 
+                    alert("Item added!!!")
+                }
+            };
+    
+            var data = JSON.stringify({ "id": 1 }); 
+            xhr.send(data); 
+        });
+      </script>
+
+If we search for "add-to-cart", we'll see its linked to these buttons:
+
+<p align="center">
+    <img width="1013" height="925" alt="addtocart" src="https://github.com/user-attachments/assets/a680f027-eb3b-4f84-94b5-2d9c6f0f53c1" />
+</p>
+
 
 
 Lets target this form, first we'll make a request.txt, for this go to DevTools, then the Network tab, right click on the POST entry, and click on Copy Values, then click on Copy Request Headers.
