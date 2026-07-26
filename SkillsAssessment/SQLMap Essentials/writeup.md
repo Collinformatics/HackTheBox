@@ -13,7 +13,7 @@ Lets use sqlmap to crawl the site:
 
     $ sqlmap --threads=10 --batch -u http://154.57.164.73:30418 --forms --crawl=3
 
-- This finds 4 targets, and test two of them:
+- This finds 4 targets, and test 2 of them:
 
       POST http://154.57.164.73:30418/shop.html people=%23&people=%23
 
