@@ -2,10 +2,7 @@
 
 We've been given access to a web app with basic protections.
 
-Let's use SQLMap to find the SQLi vulnerabilities and then exploit them!
-
-
-
+Let's use SQLMap to find an SQLi vulnerability and exploit it!
 
 
 # Recon:
