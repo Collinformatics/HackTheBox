@@ -97,5 +97,5 @@ Now that we've found a way in with a time-based blind SQL injection, lets enumer
     sqlmap --batch -r request.txt --random-agent --technique=T --dbms=MySQL --tamper=between --search -T final_flag
 
 - Note:
-    - When using a time-based blind injection sqlmap extracts data by individual characters. A timeout or network instability can cause you obtain an incomplete or incorrect flag.
-    - It this happens, increase the delay from the DBMS response (--time-sec), and the delay between each HTTP request (--delay). 
+    - When using a time-based blind injection sqlmap extracts data by individual characters. A timeout or an unstable network can cause you obtain an incomplete or incorrect flag.
+    - It this happens, try to increase the number of retries (--retries), the delay from the DBMS response (--time-sec), or the delay between each HTTP request (--delay).
