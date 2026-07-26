@@ -88,7 +88,10 @@ However we do also have this warning:
 
     [WARNING] it appears that the character '>' is filtered by the back-end server. You are strongly advised to rerun with the '--tamper=between'
 
-Now that we've found a way in with a Time-based blind SQL Injection, lets enumerate the database and search for the "final_flag" table:
+Now that we've found a way in with a time-based blind SQL injection, lets enumerate the database and search for the "final_flag" table:
 
     sqlmap --batch -r request.txt --random-agent --technique=T --dbms=MySQL --tamper=between --search -T final_flag
 
+- Note:
+    - When using a time-based blind injection sqlmap extracts data by individual characters. A timeout or network instability can cause you obtain an incomplete or incorrect flag.
+    - It this happens, increase the delay from the DBMS response (--time-sec), and the delay between each HTTP request (--delay). 
