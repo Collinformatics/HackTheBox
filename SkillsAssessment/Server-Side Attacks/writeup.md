@@ -16,9 +16,9 @@ If we go to the website, we'll find that theres some info about the business, su
 
 However if we open devtools, well find an API:
 
-	<p align="center">
-		<img width="903" height="926" alt="FFE-api" src="https://github.com/user-attachments/assets/516a6c44-9949-4819-ac6e-3cd75be9d67e" />
-	</p>
+<p align="center">
+	<img width="903" height="926" alt="FFE-api" src="https://github.com/user-attachments/assets/516a6c44-9949-4819-ac6e-3cd75be9d67e" />
+</p>
 
 
 
