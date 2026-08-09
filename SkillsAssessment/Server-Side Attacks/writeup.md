@@ -104,7 +104,7 @@ Now lets find the flag:
 
 - Note: the target is very particular with its encoding, so make sure to double url enncode any spaces
 
-	- Ex: ['ls /'] -> ['ls%20/'] -> %5B%27ls%2520%2F%27%5D
+	- Ex: ['ls /'] --> ['ls%20/'] --> %5B%27ls%2520%2F%27%5D
 
 Now we can get the flag:
 
