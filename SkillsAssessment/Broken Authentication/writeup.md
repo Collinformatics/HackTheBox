@@ -47,7 +47,7 @@ Let's start by creating an account:
 	Username: admin
 	Password: Playstation3
 
-If we login with our new account it takes us to profile.php, which unfortunately doesn't reveal anything that we can use.
+If we login with our new account, it takes us to profile.php, which unfortunately doesn't reveal anything that we can use.
 
 <p align="center">
 	<img width="860" height="445" alt="ba-profile" src="https://github.com/user-attachments/assets/37cf5ef3-26c9-4a01-a91e-c6b90e2703f3" />
