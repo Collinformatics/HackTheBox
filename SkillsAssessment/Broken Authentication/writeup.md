@@ -87,7 +87,7 @@ Now we'll use our custom wordlist to brute force gladys' password:
 		-fr "Invalid credentials." -fc 403 \
 		-w rockyou.txt
 
-- The fuzzing shows that gladys' password is dWinaldasD13.
+- The fuzzing reveals that gladys' password is dWinaldasD13.
 
 		dWinaldasD13     [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 161ms]
 
