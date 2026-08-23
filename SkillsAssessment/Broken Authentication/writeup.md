@@ -111,7 +111,7 @@ Well the responce shows that we were able to bypass the authentication and login
 	</div>
 
 
-Additionally, we can use curl to get the flag:
+Additionally, after bypassing 2fa.php, we can use curl to get the flag:
 
 	curl -s "http://154.57.164.82:31187/profile.php" \
 		-H "Cookie: PHPSESSID=3vimg474018c8e8qa4cea7bape" \
