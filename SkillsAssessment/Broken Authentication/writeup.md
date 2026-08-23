@@ -73,9 +73,10 @@ The error message is different, lets see if we can use this to discover any othe
 	gladys                  [Status: 200, Size: 4344, Words: 680, Lines: 91, Duration: 188ms]
 
 
-First, well simplify the rockyou wordlist to fit the password restrictions:
+First, well simplify the rockyou wordlist to fit the password restrictions
 
-	cat /tmp/rockyou.txt | grep '[[:upper:]]' | grep '[[:lower:]]' | grep '[[:digit:]]' | grep -v '[[:punct:]]' | grep -x '.\{12\}' | > rockyou.txt
+	cat /tmp/rockyou.txt | grep '[[:upper:]]' | grep '[[:lower:]]' | \ 
+		grep '[[:digit:]]' | grep -v '[[:punct:]]' | grep -x '.\{12\}' | > rockyou.txt
 
 
 Now we'll use our custom wordlist to brute force gladys' password:
