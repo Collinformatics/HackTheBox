@@ -68,9 +68,9 @@ The error message is different, lets see if we can use this to discover any othe
 		-w /usr/share/seclists/Usernames/Names/names.txt
 
 - This reveals a username! Now lets see if we can brute force their password.
-
-	admin                   [Status: 200, Size: 4344, Words: 680, Lines: 91, Duration: 224ms]
-	gladys                  [Status: 200, Size: 4344, Words: 680, Lines: 91, Duration: 188ms]
+	
+		admin            [Status: 200, Size: 4344, Words: 680, Lines: 91, Duration: 224ms]
+		gladys           [Status: 200, Size: 4344, Words: 680, Lines: 91, Duration: 188ms]
 
 
 First, well simplify the rockyou wordlist to fit the password restrictions
@@ -89,7 +89,7 @@ Now we'll use our custom wordlist to brute force gladys' password:
 
 - The fuzzing shows that gladys' password is dWinaldasD13.
 
-		dWinaldasD13            [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 161ms]
+		dWinaldasD13     [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 161ms]
 
 
 If we login with the credentials, gladys and dWinaldasD13, then we will be prompted with a 2 factor authentication page. And if we get the code wrong 3 times we'll be prompted to login again, which makes brute forcing with ffuf impractical. So lets see if we can circumvent this.
