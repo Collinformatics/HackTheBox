@@ -8,7 +8,7 @@ One of the updates is a new password policy that was designed to improve account
 
 # Recon:
 
-Reconnaissance is straightforward, simply go to the login page:
+The reconnaissance phase is straightforward, simply go to the login page:
 
 	http://154.57.164.82:30826/login.php
 <p align="center">
