@@ -13,14 +13,14 @@ Reconnaissance is straightforward, simply go to the login page:
 	http://154.57.164.82:30826/login.php
 
 
-Lets try the default creds:
+Lets try the default credentials:
 
 	Username: admin
 	Password: admin
 
 
 
-- This didnt work, we got the error message:
+- This didn't work, we got the error message:
 
 		Unknown username or password.
 
@@ -34,8 +34,6 @@ Notice the option: "Register a new account"
 	- The site employs several useful password restrictions, although requiring a password lenght to be exactly 12 characters would make brute forcing significantly easier.
 
 
-
-mstpn6iklhho8f2qkkg28ior0l
 
 
 # Attack:
@@ -69,7 +67,7 @@ Now we'll use our custom wordlist to brute force gladys' password:
 	dWinaldasD13            [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 161ms]
 
 
-If we login with the credentials, gladys dWinaldasD13, then we will be prompted with a 2 factor authenticaion page. And if we get the code wrong 3 times we'll be prompted to login again, which makes brute forcing with ffuf impractical. So lets see if we can circumvent this.
+If we login with the credentials, gladys dWinaldasD13, then we will be prompted with a 2 factor authentication page. And if we get the code wrong 3 times we'll be prompted to login again, which makes brute forcing with ffuf impractical. So lets see if we can circumvent this.
 
 Lets move to Burp Suite an inspect the request that succeeds the login request.
 
@@ -80,9 +78,9 @@ Lets move to Burp Suite an inspect the request that succeeds the login request.
 
 Recall that if we logged in with the account we created, it takes us to profile.php.
 
-What happens if modify the request to tell the server to go to profile.php?
+- What happens if modify the request to tell the server to go to profile.php?
 
-	GET /profile.php HTTP/1.1
+		GET /profile.php HTTP/1.1
 
 
 Well the responce shows that we were able to bypass the authentication and login as gladys, and that the flag is located in the html:
