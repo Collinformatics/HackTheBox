@@ -1,8 +1,8 @@
 # Background:
 
-SecureMint Innovations has hired us to test their new authentication mechganism of their web application.
+SecureMint Innovations has hired us to test their new authentication mechanism of their web application.
 
-Ome of the updates is a new password policy that was designed to improve account security.
+One of the updates is a new password policy that was designed to improve account security.
 
 
 
@@ -33,11 +33,10 @@ However, notice the option: "Register a new account"
 - If you follow the link and attempt, and fail to create an account the site will provide us with valuable information regarding the account passwords:
 
 <p align="center">
-	<img width="861" height="852" alt="ba-register" src="https://github.com/user-attachments/assets/e225cdf5-4805-48fc-bbd3-19eb56e08a92" />![Uploading ba-login-unknown.png…]()
-![Uploading ba-login-unknown.png…]()
+	<img width="861" height="852" alt="ba-register" src="https://github.com/user-attachments/assets/e225cdf5-4805-48fc-bbd3-19eb56e08a92" />
 </p>
 
-	- The site employs several useful password restrictions, although requiring a password lenght to be exactly 12 characters would make brute forcing significantly easier.
+- As we can see the site employs several useful password restrictions, although requiring a password length to be exactly 12 characters would make brute forcing significantly easier.
 
 
 
@@ -78,7 +77,7 @@ Now we'll use our custom wordlist to brute force gladys' password:
 	dWinaldasD13            [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 161ms]
 
 
-If we login with the credentials, gladys dWinaldasD13, then we will be prompted with a 2 factor authentication page. And if we get the code wrong 3 times we'll be prompted to login again, which makes brute forcing with ffuf impractical. So lets see if we can circumvent this.
+If we login with the credentials, gladys and dWinaldasD13, then we will be prompted with a 2 factor authentication page. And if we get the code wrong 3 times we'll be prompted to login again, which makes brute forcing with ffuf impractical. So lets see if we can circumvent this.
 
 Lets move to Burp Suite an inspect the request that succeeds the login request.
 
